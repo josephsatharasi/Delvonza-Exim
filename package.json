@@ -1,4 +1,11 @@
 {
+  "name": "delvonza-exim",
+  "version": "1.0.0",
+  "scripts": {
+    "install": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start"
+  },
   "dependencies": {
     "lucide-react": "^0.577.0"
   }
