@@ -2,7 +2,7 @@
   "name": "delvonza-exim",
   "version": "1.0.0",
   "scripts": {
-    "build": "cd frontend && npm install && npx react-scripts build",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
     "start": "cd frontend && npm start"
   },
   "dependencies": {
