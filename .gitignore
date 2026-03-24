@@ -1,0 +1,21 @@
+### Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+### Logs
+*.log
+
+### Environment variables (never commit secrets)
+.env
+.env.*
+backend/.env
+frontend/.env
+admin/.env
+
+!*.env.example
+
+### Build output
+build/
+dist/
+
