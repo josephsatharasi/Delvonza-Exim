@@ -1,12 +1,27 @@
+import { useEffect, useState } from 'react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import FloatingButtons from '../components/common/FloatingButtons';
 import ProductCard from '../components/common/ProductCard';
 import { Link } from 'react-router-dom';
 import Button from '../components/common/Button';
-import { productsData } from '../data/productsData';
+import { apiClient } from '../api/client';
 
 const ProductsPage = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { products: responseProducts } = await apiClient.getProducts();
+        setProducts(responseProducts || []);
+      } catch (error) {
+        setProducts([]);
+      }
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -30,9 +45,9 @@ const ProductsPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
-            {productsData.map((product) => (
+            {products.map((product) => (
               <ProductCard 
-                key={product.id} 
+                key={product._id} 
                 name={product.name} 
                 image={product.images[0]}
                 slug={product.slug}

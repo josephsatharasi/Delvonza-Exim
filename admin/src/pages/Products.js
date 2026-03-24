@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
@@ -6,10 +6,14 @@ import Input from '../components/common/Input';
 import Select from '../components/common/Select';
 import Textarea from '../components/common/Textarea';
 import ImageUpload from '../components/common/ImageUpload';
-import { Plus, Edit, Trash2, Package as PackageIcon } from 'lucide-react';
+import { Plus, Edit, Trash2 } from 'lucide-react';
+import { adminApi } from '../api/client';
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -37,12 +41,22 @@ const Products = () => {
     { value: 'saffron', label: 'Saffron' },
     { value: 'vanilla', label: 'Vanilla' }
   ];
-  
-  const products = [
-    { id: 1, name: 'Black Pepper', category: 'Spices', stock: 500, price: '$25/kg' },
-    { id: 2, name: 'Turmeric', category: 'Spices', stock: 350, price: '$18/kg' },
-    { id: 3, name: 'Cardamom', category: 'Spices', stock: 200, price: '$45/kg' },
-  ];
+
+  const loadProducts = async () => {
+    try {
+      setLoading(true);
+      const { products: data } = await adminApi.getProducts();
+      setProducts(data || []);
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,21 +67,38 @@ const Products = () => {
     setFormData(prev => ({ ...prev, images }));
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Product Data:', formData);
-    // Here you would send the data to your backend
-    setIsModalOpen(false);
-    // Reset form
-    setFormData({
-      name: '',
-      category: '',
-      description: '',
-      price: '',
-      stock: '',
-      origin: '',
-      images: []
-    });
+    try {
+      const selectedName = spiceOptions.find((item) => item.value === formData.name)?.label || formData.name;
+      const payload = new FormData();
+      payload.append('name', selectedName);
+      payload.append('slug', formData.name);
+      payload.append('shortDescription', formData.description.slice(0, 90) || `${selectedName} premium spice`);
+      payload.append('description', formData.description || `${selectedName} premium spice`);
+      payload.append('origin', formData.origin);
+      payload.append('packaging', formData.stock ? `Available stock: ${formData.stock} kg` : 'Customized packaging available');
+      payload.append('price', String(Number(formData.price)));
+      payload.append('forms', 'Whole');
+      payload.append('features', 'Premium Quality,Export Grade');
+      formData.images.forEach((file) => payload.append('images', file));
+
+      await adminApi.createProduct(payload);
+      setMessage('Product added successfully.');
+      setIsModalOpen(false);
+      setFormData({
+        name: '',
+        category: '',
+        description: '',
+        price: '',
+        stock: '',
+        origin: '',
+        images: []
+      });
+      await loadProducts();
+    } catch (error) {
+      setMessage(error.message);
+    }
   };
   
   return (
@@ -78,6 +109,7 @@ const Products = () => {
           Add Product
         </Button>
       </div>
+      {message && <p className="mb-4 text-sm text-primary-700 bg-primary-50 px-4 py-2 rounded-lg">{message}</p>}
       
       <Card>
         <div className="overflow-x-auto">
@@ -92,12 +124,16 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product.id} className="border-b hover:bg-gray-50">
+              {loading ? (
+                <tr>
+                  <td colSpan={5} className="py-6 px-4 text-center text-gray-500">Loading products...</td>
+                </tr>
+              ) : products.map((product) => (
+                <tr key={product._id} className="border-b hover:bg-gray-50">
                   <td className="py-3 px-4">{product.name}</td>
-                  <td className="py-3 px-4">{product.category}</td>
-                  <td className="py-3 px-4">{product.stock} kg</td>
-                  <td className="py-3 px-4">{product.price}</td>
+                  <td className="py-3 px-4">Spices</td>
+                  <td className="py-3 px-4">-</td>
+                  <td className="py-3 px-4">INR {product.price}/kg</td>
                   <td className="py-3 px-4">
                     <div className="flex justify-end gap-2">
                       <button className="p-2 text-blue-600 hover:bg-blue-50 rounded">

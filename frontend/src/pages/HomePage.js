@@ -1,11 +1,28 @@
+import { useEffect, useState } from 'react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import FloatingButtons from '../components/common/FloatingButtons';
 import HeroSection from '../components/sections/HeroSection';
 import { Link } from 'react-router-dom';
 import { Package, Globe, Award, ArrowRight } from 'lucide-react';
+import { apiClient } from '../api/client';
 
 const HomePage = () => {
+  const fallbackImage = 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800';
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const { products } = await apiClient.getProducts();
+        setFeaturedProducts((products || []).slice(0, 6));
+      } catch (error) {
+        setFeaturedProducts([]);
+      }
+    };
+    fetchFeatured();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -67,18 +84,18 @@ const HomePage = () => {
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
-            {[
-              { name: 'Turmeric', image: 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=500', slug: 'turmeric' },
-              { name: 'Black Pepper', image: 'https://images.pexels.com/photos/4198933/pexels-photo-4198933.jpeg?auto=compress&cs=tinysrgb&w=500', slug: 'black-pepper' },
-              { name: 'Cardamom', image: 'https://images.pexels.com/photos/4198943/pexels-photo-4198943.jpeg?auto=compress&cs=tinysrgb&w=500', slug: 'cardamom' },
-              { name: 'Red Chilli', image: 'https://images.pexels.com/photos/2802527/pexels-photo-2802527.jpeg?auto=compress&cs=tinysrgb&w=500', slug: 'dried-red-chillies' },
-              { name: 'Cinnamon', image: 'https://images.pexels.com/photos/4198951/pexels-photo-4198951.jpeg?auto=compress&cs=tinysrgb&w=500', slug: 'cinnamon' },
-              { name: 'Cumin', image: 'https://images.pexels.com/photos/4198939/pexels-photo-4198939.jpeg?auto=compress&cs=tinysrgb&w=500', slug: 'cumin-seeds' }
-            ].map((spice, index) => (
-              <Link key={index} to={`/products/${spice.slug}`} onClick={() => window.scrollTo(0, 0)}>
+            {featuredProducts.map((spice) => (
+              <Link key={spice._id} to={`/products/${spice.slug}`} onClick={() => window.scrollTo(0, 0)}>
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105 cursor-pointer">
                   <div className="h-40 overflow-hidden">
-                    <img src={spice.image} alt={spice.name} className="w-full h-full object-cover" />
+                    <img
+                      src={spice.images?.[0] || fallbackImage}
+                      alt={spice.name}
+                      className="w-full h-full object-cover"
+                      onError={(event) => {
+                        event.currentTarget.src = fallbackImage;
+                      }}
+                    />
                   </div>
                   <div className="p-3 text-center">
                     <p className="font-semibold text-gray-800">{spice.name}</p>

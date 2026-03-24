@@ -1,18 +1,24 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Home, Info, Package, Briefcase, Phone } from 'lucide-react';
+import { Menu, X, Home, Info, Package, Briefcase, Phone, ShoppingCart, User, Languages, ClipboardList, LogOut, LogIn } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Button from './Button';
+import { useStore } from '../../context/StoreContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { currentUser, cartCount, logout } = useStore();
+  const { language, languages, changeLanguage } = useLanguage();
 
   const isActive = (path) => location.pathname === path;
 
   // Close drawer when route changes
   useEffect(() => {
     setIsOpen(false);
+    setIsUserMenuOpen(false);
   }, [location]);
 
   // Prevent body scroll when drawer is open
@@ -41,6 +47,12 @@ const Header = () => {
     { path: '/contact', label: 'Contact', icon: Phone }
   ];
 
+  const handleLogout = async () => {
+    await logout();
+    setIsUserMenuOpen(false);
+    handleNavigation('/');
+  };
+
   return (
     <>
       <header className="fixed top-0 w-full bg-white shadow-md z-50">
@@ -67,10 +79,58 @@ const Header = () => {
             ))}
           </ul>
 
-          <div className="hidden md:block">
-            <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
-              <Button variant="primary">Get Quote</Button>
+          <div className="hidden md:flex items-center gap-3">
+            <div className="flex items-center gap-2 border rounded-lg px-2 py-1">
+              <Languages className="w-4 h-4 text-gray-600" />
+              <select
+                value={language}
+                onChange={(event) => changeLanguage(event.target.value)}
+                className="text-sm bg-transparent outline-none"
+                aria-label="Select language"
+              >
+                {languages.map((item) => (
+                  <option key={item.code} value={item.code}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <Link
+              to="/cart"
+              className="relative text-gray-700 hover:text-primary-600"
+              onClick={() => window.scrollTo(0, 0)}
+              aria-label="Cart"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Link>
+            {currentUser ? (
+              <div className="relative">
+                <button
+                  onClick={() => setIsUserMenuOpen((value) => !value)}
+                  className="flex items-center gap-2 text-gray-700 hover:text-primary-600 border rounded-lg px-3 py-2"
+                >
+                  <User className="w-5 h-5" />
+                  <span className="max-w-28 truncate">{currentUser.name}</span>
+                </button>
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-52 bg-white rounded-lg shadow-lg border py-2 z-50">
+                    <button onClick={() => handleNavigation('/profile')} className="w-full text-left px-4 py-2 hover:bg-gray-50">Profile</button>
+                    <button onClick={() => handleNavigation('/cart')} className="w-full text-left px-4 py-2 hover:bg-gray-50">My Cart</button>
+                    <button onClick={() => handleNavigation('/orders')} className="w-full text-left px-4 py-2 hover:bg-gray-50">My Orders</button>
+                    <button onClick={handleLogout} className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50">Logout</button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link to="/login" onClick={() => window.scrollTo(0, 0)}>
+                <Button variant="primary">Login</Button>
+              </Link>
+            )}
           </div>
 
           <button 
@@ -132,6 +192,66 @@ const Header = () => {
                 );
               })}
             </ul>
+            <div className="px-4 mt-4 space-y-2">
+              <div className="px-4 py-3 rounded-lg bg-gray-50">
+                <div className="flex items-center gap-2 mb-2 text-sm text-gray-600">
+                  <Languages className="w-4 h-4" />
+                  <span>Language</span>
+                </div>
+                <select
+                  value={language}
+                  onChange={(event) => changeLanguage(event.target.value)}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                  aria-label="Select language"
+                >
+                  {languages.map((item) => (
+                    <option key={item.code} value={item.code}>
+                      {item.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                onClick={() => handleNavigation('/cart')}
+                className="w-full flex items-center gap-3 text-left px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                My Cart {cartCount > 0 ? `(${cartCount})` : ''}
+              </button>
+              {currentUser ? (
+                <>
+                  <button
+                    onClick={() => handleNavigation('/profile')}
+                    className="w-full flex items-center gap-3 text-left px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50"
+                  >
+                    <User className="w-5 h-5" />
+                    My Profile
+                  </button>
+                  <button
+                    onClick={() => handleNavigation('/orders')}
+                    className="w-full flex items-center gap-3 text-left px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50"
+                  >
+                    <ClipboardList className="w-5 h-5" />
+                    My Orders
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-3 text-left px-4 py-3 rounded-lg text-red-600 hover:bg-red-50"
+                  >
+                    <LogOut className="w-5 h-5" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => handleNavigation('/login')}
+                  className="w-full flex items-center gap-3 text-left px-4 py-3 rounded-lg text-primary-600 hover:bg-primary-50"
+                >
+                  <LogIn className="w-5 h-5" />
+                  Login / Sign Up
+                </button>
+              )}
+            </div>
           </nav>
 
           {/* Drawer Footer */}

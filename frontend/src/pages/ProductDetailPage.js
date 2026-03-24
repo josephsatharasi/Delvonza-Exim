@@ -1,16 +1,46 @@
 import { useParams, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import FloatingButtons from '../components/common/FloatingButtons';
-import { productsData } from '../data/productsData';
 import { ArrowLeft, Package, MapPin, CheckCircle } from 'lucide-react';
 import Button from '../components/common/Button';
+import { useStore } from '../context/StoreContext';
+import { formatCurrency } from '../utils/productPricing';
+import { apiClient } from '../api/client';
 
 const ProductDetailPage = () => {
+  const fallbackImage = 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800';
   const { slug } = useParams();
-  const product = productsData.find(p => p.slug === slug);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [message, setMessage] = useState('');
+  const { addToCart } = useStore();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const { product: result } = await apiClient.getProductBySlug(slug);
+        setProduct(result);
+      } catch (error) {
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div>
+        <Header />
+        <div className="pt-32 pb-20 text-center text-gray-700">Loading product...</div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -47,9 +77,12 @@ const ProductDetailPage = () => {
             <div>
               <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-4">
                 <img 
-                  src={product.images[selectedImage]} 
+                  src={product.images?.[selectedImage] || fallbackImage} 
                   alt={product.name}
                   className="w-full h-96 object-cover"
+                  onError={(event) => {
+                    event.currentTarget.src = fallbackImage;
+                  }}
                 />
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -62,9 +95,12 @@ const ProductDetailPage = () => {
                     }`}
                   >
                     <img 
-                      src={image} 
+                      src={image || fallbackImage} 
                       alt={`${product.name} ${index + 1}`}
                       className="w-full h-24 object-cover"
+                      onError={(event) => {
+                        event.currentTarget.src = fallbackImage;
+                      }}
                     />
                   </button>
                 ))}
@@ -75,6 +111,7 @@ const ProductDetailPage = () => {
             <div>
               <h1 className="text-4xl font-bold text-gray-800 mb-4">{product.name}</h1>
               <p className="text-xl text-gray-600 mb-6">{product.shortDescription}</p>
+              <p className="text-2xl font-bold text-primary-700 mb-4">{formatCurrency(product.price)}</p>
               
               <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Product Details</h3>
@@ -110,9 +147,24 @@ const ProductDetailPage = () => {
                 </div>
               </div>
 
-              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
-                <Button variant="primary" className="w-full">Request a Quote</Button>
-              </Link>
+              {message && <p className="mb-3 text-green-700 bg-green-50 p-3 rounded-lg">{message}</p>}
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  variant="primary"
+                  className="w-full"
+                  onClick={async () => {
+                    const result = await addToCart(product._id);
+                    setMessage(result.message);
+                  }}
+                >
+                  Add to Cart
+                </Button>
+                <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
+                  <Button variant="secondary" className="w-full border border-primary-600">
+                    Go to Cart
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
 
