@@ -144,19 +144,24 @@ const verifyStripeSession = async (req, res) => {
         ? session.payment_intent
         : session.payment_intent?.id || '';
 
-    order.status = 'accepted';
-    order.paymentStatus = 'paid';
-    order.stripeCheckoutSessionId = session.id;
-    order.stripePaymentIntentId = paymentIntentId;
-    await order.save();
+    // Use atomic updates to avoid Mongoose version/concurrency save errors.
+    const updatedOrder = await Order.findOneAndUpdate(
+      { _id: mongoOrderId, user: req.userId },
+      {
+        $set: {
+          status: 'accepted',
+          paymentStatus: 'paid',
+          stripeCheckoutSessionId: session.id,
+          stripePaymentIntentId: paymentIntentId
+        }
+      },
+      { new: true }
+    );
 
-    const cart = await Cart.findOne({ user: req.userId });
-    if (cart) {
-      cart.items = [];
-      await cart.save();
-    }
+    // Clear cart without loading/saving the document (prevents VersionError).
+    await Cart.updateOne({ user: req.userId }, { $set: { items: [] } });
 
-    return res.json({ message: 'Payment successful. Order confirmed.', order });
+    return res.json({ message: 'Payment successful. Order confirmed.', order: updatedOrder || order });
   } catch (error) {
     return res.status(500).json({ message: error.message || 'Payment verification failed.' });
   }

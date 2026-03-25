@@ -1,4 +1,5 @@
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const DEFAULT_API_BASE_URL = 'https://delvonza-exim-backend.onrender.com/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || DEFAULT_API_BASE_URL;
 
 const request = async (path, options = {}) => {
   const isFormData = options.body instanceof FormData;
