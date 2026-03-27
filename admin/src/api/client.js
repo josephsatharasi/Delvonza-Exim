@@ -22,6 +22,8 @@ const request = async (path, options = {}) => {
 export const adminApi = {
   getProducts: () => request('/products'),
   createProduct: (body) => request('/products', { method: 'POST', body }),
+  updateProduct: (id, body) => request(`/products/${id}`, { method: 'PUT', body }),
+  deleteProduct: (id) => request(`/products/${id}`, { method: 'DELETE' }),
   getOrders: () => request('/orders/admin/all'),
   updateOrderStatus: (orderId, status) =>
     request(`/orders/admin/${orderId}/status`, {
