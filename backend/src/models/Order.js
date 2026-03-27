@@ -17,6 +17,7 @@ const orderSchema = new mongoose.Schema(
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     status: { type: String, default: 'payment_pending' },
     paymentStatus: { type: String, default: 'unpaid' },
+    paymentMethod: { type: String, default: 'online' },
     stripeCheckoutSessionId: { type: String, default: '' },
     stripePaymentIntentId: { type: String, default: '' },
     shippingAddress: { type: String, default: '' },

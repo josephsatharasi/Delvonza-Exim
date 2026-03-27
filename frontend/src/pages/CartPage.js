@@ -8,9 +8,18 @@ import { formatCurrency } from '../utils/productPricing';
 
 const CartPage = () => {
   const navigate = useNavigate();
-  const { currentUser, authLoading, cartItems, cartTotal, updateCartQuantity, removeFromCart, checkoutWithPayment } =
-    useStore();
+  const {
+    currentUser,
+    authLoading,
+    cartItems,
+    cartTotal,
+    updateCartQuantity,
+    removeFromCart,
+    checkoutWithPayment,
+    placeOrder
+  } = useStore();
   const [payMessage, setPayMessage] = useState('');
+  const [placingOrder, setPlacingOrder] = useState(false);
 
   if (authLoading) {
     return (
@@ -29,12 +38,26 @@ const CartPage = () => {
 
   const handleOrder = async () => {
     setPayMessage('');
+    setPlacingOrder(true);
     const response = await checkoutWithPayment();
+    setPlacingOrder(false);
     if (response.redirecting) {
       return;
     }
     if (!response.success) {
       setPayMessage(response.message || 'Payment could not be completed.');
+      return;
+    }
+    navigate('/orders');
+  };
+
+  const handleCashOnDelivery = async () => {
+    setPayMessage('');
+    setPlacingOrder(true);
+    const response = await placeOrder('cod');
+    setPlacingOrder(false);
+    if (!response.success) {
+      setPayMessage(response.message || 'Could not place COD order.');
       return;
     }
     navigate('/orders');
@@ -103,16 +126,24 @@ const CartPage = () => {
                   <span>Total</span>
                   <span className="font-bold">{formatCurrency(cartTotal)}</span>
                 </div>
-                <p className="text-sm text-gray-600 mb-3">
-                  You will be redirected to Stripe to pay securely by card.
-                </p>
+                <p className="text-sm text-gray-600 mb-3">Choose your payment method to place the order.</p>
                 {payMessage && <p className="text-sm text-red-600 mb-3">{payMessage}</p>}
-                <button
-                  onClick={handleOrder}
-                  className="w-full bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-4 py-3 font-semibold"
-                >
-                  Pay & place order
-                </button>
+                <div className="space-y-2">
+                  <button
+                    onClick={handleOrder}
+                    disabled={placingOrder}
+                    className="w-full bg-primary-600 hover:bg-primary-700 disabled:opacity-60 text-white rounded-lg px-4 py-3 font-semibold"
+                  >
+                    Pay online (Stripe)
+                  </button>
+                  <button
+                    onClick={handleCashOnDelivery}
+                    disabled={placingOrder}
+                    className="w-full bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-white rounded-lg px-4 py-3 font-semibold"
+                  >
+                    Cash on Delivery
+                  </button>
+                </div>
               </div>
             </div>
           )}

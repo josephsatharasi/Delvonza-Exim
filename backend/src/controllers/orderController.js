@@ -37,6 +37,7 @@ const createCheckoutSession = async (req, res) => {
       user: req.userId,
       status: 'payment_pending',
       paymentStatus: 'unpaid',
+      paymentMethod: 'online',
       shippingAddress: payload.shippingAddress,
       items: payload.items,
       total: payload.total
@@ -68,17 +69,28 @@ const placeOrder = async (req, res) => {
       return res.status(payload.error.status).json({ message: payload.error.message });
     }
 
+    const requestedPaymentMethod = String(req.body.paymentMethod || 'online').toLowerCase();
+    const paymentMethod = requestedPaymentMethod === 'cod' ? 'cod' : 'online';
+    const isCod = paymentMethod === 'cod';
+
     const order = await Order.create({
       user: req.userId,
-      status: 'payment_pending',
-      paymentStatus: 'unpaid',
+      status: isCod ? 'accepted' : 'payment_pending',
+      paymentStatus: isCod ? 'cod_pending' : 'unpaid',
+      paymentMethod,
       shippingAddress: payload.shippingAddress,
       items: payload.items,
       total: payload.total
     });
 
+    if (isCod) {
+      await Cart.updateOne({ user: req.userId }, { $set: { items: [] } });
+    }
+
     return res.status(201).json({
-      message: 'Order created. Complete payment to confirm.',
+      message: isCod
+        ? 'Order placed with Cash on Delivery.'
+        : 'Order created. Complete payment to confirm.',
       order
     });
   } catch (error) {
@@ -151,10 +163,31 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
+const deleteOrder = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found.' });
+    }
+    const deletableStatuses = ['delivered', 'cancelled'];
+    if (!deletableStatuses.includes(order.status)) {
+      return res.status(400).json({
+        message: 'Only delivered or cancelled orders can be deleted.'
+      });
+    }
+    await Order.findByIdAndDelete(orderId);
+    return res.json({ message: 'Order deleted successfully.' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Failed to delete order.' });
+  }
+};
+
 module.exports = {
   placeOrder,
   createCheckoutSession,
   getOrders,
   getAllOrders,
-  updateOrderStatus
+  updateOrderStatus,
+  deleteOrder
 };

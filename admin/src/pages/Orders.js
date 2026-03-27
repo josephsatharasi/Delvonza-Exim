@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
-import { Eye, Download, Truck, CheckCircle, XCircle, Clock, Package, Wallet } from 'lucide-react';
+import { Eye, Download, Truck, CheckCircle, XCircle, Clock, Package, Wallet, Trash2 } from 'lucide-react';
 import { adminApi } from '../api/client';
 
 const THUMB_FALLBACK =
@@ -97,6 +97,26 @@ const Orders = () => {
   };
 
   const adminStatuses = ['processing', 'shipped', 'delivered', 'cancelled'];
+  const canDeleteOrder = (status) => ['delivered', 'cancelled'].includes(status);
+  const getPaymentBadge = (order) => {
+    const method = String(order.paymentMethod || '').toLowerCase();
+    if (method === 'cod') {
+      return { label: 'Cash on Delivery', className: 'bg-amber-100 text-amber-800' };
+    }
+    return { label: 'Online', className: 'bg-blue-100 text-blue-800' };
+  };
+
+  const deleteOrder = async (orderId) => {
+    try {
+      await adminApi.deleteOrder(orderId);
+      setMessage('Order deleted successfully.');
+      setIsModalOpen(false);
+      setSelectedOrder(null);
+      await loadOrders(true);
+    } catch (error) {
+      setMessage(error.message);
+    }
+  };
 
   return (
     <div>
@@ -169,6 +189,7 @@ const Orders = () => {
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Customer</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Date</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Total</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-700">Payment</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Status</th>
                 <th className="text-right py-3 px-4 font-semibold text-gray-700">Actions</th>
               </tr>
@@ -176,13 +197,14 @@ const Orders = () => {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="py-6 px-4 text-center text-gray-500">
+                  <td colSpan={8} className="py-6 px-4 text-center text-gray-500">
                     Loading orders...
                   </td>
                 </tr>
               ) : (
                 orders.map((order) => {
                   const StatusIcon = getStatusIcon(order.status);
+                  const paymentBadge = getPaymentBadge(order);
                   return (
                     <tr key={order._id} className="border-b hover:bg-gray-50">
                       <td className="py-3 px-4">
@@ -212,6 +234,11 @@ const Orders = () => {
                       <td className="py-3 px-4">{new Date(order.createdAt).toLocaleDateString()}</td>
                       <td className="py-3 px-4 font-semibold">{inr(order.total)}</td>
                       <td className="py-3 px-4">
+                        <span className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${paymentBadge.className}`}>
+                          {paymentBadge.label}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4">
                         <span
                           className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium capitalize ${getStatusColor(
                             order.status
@@ -230,6 +257,15 @@ const Orders = () => {
                           >
                             <Eye size={18} />
                           </button>
+                          {canDeleteOrder(order.status) && (
+                            <button
+                              onClick={() => deleteOrder(order._id)}
+                              className="p-2 text-red-600 hover:bg-red-50 rounded"
+                              title="Delete Order"
+                            >
+                              <Trash2 size={18} />
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>
@@ -263,6 +299,9 @@ const Orders = () => {
                 </p>
                 <p>
                   <span className="font-medium">Payment:</span> {selectedOrder.paymentStatus || '-'}
+                </p>
+                <p>
+                  <span className="font-medium">Payment mode:</span> {getPaymentBadge(selectedOrder).label}
                 </p>
               </div>
             </div>
@@ -335,6 +374,21 @@ const Orders = () => {
                     </Button>
                   ))}
                 </div>
+                {canDeleteOrder(selectedOrder.status) && (
+                  <div className="mt-4 pt-4 border-t">
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => deleteOrder(selectedOrder._id)}
+                      icon={Trash2}
+                    >
+                      Delete this order
+                    </Button>
+                    <p className="text-xs text-gray-500 mt-2">
+                      Delete is enabled only for delivered or cancelled orders.
+                    </p>
+                  </div>
+                )}
               </div>
             )}
           </div>

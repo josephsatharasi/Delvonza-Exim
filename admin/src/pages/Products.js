@@ -29,7 +29,6 @@ const Products = () => {
   
   // All spices list
   const spiceOptions = [
-    // Your provided list (kept as simple slugs)
     { value: 'red-chilli', label: 'Red Chilli' },
     { value: 'cumin', label: 'Cumin' },
     { value: 'turmeric', label: 'Turmeric' },
@@ -46,18 +45,7 @@ const Products = () => {
     { value: 'mustard-seeds', label: 'Mustard Seeds' },
     { value: 'celery', label: 'Celery' },
     { value: 'jaggery', label: 'Jaggery' },
-    { value: 'onion', label: 'Onion' },
-
-    // Extra options you already had
-    { value: 'cinnamon', label: 'Cinnamon' },
-    { value: 'cloves', label: 'Cloves' },
-    { value: 'cumin-seeds', label: 'Cumin Seeds' },
-    { value: 'coriander-seeds', label: 'Coriander Seeds' },
-    { value: 'fennel-seeds', label: 'Fennel Seeds' },
-    { value: 'dried-red-chillies', label: 'Dried Red Chillies' },
-    { value: 'bay-leaves', label: 'Bay Leaves (Thyme)' },
-    { value: 'saffron', label: 'Saffron' },
-    { value: 'vanilla', label: 'Vanilla' }
+    { value: 'onion', label: 'Onion' }
   ];
 
   const loadProducts = async () => {

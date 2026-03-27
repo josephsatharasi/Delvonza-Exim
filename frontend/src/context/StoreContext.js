@@ -132,7 +132,7 @@ export const StoreProvider = ({ children }) => {
     }
   };
 
-  const placeOrder = async () => {
+  const placeOrder = async (paymentMethod = 'online') => {
     if (!currentUser) {
       return { success: false, message: 'Please login to place order.' };
     }
@@ -140,7 +140,10 @@ export const StoreProvider = ({ children }) => {
       return { success: false, message: 'Your cart is empty.' };
     }
     try {
-      const response = await apiClient.placeOrder({ shippingAddress: currentUser.address || '' });
+      const response = await apiClient.placeOrder({
+        shippingAddress: currentUser.address || '',
+        paymentMethod
+      });
       await hydrateUserState();
       return { success: true, message: response.message, orderId: response.order?._id };
     } catch (error) {

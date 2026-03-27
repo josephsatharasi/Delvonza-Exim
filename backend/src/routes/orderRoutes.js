@@ -5,13 +5,15 @@ const {
   createCheckoutSession,
   getOrders,
   getAllOrders,
-  updateOrderStatus
+  updateOrderStatus,
+  deleteOrder
 } = require('../controllers/orderController');
 
 const router = express.Router();
 
 router.get('/admin/all', getAllOrders);
 router.put('/admin/:orderId/status', updateOrderStatus);
+router.delete('/admin/:orderId', deleteOrder);
 
 router.use(auth);
 router.post('/checkout', createCheckoutSession);

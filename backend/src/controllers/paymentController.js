@@ -151,6 +151,7 @@ const verifyStripeSession = async (req, res) => {
         $set: {
           status: 'accepted',
           paymentStatus: 'paid',
+          paymentMethod: 'online',
           stripeCheckoutSessionId: session.id,
           stripePaymentIntentId: paymentIntentId
         }

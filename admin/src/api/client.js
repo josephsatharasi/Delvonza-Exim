@@ -25,6 +25,7 @@ export const adminApi = {
   updateProduct: (id, body) => request(`/products/${id}`, { method: 'PUT', body }),
   deleteProduct: (id) => request(`/products/${id}`, { method: 'DELETE' }),
   getOrders: () => request('/orders/admin/all'),
+  deleteOrder: (orderId) => request(`/orders/admin/${orderId}`, { method: 'DELETE' }),
   updateOrderStatus: (orderId, status) =>
     request(`/orders/admin/${orderId}/status`, {
       method: 'PUT',
