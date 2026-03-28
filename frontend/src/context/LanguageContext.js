@@ -30,6 +30,12 @@ export const LanguageProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (language) {
+      document.documentElement.lang = language;
+    }
+  }, [language]);
+
+  useEffect(() => {
     let cancelled = false;
     async function load() {
       try {

@@ -1,5 +1,23 @@
 import { useEffect } from 'react';
 
+const stripGoogleTranslateChrome = () => {
+  document.querySelectorAll('.goog-te-banner-frame, iframe.goog-te-banner-frame, .goog-te-balloon-frame').forEach((el) => {
+    try {
+      el.style.setProperty('display', 'none', 'important');
+      el.style.setProperty('visibility', 'hidden', 'important');
+      el.style.setProperty('height', '0', 'important');
+      el.remove();
+    } catch {
+      // Ignore if element is detached or cross-origin.
+    }
+  });
+  document.body.style.setProperty('margin-top', '0', 'important');
+  document.body.style.setProperty('top', '0', 'important');
+  document.documentElement.style.setProperty('margin-top', '0', 'important');
+  document.documentElement.style.setProperty('top', '0', 'important');
+  document.body.classList.remove('goog-te-mt', 'ft');
+};
+
 const GoogleTranslateWidget = () => {
   useEffect(() => {
     // In React StrictMode (development), effects mount/unmount twice.
@@ -45,6 +63,17 @@ const GoogleTranslateWidget = () => {
     return () => {
       // Keep callback available; removing it can cause cross-origin script
       // callback failures in dev hot reload / StrictMode.
+    };
+  }, []);
+
+  useEffect(() => {
+    stripGoogleTranslateChrome();
+    const observer = new MutationObserver(stripGoogleTranslateChrome);
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    const timer = window.setInterval(stripGoogleTranslateChrome, 250);
+    return () => {
+      observer.disconnect();
+      window.clearInterval(timer);
     };
   }, []);
 

@@ -1,7 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
   <head>
     <meta charset="utf-8" />
+    <!-- Discourages browser/Google from auto-offering machine translation UIs alongside our in-app language control. -->
+    <meta name="google" content="notranslate" />
+    <script>
+      (function () {
+        try {
+          var v = localStorage.getItem('delvonza_lang_v1');
+          if (v) document.documentElement.lang = v;
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />

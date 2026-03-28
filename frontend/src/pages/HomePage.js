@@ -6,7 +6,8 @@ import HeroSection from '../components/sections/HeroSection';
 import { Link } from 'react-router-dom';
 import { Package, Globe, Award, ArrowRight } from 'lucide-react';
 import { apiClient } from '../api/client';
-import homeCta from '../assets/home.jpg';
+import InquirySection from '../components/sections/InquirySection';
+import QuoteBannerCarousel from '../components/sections/QuoteBannerCarousel';
 
 const HomePage = () => {
   const fallbackImage = 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800';
@@ -127,42 +128,9 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${homeCta})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-900/75 to-primary-700/70"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl font-bold mb-6 text-white">Ready to Start Your Spice Import Journey?</h2>
-          <p className="text-xl mb-8 text-gray-100 max-w-2xl mx-auto">
-            Connect with us today to discuss your requirements. We're available 24/7 to serve you.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Link 
-              to="/contact" 
-              onClick={() => window.scrollTo(0, 0)}
-              className="inline-block bg-white hover:bg-gray-100 text-primary-600 px-8 py-4 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-            >
-              Contact Us
-            </Link>
-            <Link 
-              to="/products" 
-              onClick={() => window.scrollTo(0, 0)}
-              className="inline-block border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
-            >
-              Explore Products
-            </Link>
-          </div>
-        </div>
-      </section>
+      <QuoteBannerCarousel />
+
+      <InquirySection />
 
       <Footer />
       <FloatingButtons />
