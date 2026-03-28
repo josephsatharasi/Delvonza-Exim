@@ -1,12 +1,41 @@
+const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const { uploadBufferToCloudinary } = require('../config/cloudinary');
 
 const getProducts = async (_req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
+    const products = await Product.find().sort({ sortOrder: 1, createdAt: -1 });
     return res.json({ products });
   } catch (error) {
     return res.status(500).json({ message: 'Failed to fetch products.' });
+  }
+};
+
+const reorderProducts = async (req, res) => {
+  try {
+    const { orderedIds } = req.body;
+    if (!Array.isArray(orderedIds) || !orderedIds.length) {
+      return res.status(400).json({ message: 'orderedIds must be a non-empty array.' });
+    }
+    const ops = orderedIds
+      .map((id, index) => {
+        if (!mongoose.isValidObjectId(id)) return null;
+        return {
+          updateOne: {
+            filter: { _id: id },
+            update: { $set: { sortOrder: index } }
+          }
+        };
+      })
+      .filter(Boolean);
+    if (!ops.length) {
+      return res.status(400).json({ message: 'No valid product ids.' });
+    }
+    await Product.bulkWrite(ops);
+    const products = await Product.find().sort({ sortOrder: 1, createdAt: -1 });
+    return res.json({ message: 'Product order updated.', products });
+  } catch (error) {
+    return res.status(500).json({ message: 'Failed to reorder products.' });
   }
 };
 
@@ -165,6 +194,9 @@ const createProduct = async (req, res) => {
           ? images
           : ['https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800'];
 
+    const highest = await Product.findOne().sort({ sortOrder: -1 }).select('sortOrder').lean();
+    const nextOrder = typeof highest?.sortOrder === 'number' ? highest.sortOrder + 1 : 0;
+
     const product = await Product.create({
       name: name.trim(),
       slug: slug.trim().toLowerCase(),
@@ -175,7 +207,8 @@ const createProduct = async (req, res) => {
       forms: normalizedForms.length ? normalizedForms : ['Whole'],
       origin: origin || '',
       packaging: packaging || '',
-      price: numericPrice
+      price: numericPrice,
+      sortOrder: nextOrder
     });
 
     return res.status(201).json({ message: 'Product created successfully.', product });
@@ -196,4 +229,11 @@ const getProductBySlug = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, createProduct, getProductBySlug, updateProduct, deleteProduct };
+module.exports = {
+  getProducts,
+  createProduct,
+  getProductBySlug,
+  updateProduct,
+  deleteProduct,
+  reorderProducts
+};

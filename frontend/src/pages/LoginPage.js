@@ -4,6 +4,7 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import FloatingButtons from '../components/common/FloatingButtons';
 import { useStore } from '../context/StoreContext';
+import PasswordField from '../components/common/PasswordField';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -47,13 +48,12 @@ const LoginPage = () => {
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 required
               />
-              <input
-                type="password"
+              <PasswordField
                 placeholder="Password"
                 value={formData.password}
                 onChange={(event) => setFormData({ ...formData, password: event.target.value })}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 required
+                autoComplete="current-password"
               />
               <button
                 type="submit"

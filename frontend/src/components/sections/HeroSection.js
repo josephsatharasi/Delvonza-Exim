@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
+import homeHero from '../../assets/home.jpg';
 
 const HeroSection = () => {
   return (
@@ -7,7 +8,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url(https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg?auto=compress&cs=tinysrgb&w=1920)',
+          backgroundImage: `url(${homeHero})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

@@ -17,6 +17,12 @@ const register = async (req, res) => {
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Name, email and password are required.' });
     }
+    if (!String(phone).trim()) {
+      return res.status(400).json({ message: 'Phone number is required.' });
+    }
+    if (!String(address).trim()) {
+      return res.status(400).json({ message: 'Address is required.' });
+    }
 
     const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
     if (existingUser) {

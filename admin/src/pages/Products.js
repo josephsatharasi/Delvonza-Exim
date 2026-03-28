@@ -6,7 +6,7 @@ import Input from '../components/common/Input';
 import Select from '../components/common/Select';
 import Textarea from '../components/common/Textarea';
 import ImageUpload from '../components/common/ImageUpload';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, GripVertical } from 'lucide-react';
 import { adminApi } from '../api/client';
 
 const Products = () => {
@@ -77,11 +77,12 @@ const Products = () => {
     e.preventDefault();
     try {
       const selectedName = spiceOptions.find((item) => item.value === formData.name)?.label || formData.name;
+      const desc = (formData.description || '').trim() || `${selectedName} premium spice`;
       const payload = new FormData();
       payload.append('name', selectedName);
       payload.append('slug', formData.name);
-      payload.append('shortDescription', formData.description.slice(0, 90) || `${selectedName} premium spice`);
-      payload.append('description', formData.description || `${selectedName} premium spice`);
+      payload.append('shortDescription', desc);
+      payload.append('description', desc);
       payload.append('origin', formData.origin);
       payload.append('packaging', formData.stock ? `Available stock: ${formData.stock} kg` : 'Customized packaging available');
       payload.append('price', String(Number(formData.price)));
@@ -124,11 +125,12 @@ const Products = () => {
     if (!editingProduct?._id) return;
     try {
       const selectedName = spiceOptions.find((item) => item.value === formData.name)?.label || formData.name;
+      const desc = (formData.description || '').trim() || `${selectedName} premium spice`;
       const payload = new FormData();
       payload.append('name', selectedName);
       payload.append('slug', formData.name);
-      payload.append('shortDescription', formData.description.slice(0, 90) || `${selectedName} premium spice`);
-      payload.append('description', formData.description || `${selectedName} premium spice`);
+      payload.append('shortDescription', desc);
+      payload.append('description', desc);
       payload.append('origin', formData.origin);
       payload.append(
         'packaging',
@@ -174,6 +176,28 @@ const Products = () => {
       setMessage(error.message);
     }
   };
+
+  const persistProductOrder = async (orderedList) => {
+    try {
+      const { products: next } = await adminApi.reorderProducts(orderedList.map((p) => p._id));
+      setProducts(next || orderedList);
+      setMessage('Storefront order saved.');
+    } catch (error) {
+      setMessage(error.message);
+      await loadProducts();
+    }
+  };
+
+  const handleDropOnRow = (event, dropIndex) => {
+    event.preventDefault();
+    const from = Number(event.dataTransfer.getData('text/plain'));
+    if (Number.isNaN(from) || from === dropIndex) return;
+    const next = [...products];
+    const [moved] = next.splice(from, 1);
+    next.splice(dropIndex, 0, moved);
+    setProducts(next);
+    persistProductOrder(next);
+  };
   
   return (
     <div>
@@ -184,14 +208,19 @@ const Products = () => {
         </Button>
       </div>
       {message && <p className="mb-4 text-sm text-primary-700 bg-primary-50 px-4 py-2 rounded-lg">{message}</p>}
+      <p className="text-sm text-gray-600 mb-3">
+        Drag rows by the handle to set the order products appear on the public website.
+      </p>
       
       <Card>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b">
+                <th className="w-10 py-3 px-2" aria-label="Reorder" />
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Image</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Product Name</th>
+                <th className="text-left py-3 px-4 font-semibold text-gray-700 max-w-xs">Description</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Stock</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Price</th>
                 <th className="text-right py-3 px-4 font-semibold text-gray-700">Actions</th>
@@ -200,10 +229,23 @@ const Products = () => {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="py-6 px-4 text-center text-gray-500">Loading products...</td>
+                  <td colSpan={7} className="py-6 px-4 text-center text-gray-500">Loading products...</td>
                 </tr>
-              ) : products.map((product) => (
-                <tr key={product._id} className="border-b hover:bg-gray-50">
+              ) : products.map((product, index) => (
+                <tr
+                  key={product._id}
+                  draggable
+                  onDragStart={(e) => {
+                    e.dataTransfer.setData('text/plain', String(index));
+                    e.dataTransfer.effectAllowed = 'move';
+                  }}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => handleDropOnRow(e, index)}
+                  className="border-b hover:bg-gray-50"
+                >
+                  <td className="py-3 px-2 text-gray-400 cursor-grab active:cursor-grabbing align-middle">
+                    <GripVertical size={20} className="mx-auto" aria-hidden />
+                  </td>
                   <td className="py-3 px-4">
                     <img
                       src={
@@ -219,6 +261,14 @@ const Products = () => {
                     />
                   </td>
                   <td className="py-3 px-4">{product.name}</td>
+                  <td className="py-3 px-4 max-w-xs">
+                    <p
+                      className="text-sm text-gray-600 line-clamp-2"
+                      title={product.description || product.shortDescription || ''}
+                    >
+                      {product.description || product.shortDescription || '—'}
+                    </p>
+                  </td>
                   <td className="py-3 px-4">{product.packaging || '-'}</td>
                   <td className="py-3 px-4">INR {product.price}/kg</td>
                   <td className="py-3 px-4">
@@ -300,7 +350,7 @@ const Products = () => {
             placeholder="Enter product description..."
             value={formData.description}
             onChange={handleInputChange}
-            rows={4}
+            rows={8}
           />
           
           <ImageUpload
@@ -379,7 +429,7 @@ const Products = () => {
             placeholder="Enter product description..."
             value={formData.description}
             onChange={handleInputChange}
-            rows={4}
+            rows={8}
           />
 
           {editingProduct?.images?.length ? (

@@ -72,5 +72,6 @@ export const apiClient = {
   createStripeSession: (orderId) =>
     request('/payments/stripe/create', { method: 'POST', body: JSON.stringify({ orderId }) }),
   verifyStripeSession: (body) =>
-    request('/payments/stripe/verify', { method: 'POST', body: JSON.stringify(body) })
+    request('/payments/stripe/verify', { method: 'POST', body: JSON.stringify(body) }),
+  submitInquiry: (body) => request('/inquiries', { method: 'POST', body: JSON.stringify(body) })
 };

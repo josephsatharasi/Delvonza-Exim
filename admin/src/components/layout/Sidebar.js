@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAdminAuth } from '../../context/AdminAuthContext';
 import { 
   LayoutDashboard, 
   Package, 
@@ -11,6 +12,14 @@ import {
 
 const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAdminAuth();
+
+  const handleLogout = () => {
+    logout();
+    onClose?.();
+    navigate('/login', { replace: true });
+  };
   
   const menuItems = [
     { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -71,7 +80,11 @@ const Sidebar = ({ isOpen, onClose }) => {
           
           {/* Logout */}
           <div className="p-4 border-t">
-            <button className="flex items-center gap-3 px-4 py-3 w-full text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex items-center gap-3 px-4 py-3 w-full text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            >
               <LogOut size={20} />
               <span className="font-medium">Logout</span>
             </button>

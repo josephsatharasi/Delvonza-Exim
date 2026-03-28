@@ -6,6 +6,7 @@ import HeroSection from '../components/sections/HeroSection';
 import { Link } from 'react-router-dom';
 import { Package, Globe, Award, ArrowRight } from 'lucide-react';
 import { apiClient } from '../api/client';
+import homeCta from '../assets/home.jpg';
 
 const HomePage = () => {
   const fallbackImage = 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800';
@@ -97,8 +98,16 @@ const HomePage = () => {
                       }}
                     />
                   </div>
-                  <div className="p-3 text-center">
+                  <div className="p-3 text-left">
                     <p className="font-semibold text-gray-800">{spice.name}</p>
+                    {(spice.shortDescription || spice.description) && (
+                      <p
+                        className="text-xs text-gray-600 mt-1 line-clamp-2"
+                        title={spice.shortDescription || spice.description}
+                      >
+                        {spice.shortDescription || spice.description}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Link>
@@ -123,7 +132,7 @@ const HomePage = () => {
         <div 
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: 'url(https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg?auto=compress&cs=tinysrgb&w=1920)',
+            backgroundImage: `url(${homeCta})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

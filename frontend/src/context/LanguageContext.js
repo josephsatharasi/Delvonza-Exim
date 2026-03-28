@@ -1,42 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { fetchGlobalLanguages } from '../utils/globalLocales';
 
 const LanguageContext = createContext(null);
 const STORAGE_KEY = 'delvonza_lang_v1';
 
-export const LANGUAGE_OPTIONS = [
-  { code: 'en', label: 'English' },
-  { code: 'hi', label: 'Hindi' },
-  { code: 'ta', label: 'Tamil' },
-  { code: 'te', label: 'Telugu' },
-  { code: 'ml', label: 'Malayalam' },
-  { code: 'kn', label: 'Kannada' },
-  { code: 'mr', label: 'Marathi' },
-  { code: 'gu', label: 'Gujarati' },
-  { code: 'bn', label: 'Bengali' },
-  { code: 'ar', label: 'Arabic' },
-  { code: 'fr', label: 'French' }
-];
-
-const COUNTRY_TO_LANGUAGE = {
-  IN: 'hi',
-  AE: 'ar',
-  SA: 'ar',
-  QA: 'ar',
-  FR: 'fr'
-};
-
 const getAutoLanguage = () => {
   const locale = navigator.language || 'en';
   const [languagePart, countryPart] = locale.split('-');
-  const fromCountry = countryPart ? COUNTRY_TO_LANGUAGE[countryPart.toUpperCase()] : null;
-  const supportedCodes = LANGUAGE_OPTIONS.map((item) => item.code);
-  if (fromCountry && supportedCodes.includes(fromCountry)) {
-    return fromCountry;
-  }
-  if (supportedCodes.includes(languagePart.toLowerCase())) {
-    return languagePart.toLowerCase();
-  }
-  return 'en';
+  // Prefer the browser's language code (Google Translate accepts ISO-639-1 codes).
+  return (languagePart || 'en').toLowerCase();
 };
 
 const setGoogleTranslateCookie = (langCode) => {
@@ -48,12 +20,31 @@ const setGoogleTranslateCookie = (langCode) => {
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('en');
+  const [languages, setLanguages] = useState([{ code: 'en', label: 'English' }]);
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem(STORAGE_KEY);
     const nextLanguage = savedLanguage || getAutoLanguage();
     setLanguage(nextLanguage);
     setGoogleTranslateCookie(nextLanguage);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const list = await fetchGlobalLanguages();
+        if (!cancelled && Array.isArray(list) && list.length) {
+          setLanguages(list);
+        }
+      } catch {
+        // Keep fallback language list if API is unavailable.
+      }
+    }
+    load();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const changeLanguage = (langCode) => {
@@ -66,10 +57,10 @@ export const LanguageProvider = ({ children }) => {
   const value = useMemo(
     () => ({
       language,
-      languages: LANGUAGE_OPTIONS,
+      languages,
       changeLanguage
     }),
-    [language]
+    [language, languages]
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

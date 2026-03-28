@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
+/** Slugs match product URLs (/products/:slug). Update if you rename products in admin. */
+const FOOTER_SPICES = [
+  { label: 'Turmeric', slug: 'turmeric' },
+  { label: 'Black Pepper', slug: 'black-pepper' },
+  { label: 'Cardamom', slug: 'cardamom' },
+  { label: 'Dried Chillies', slug: 'dried-red-chillies' },
+  { label: 'Cinnamon', slug: 'cinnamon' },
+  { label: 'Cloves', slug: 'cloves' }
+];
+
 const Footer = () => {
   const handleLinkClick = () => {
     window.scrollTo(0, 0);
@@ -28,12 +38,17 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold mb-4">Our Spices</h4>
           <ul className="space-y-2 text-gray-400">
-            <li>Turmeric</li>
-            <li>Black Pepper</li>
-            <li>Cardamom</li>
-            <li>Dried Chillies</li>
-            <li>Cinnamon</li>
-            <li>Cloves</li>
+            {FOOTER_SPICES.map(({ label, slug }) => (
+              <li key={slug}>
+                <Link
+                  to={`/products/${slug}`}
+                  onClick={handleLinkClick}
+                  className="hover:text-primary-400 transition"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

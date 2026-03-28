@@ -21,9 +21,20 @@ const request = async (path, options = {}) => {
 
 export const adminApi = {
   getProducts: () => request('/products'),
+  reorderProducts: (orderedIds) =>
+    request('/products/reorder', {
+      method: 'PUT',
+      body: JSON.stringify({ orderedIds })
+    }),
   createProduct: (body) => request('/products', { method: 'POST', body }),
   updateProduct: (id, body) => request(`/products/${id}`, { method: 'PUT', body }),
   deleteProduct: (id) => request(`/products/${id}`, { method: 'DELETE' }),
+  getInquiries: () => request('/inquiries/admin/all'),
+  updateInquiryStatus: (id, status) =>
+    request(`/inquiries/admin/${id}/status`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status })
+    }),
   getOrders: () => request('/orders/admin/all'),
   deleteOrder: (orderId) => request(`/orders/admin/${orderId}`, { method: 'DELETE' }),
   updateOrderStatus: (orderId, status) =>

@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { LANGUAGE_OPTIONS } from '../../context/LanguageContext';
 
 const GoogleTranslateWidget = () => {
   useEffect(() => {
@@ -21,7 +20,6 @@ const GoogleTranslateWidget = () => {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: 'en',
-          includedLanguages: LANGUAGE_OPTIONS.map((item) => item.code).join(','),
           autoDisplay: false,
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
         },

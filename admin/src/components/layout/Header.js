@@ -1,7 +1,9 @@
 import React from 'react';
 import { Menu, Bell, User } from 'lucide-react';
+import { useAdminAuth } from '../../context/AdminAuthContext';
 
 const Header = ({ onMenuClick }) => {
+  const { adminEmail } = useAdminAuth();
   return (
     <header className="bg-white shadow-sm border-b sticky top-0 z-30">
       <div className="flex items-center justify-between px-6 py-4">
@@ -32,8 +34,8 @@ const Header = ({ onMenuClick }) => {
               <User size={18} className="text-white" />
             </div>
             <div className="hidden md:block">
-              <p className="text-sm font-medium text-gray-800">Admin User</p>
-              <p className="text-xs text-gray-600">admin@delvonzaexim.com</p>
+              <p className="text-sm font-medium text-gray-800">Admin</p>
+              <p className="text-xs text-gray-600 truncate max-w-[200px]">{adminEmail}</p>
             </div>
           </div>
         </div>

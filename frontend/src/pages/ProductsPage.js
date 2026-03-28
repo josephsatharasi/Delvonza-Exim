@@ -51,6 +51,7 @@ const ProductsPage = () => {
                 name={product.name} 
                 image={product.images[0]}
                 slug={product.slug}
+                description={product.shortDescription || product.description || ''}
               />
             ))}
           </div>

@@ -43,6 +43,12 @@ export const StoreProvider = ({ children }) => {
   }, []);
 
   const register = async ({ name, email, password, phone = '', address = '' }) => {
+    if (!String(phone).trim()) {
+      return { success: false, message: 'Phone number is required.' };
+    }
+    if (!String(address).trim()) {
+      return { success: false, message: 'Address is required.' };
+    }
     try {
       await apiClient.register({ name, email, password, phone, address });
       tokenStore.clear();
