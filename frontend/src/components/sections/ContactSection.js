@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MessageCircle, MapPin, Clock } from 'lucide-react';
 import { apiClient } from '../../api/client';
 
 const ContactSection = () => {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -24,10 +26,10 @@ const ContactSection = () => {
     setSending(true);
     try {
       await apiClient.submitInquiry(form);
-      setStatus({ type: 'ok', text: 'Message sent. We will reply soon.' });
+      setStatus({ type: 'ok', text: t('contact.success') });
       setForm({ name: '', email: '', phone: '', country: '', message: '' });
     } catch (err) {
-      setStatus({ type: 'err', text: err.message || 'Could not send message.' });
+      setStatus({ type: 'err', text: err.message || t('contact.error') });
     } finally {
       setSending(false);
     }
@@ -36,14 +38,14 @@ const ContactSection = () => {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6 max-w-6xl">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">Get In Touch</h2>
+        <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">{t('contact.title')}</h2>
         <p className="text-center text-gray-600 mb-12">
-          We&apos;re here to help with your spice export inquiries 24/7
+          {t('contact.subtitle')}
         </p>
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className="bg-white rounded-lg shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">{t('contact.formHeading')}</h3>
             {status.text && (
               <p
                 className={`mb-4 p-3 rounded-lg text-sm ${
@@ -58,7 +60,7 @@ const ContactSection = () => {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Your Name"
+                  placeholder={t('contact.name')}
                   value={form.name}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -67,7 +69,7 @@ const ContactSection = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email Address"
+                  placeholder={t('contact.email')}
                   value={form.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -79,7 +81,7 @@ const ContactSection = () => {
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="Phone Number (with country code)"
+                  placeholder={t('contact.phone')}
                   value={form.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -88,7 +90,7 @@ const ContactSection = () => {
                 <input
                   type="text"
                   name="country"
-                  placeholder="Country"
+                  placeholder={t('contact.country')}
                   value={form.country}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -98,7 +100,7 @@ const ContactSection = () => {
 
               <textarea
                 name="message"
-                placeholder="Your Message"
+                placeholder={t('contact.message')}
                 rows="5"
                 value={form.message}
                 onChange={handleChange}
@@ -111,22 +113,22 @@ const ContactSection = () => {
                 disabled={sending}
                 className="w-full px-6 py-3 rounded-lg font-semibold bg-primary-600 hover:bg-primary-700 text-white shadow-md disabled:opacity-60"
               >
-                {sending ? 'Sending…' : 'Send Message'}
+                {sending ? t('contact.sending') : t('contact.submit')}
               </button>
             </form>
           </div>
 
           <div className="space-y-6">
             <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">{t('contact.infoHeading')}</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <div className="bg-primary-50 p-3 rounded-lg">
                     <MapPin className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Address</h4>
-                    <p className="text-gray-600">MahabubNagar, Telangana, India</p>
+                    <h4 className="font-semibold text-gray-800">{t('contact.addressLabel')}</h4>
+                    <p className="text-gray-600">{t('footer.address')}</p>
                   </div>
                 </div>
 
@@ -135,7 +137,7 @@ const ContactSection = () => {
                     <Mail className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Email</h4>
+                    <h4 className="font-semibold text-gray-800">{t('contact.emailLabel')}</h4>
                     <p className="text-gray-600">info@delvonzaexim.com</p>
                   </div>
                 </div>
@@ -145,7 +147,7 @@ const ContactSection = () => {
                     <Phone className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Phone</h4>
+                    <h4 className="font-semibold text-gray-800">{t('contact.phoneLabel')}</h4>
                     <p className="text-gray-600">+91 9515046565</p>
                   </div>
                 </div>
@@ -155,8 +157,8 @@ const ContactSection = () => {
                     <Clock className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Business Hours</h4>
-                    <p className="text-gray-600">24 Hours / 7 Days a Week</p>
+                    <h4 className="font-semibold text-gray-800">{t('contact.hoursLabel')}</h4>
+                    <p className="text-gray-600">{t('contact.hoursValue')}</p>
                   </div>
                 </div>
               </div>
@@ -169,7 +171,7 @@ const ContactSection = () => {
               className="flex items-center justify-center gap-3 bg-green-500 text-white px-6 py-4 rounded-lg hover:bg-green-600 transition shadow-lg"
             >
               <MessageCircle className="w-6 h-6" />
-              <span className="font-semibold">WhatsApp Us</span>
+              <span className="font-semibold">{t('contact.whatsapp')}</span>
             </a>
           </div>
         </div>

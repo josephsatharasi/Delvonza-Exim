@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import FloatingButtons from '../components/common/FloatingButtons';
@@ -10,6 +11,7 @@ import InquirySection from '../components/sections/InquirySection';
 import QuoteBannerCarousel from '../components/sections/QuoteBannerCarousel';
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const fallbackImage = 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800';
   const [featuredProducts, setFeaturedProducts] = useState([]);
 
@@ -34,12 +36,12 @@ const HomePage = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">Welcome to Delvonza Exim</h2>
+            <h2 className="text-4xl font-bold text-gray-800 mb-6">{t('home.welcomeTitle')}</h2>
             <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-              Delvonza Exim is a trusted company specializing in the export and import of high-quality spices from India to global markets. We are committed to delivering premium quality spices that reflect the rich agricultural heritage of India.
+              {t('home.welcomeP1')}
             </p>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Our goal is to connect international buyers with the authentic taste and aroma of Indian spices while maintaining the highest standards of quality, reliability, and customer satisfaction. With a strong sourcing network and efficient logistics support, Delvonza Exim ensures that every product reaches our customers safely and on time.
+              {t('home.welcomeP2')}
             </p>
           </div>
 
@@ -48,9 +50,9 @@ const HomePage = () => {
               <div className="bg-primary-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Package className="w-10 h-10 text-primary-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-3">Premium Quality</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-3">{t('home.premiumQuality')}</h3>
               <p className="text-gray-600">
-                Carefully selected spices from trusted suppliers across India
+                {t('home.premiumQualityDesc')}
               </p>
             </div>
 
@@ -58,9 +60,9 @@ const HomePage = () => {
               <div className="bg-primary-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Globe className="w-10 h-10 text-primary-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-3">Global Reach</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-3">{t('home.globalReach')}</h3>
               <p className="text-gray-600">
-                Serving international markets with reliable export services
+                {t('home.globalReachDesc')}
               </p>
             </div>
 
@@ -68,9 +70,9 @@ const HomePage = () => {
               <div className="bg-primary-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Award className="w-10 h-10 text-primary-600" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-3">Trusted Partner</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-3">{t('home.trustedPartner')}</h3>
               <p className="text-gray-600">
-                Building long-term relationships through quality and service
+                {t('home.trustedPartnerDesc')}
               </p>
             </div>
           </div>
@@ -80,9 +82,9 @@ const HomePage = () => {
       {/* Featured Spices Preview */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">Our Premium Indian Spices</h2>
+          <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">{t('home.featuredTitle')}</h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            We export a wide range of authentic Indian spices, carefully selected for their quality, aroma, and flavor
+            {t('home.featuredSubtitle')}
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
@@ -121,7 +123,7 @@ const HomePage = () => {
               onClick={() => window.scrollTo(0, 0)}
               className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:scale-105"
             >
-              View All Products
+              {t('home.viewAllProducts')}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>

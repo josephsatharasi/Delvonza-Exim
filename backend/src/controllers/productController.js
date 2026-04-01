@@ -57,7 +57,8 @@ const updateProduct = async (req, res) => {
       forms,
       origin,
       packaging,
-      price
+      price,
+      hidePrice
     } = req.body;
 
     const update = {};
@@ -75,6 +76,10 @@ const updateProduct = async (req, res) => {
         return res.status(400).json({ message: 'price must be numeric.' });
       }
       update.price = numericPrice;
+    }
+
+    if (hidePrice !== undefined) {
+      update.hidePrice = hidePrice === true || hidePrice === 'true';
     }
 
     const normalizedFeatures =
@@ -124,6 +129,28 @@ const updateProduct = async (req, res) => {
   }
 };
 
+const patchHidePrice = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { hidePrice } = req.body;
+    if (hidePrice === undefined) {
+      return res.status(400).json({ message: 'hidePrice is required.' });
+    }
+    const flag = hidePrice === true || hidePrice === 'true';
+    const product = await Product.findByIdAndUpdate(
+      id,
+      { $set: { hidePrice: flag } },
+      { new: true }
+    );
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found.' });
+    }
+    return res.json({ message: 'Product updated.', product });
+  } catch (error) {
+    return res.status(500).json({ message: 'Failed to update hide price flag.' });
+  }
+};
+
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -149,7 +176,8 @@ const createProduct = async (req, res) => {
       forms = [],
       origin = '',
       packaging = '',
-      price
+      price,
+      hidePrice
     } = req.body;
 
     const numericPrice = Number(price);
@@ -197,6 +225,8 @@ const createProduct = async (req, res) => {
     const highest = await Product.findOne().sort({ sortOrder: -1 }).select('sortOrder').lean();
     const nextOrder = typeof highest?.sortOrder === 'number' ? highest.sortOrder + 1 : 0;
 
+    const hidePriceFlag = hidePrice === true || hidePrice === 'true';
+
     const product = await Product.create({
       name: name.trim(),
       slug: slug.trim().toLowerCase(),
@@ -208,6 +238,7 @@ const createProduct = async (req, res) => {
       origin: origin || '',
       packaging: packaging || '',
       price: numericPrice,
+      hidePrice: hidePriceFlag,
       sortOrder: nextOrder
     });
 
@@ -234,6 +265,7 @@ module.exports = {
   createProduct,
   getProductBySlug,
   updateProduct,
+  patchHidePrice,
   deleteProduct,
   reorderProducts
 };

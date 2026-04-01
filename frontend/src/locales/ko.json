@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "홈",
+    "about": "회사 소개",
+    "products": "제품",
+    "services": "서비스",
+    "contact": "문의"
+  },
+  "header": {
+    "selectLanguage": "언어 선택",
+    "cart": "장바구니",
+    "profile": "프로필",
+    "myCart": "내 장바구니",
+    "myOrders": "내 주문",
+    "logout": "로그아웃",
+    "login": "로그인",
+    "toggleMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "menu": "메뉴",
+    "language": "언어",
+    "myProfile": "내 프로필",
+    "loginSignUp": "로그인 / 가입",
+    "getQuote": "견적 요청"
+  },
+  "footer": {
+    "tagline": "프리미엄 품질과 신뢰할 수 있는 서비스로 세계에 최고의 인도 향신료를 전합니다.",
+    "quickLinks": "빠른 링크",
+    "socialMedia": "소셜 미디어",
+    "ourSpices": "향신료",
+    "contactInfo": "연락처",
+    "address": "인도 텔랑가나 마하부브나가르",
+    "copyright": "© 2024 Delvonza Exim. All rights reserved.",
+    "availability": "비즈니스 문의 24시간 연중무휴",
+    "spices": {
+      "turmeric": "강황",
+      "blackPepper": "후추",
+      "cardamom": "카다멈",
+      "driedChillies": "건고추",
+      "cinnamon": "시나몬",
+      "cloves": "정향"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "세계에 최고의 인도 향신료를",
+    "description": "인도에서 세계 시장으로 프리미엄 향신료를 수출하는 신뢰할 수 있는 파트너",
+    "exploreProducts": "제품 보기",
+    "getQuote": "견적 요청"
+  },
+  "home": {
+    "welcomeTitle": "Delvonza Exim에 오신 것을 환영합니다",
+    "welcomeP1": "Delvonza Exim은 인도에서 글로벌 시장으로 고품질 향신료 수출입에 특화된 신뢰할 수 있는 기업입니다. 인도의 풍부한 농업 유산을 담은 프리미엄 향신료를 제공합니다.",
+    "welcomeP2": "우리의 목표는 최고 수준의 품질과 고객 만족을 유지하면서 국제 바이어와 인도 향신료의 진정한 맛과 향을 연결하는 것입니다. 견고한 조달 네트워크와 효율적인 물류로 모든 제품이 안전하고 제때 도착합니다.",
+    "premiumQuality": "프리미엄 품질",
+    "premiumQualityDesc": "인도 전역 신뢰할 수 있는 공급업체에서 엄선한 향신료",
+    "globalReach": "글로벌 도달",
+    "globalReachDesc": "신뢰할 수 있는 수출 서비스로 국제 시장에 공급",
+    "trustedPartner": "신뢰할 수 있는 파트너",
+    "trustedPartnerDesc": "품질과 서비스로 장기 관계 구축",
+    "featuredTitle": "프리미엄 인도 향신료",
+    "featuredSubtitle": "품질, 향, 맛을 기준으로 선별한 다양한 정통 인도 향신료를 수출합니다",
+    "viewAllProducts": "전체 제품 보기"
+  },
+  "inquiry": {
+    "title": "고품질 인도 향신료를 수입하시겠습니까?",
+    "description": "아래에 수출 문의를 보내 주세요. 관리자 패널에서 접수 후 답변 드립니다. 비즈니스를 위해 24시간 연중무휴입니다.",
+    "fullContact": "전체 연락처 페이지",
+    "browseProducts": "제품 둘러보기",
+    "formTitle": "수출 문의",
+    "formHint": "필드는 문의 양식과 동일하며 관리자 검토를 위해 저장됩니다.",
+    "name": "이름",
+    "email": "이메일",
+    "phone": "전화 (국가 코드 포함)",
+    "country": "국가",
+    "message": "문의 내용 — 제품, 물량, 항구, 일정 등",
+    "submit": "문의 보내기",
+    "sending": "전송 중…",
+    "success": "감사합니다. 문의를 받았으며 곧 답변 드리겠습니다.",
+    "error": "문의를 보낼 수 없습니다."
+  },
+  "contact": {
+    "title": "문의하기",
+    "subtitle": "향신료 수출 문의를 24시간 지원합니다",
+    "formHeading": "메시지 보내기",
+    "name": "이름",
+    "email": "이메일 주소",
+    "phone": "전화 (국가 코드 포함)",
+    "country": "국가",
+    "message": "메시지",
+    "submit": "보내기",
+    "sending": "전송 중…",
+    "success": "메시지가 전송되었습니다. 곧 답변 드리겠습니다.",
+    "error": "메시지를 보낼 수 없습니다.",
+    "infoHeading": "연락처 정보",
+    "addressLabel": "주소",
+    "emailLabel": "이메일",
+    "phoneLabel": "전화",
+    "hoursLabel": "영업 시간",
+    "hoursValue": "24시간 / 주 7일",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "우리의 가치",
+    "slideLabel": "인용",
+    "showSlide": "{{total}}개 중 {{n}}번째 인용 표시",
+    "slides": {
+      "0": {
+        "text": "인도 요리의 영혼은 향신료 속을 여행합니다—진정성 있고, 대담하고, 정직하게. 그 유산을 마땅한 배려로 수출합니다.",
+        "attr": "글로벌 파트너에 대한 약속"
+      },
+      "1": {
+        "text": "탁월함은 매 수확, 볶음, 봉인에서 습관이 됩니다. 귀사의 평판은 우리와 같은 상자에 담깁니다.",
+        "attr": "타협 없는 품질"
+      },
+      "2": {
+        "text": "텔랑가나 네트워크에서 귀하의 항구까지—명확한 소통, 안정적인 물류, 샘플과 일치하는 향신료.",
+        "attr": "믿을 수 있는 수출"
+      },
+      "3": {
+        "text": "신뢰가 자라는 곳에서 무역이 성장합니다. 단순히 상품을 보내는 것이 아니라 반복 주문과 우정을 쌓습니다.",
+        "attr": "장기 관계"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "WhatsApp으로 연락",
+    "scrollTop": "맨 위로"
+  },
+  "product": {
+    "loading": "제품 로딩 중…",
+    "notFound": "제품을 찾을 수 없습니다",
+    "backToProducts": "제품 목록으로",
+    "contactPricing": "가격은 문의",
+    "details": "제품 상세",
+    "origin": "원산지",
+    "packaging": "포장",
+    "formsTitle": "제공 형태",
+    "addToCart": "장바구니에 담기",
+    "goToCart": "장바구니로",
+    "about": "{{name}} 소개",
+    "featuresTitle": "주요 특징"
+  },
+  "contactPage": {
+    "title": "문의",
+    "intro": "Delvonza Exim에 관심을 가져 주셔서 감사합니다. 향신료 수출, 조달 및 국제 무역 파트너십을 돕습니다."
+  },
+  "productsPage": {
+    "heroTitle": "프리미엄 향신료",
+    "heroSubtitle": "인도의 신뢰할 수 있는 공급업체에서 다양한 프리미엄 향신료를 수출합니다",
+    "sectionTitle": "수출 향신료",
+    "sectionBody": "신선도, 순도 및 국제 품질 기준을 유지하도록 엄선했습니다. 통째, 부순 형태 또는 가루로 공급합니다.",
+    "highlightsTitle": "주요 하이라이트",
+    "highlight1": "프리미엄 인도 향신료",
+    "highlight2": "신뢰할 수 있는 글로벌 공급",
+    "highlight3": "강력한 공급망",
+    "highlight4": "품질 보증 기준",
+    "highlight5": "전문 수출 서비스",
+    "closing": "풍부한 향, 자연스러운 맛, 일관된 품질의 정통 인도 향신료를 국제 시장에 전하는 것이 우리의 목표입니다.",
+    "requestQuote": "견적 요청"
+  },
+  "productCard": {
+    "viewDetails": "자세히 보기 →"
+  },
+  "common": {
+    "loading": "로딩 중…"
+  }
+}

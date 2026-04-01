@@ -1,33 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 /** Replace hrefs with your real profile URLs when ready. */
 const FOOTER_SOCIAL = [
-  {
-    label: 'Facebook',
-    href: 'https://www.facebook.com/delvonzaexim',
-    icon: 'facebook'
-  },
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/delvonzaexim',
-    icon: 'instagram'
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/delvonza-exim',
-    icon: 'linkedin'
-  },
-  {
-    label: 'YouTube',
-    href: 'https://www.youtube.com/@delvonzaexim',
-    icon: 'youtube'
-  },
-  {
-    label: 'WhatsApp',
-    href: 'https://wa.me/919515046565',
-    icon: 'whatsapp'
-  }
+  { key: 'facebook', href: 'https://www.facebook.com/delvonzaexim', icon: 'facebook' },
+  { key: 'instagram', href: 'https://www.instagram.com/delvonzaexim', icon: 'instagram' },
+  { key: 'linkedin', href: 'https://www.linkedin.com/company/delvonza-exim', icon: 'linkedin' },
+  { key: 'youtube', href: 'https://www.youtube.com/@delvonzaexim', icon: 'youtube' },
+  { key: 'whatsapp', href: 'https://wa.me/919515046565', icon: 'whatsapp' }
 ];
 
 const SocialSvg = ({ name, className }) => {
@@ -70,15 +51,16 @@ const SocialSvg = ({ name, className }) => {
 
 /** Slugs match product URLs (/products/:slug). Update if you rename products in admin. */
 const FOOTER_SPICES = [
-  { label: 'Turmeric', slug: 'turmeric' },
-  { label: 'Black Pepper', slug: 'black-pepper' },
-  { label: 'Cardamom', slug: 'cardamom' },
-  { label: 'Dried Chillies', slug: 'dried-red-chillies' },
-  { label: 'Cinnamon', slug: 'cinnamon' },
-  { label: 'Cloves', slug: 'cloves' }
+  { labelKey: 'turmeric', slug: 'turmeric' },
+  { labelKey: 'blackPepper', slug: 'black-pepper' },
+  { labelKey: 'cardamom', slug: 'cardamom' },
+  { labelKey: 'driedChillies', slug: 'dried-red-chillies' },
+  { labelKey: 'cinnamon', slug: 'cinnamon' },
+  { labelKey: 'cloves', slug: 'cloves' }
 ];
 
 const Footer = () => {
+  const { t } = useTranslation();
   const handleLinkClick = () => {
     window.scrollTo(0, 0);
   };
@@ -88,46 +70,46 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:gap-3 xl:gap-4">
           <div className="min-w-0">
-          <h3 className="text-2xl font-bold text-primary-400 mb-4">Delvonza Exim</h3>
-          <p className="text-gray-400">Delivering the finest Indian spices to the world with premium quality and reliable service.</p>
+          <h3 className="text-2xl font-bold text-primary-400 mb-4">{t('brand')}</h3>
+          <p className="text-gray-400">{t('footer.tagline')}</p>
           </div>
 
           <div className="min-w-0">
-          <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+          <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h4>
           <ul className="space-y-2 text-gray-400">
             <li>
               <Link to="/" onClick={handleLinkClick} className="hover:text-primary-400 transition">
-                Home
+                {t('nav.home')}
               </Link>
             </li>
             <li>
               <Link to="/about" onClick={handleLinkClick} className="hover:text-primary-400 transition">
-                About
+                {t('nav.about')}
               </Link>
             </li>
             <li>
               <Link to="/products" onClick={handleLinkClick} className="hover:text-primary-400 transition">
-                Products
+                {t('nav.products')}
               </Link>
             </li>
             <li>
               <Link to="/services" onClick={handleLinkClick} className="hover:text-primary-400 transition">
-                Services
+                {t('nav.services')}
               </Link>
             </li>
             <li>
               <Link to="/contact" onClick={handleLinkClick} className="hover:text-primary-400 transition">
-                Contact
+                {t('nav.contact')}
               </Link>
             </li>
           </ul>
           </div>
 
           <div className="min-w-0">
-          <h4 className="text-lg font-semibold mb-4">Social Media</h4>
+          <h4 className="text-lg font-semibold mb-4">{t('footer.socialMedia')}</h4>
           <ul className="space-y-2 text-gray-400">
-            {FOOTER_SOCIAL.map(({ label, href, icon }) => (
-              <li key={label}>
+            {FOOTER_SOCIAL.map(({ key, href, icon }) => (
+              <li key={key}>
                 <a
                   href={href}
                   target="_blank"
@@ -135,7 +117,7 @@ const Footer = () => {
                   className="inline-flex items-center gap-2 hover:text-primary-400 transition"
                 >
                   <SocialSvg name={icon} className="h-5 w-5 flex-shrink-0" />
-                  <span>{label}</span>
+                  <span>{t(`footer.social.${key}`)}</span>
                 </a>
               </li>
             ))}
@@ -143,16 +125,16 @@ const Footer = () => {
           </div>
 
           <div className="min-w-0">
-          <h4 className="text-lg font-semibold mb-4">Our Spices</h4>
+          <h4 className="text-lg font-semibold mb-4">{t('footer.ourSpices')}</h4>
           <ul className="space-y-2 text-gray-400">
-            {FOOTER_SPICES.map(({ label, slug }) => (
+            {FOOTER_SPICES.map(({ labelKey, slug }) => (
               <li key={slug}>
                 <Link
                   to={`/products/${slug}`}
                   onClick={handleLinkClick}
                   className="hover:text-primary-400 transition"
                 >
-                  {label}
+                  {t(`footer.spices.${labelKey}`)}
                 </Link>
               </li>
             ))}
@@ -160,11 +142,11 @@ const Footer = () => {
           </div>
 
           <div className="min-w-0">
-          <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+          <h4 className="text-lg font-semibold mb-4">{t('footer.contactInfo')}</h4>
           <ul className="space-y-3 text-gray-400">
             <li className="flex items-start gap-2">
               <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
-              <span>MahabubNagar, Telangana, India</span>
+              <span>{t('footer.address')}</span>
             </li>
             <li className="flex items-center gap-2">
               <Mail className="w-5 h-5 flex-shrink-0" />
@@ -179,8 +161,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500">
-        <p>© 2024 Delvonza Exim. All rights reserved.</p>
-        <p className="mt-2 text-sm">Available 24/7 for your business inquiries</p>
+        <p>{t('footer.copyright')}</p>
+        <p className="mt-2 text-sm">{t('footer.availability')}</p>
       </div>
     </footer>
   );

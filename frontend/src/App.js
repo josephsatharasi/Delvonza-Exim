@@ -12,7 +12,6 @@ import ProfilePage from './pages/ProfilePage';
 import CartPage from './pages/CartPage';
 import OrdersPage from './pages/OrdersPage';
 import CheckoutSuccessPage from './pages/CheckoutSuccessPage';
-import GoogleTranslateWidget from './components/common/GoogleTranslateWidget';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -32,7 +31,6 @@ function ScrollToTop() {
 function App() {
   return (
     <Router>
-      <GoogleTranslateWidget />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />

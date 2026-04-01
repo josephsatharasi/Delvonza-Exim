@@ -18,13 +18,15 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
+  const [hidePriceUpdatingId, setHidePriceUpdatingId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     price: '',
     stock: '',
     origin: '',
-    images: []
+    images: [],
+    hidePrice: false
   });
   
   // All spices list
@@ -86,6 +88,7 @@ const Products = () => {
       payload.append('origin', formData.origin);
       payload.append('packaging', formData.stock ? `Available stock: ${formData.stock} kg` : 'Customized packaging available');
       payload.append('price', String(Number(formData.price)));
+      payload.append('hidePrice', formData.hidePrice ? 'true' : 'false');
       payload.append('forms', 'Whole');
       payload.append('features', 'Premium Quality,Export Grade');
       formData.images.forEach((file) => payload.append('images', file));
@@ -99,7 +102,8 @@ const Products = () => {
         price: '',
         stock: '',
         origin: '',
-        images: []
+        images: [],
+        hidePrice: false
       });
       await loadProducts();
     } catch (error) {
@@ -115,7 +119,8 @@ const Products = () => {
       price: product.price ?? '',
       stock: '',
       origin: product.origin || '',
-      images: []
+      images: [],
+      hidePrice: Boolean(product.hidePrice)
     });
     setIsEditOpen(true);
   };
@@ -137,6 +142,7 @@ const Products = () => {
         formData.stock ? `Available stock: ${formData.stock} kg` : editingProduct.packaging || 'Customized packaging available'
       );
       payload.append('price', String(Number(formData.price)));
+      payload.append('hidePrice', formData.hidePrice ? 'true' : 'false');
       payload.append('forms', (editingProduct.forms || ['Whole']).join(','));
       payload.append('features', (editingProduct.features || ['Premium Quality', 'Export Grade']).join(','));
       formData.images.forEach((file) => payload.append('images', file));
@@ -151,7 +157,8 @@ const Products = () => {
         price: '',
         stock: '',
         origin: '',
-        images: []
+        images: [],
+        hidePrice: false
       });
       await loadProducts();
     } catch (error) {
@@ -198,7 +205,28 @@ const Products = () => {
     setProducts(next);
     persistProductOrder(next);
   };
-  
+
+  const handleToggleHidePrice = async (product, nextHidden) => {
+    if (!product?._id) return;
+    setHidePriceUpdatingId(product._id);
+    setMessage('');
+    try {
+      const { product: updated } = await adminApi.patchProductHidePrice(product._id, nextHidden);
+      setProducts((prev) =>
+        prev.map((p) => (p._id === product._id ? { ...p, hidePrice: updated?.hidePrice ?? nextHidden } : p))
+      );
+      setMessage(
+        nextHidden
+          ? 'Price is hidden on the public website (cart still uses stored price).'
+          : 'Price is shown on the public website.'
+      );
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setHidePriceUpdatingId(null);
+    }
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -223,19 +251,27 @@ const Products = () => {
                 <th className="text-left py-3 px-4 font-semibold text-gray-700 max-w-xs">Description</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Stock</th>
                 <th className="text-left py-3 px-4 font-semibold text-gray-700">Price</th>
+                <th className="text-center py-3 px-4 font-semibold text-gray-700 w-48">
+                  <span className="block">Hide price</span>
+                  <span className="block text-xs font-normal text-gray-500">on website</span>
+                </th>
                 <th className="text-right py-3 px-4 font-semibold text-gray-700">Actions</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="py-6 px-4 text-center text-gray-500">Loading products...</td>
+                  <td colSpan={8} className="py-6 px-4 text-center text-gray-500">Loading products...</td>
                 </tr>
               ) : products.map((product, index) => (
                 <tr
                   key={product._id}
                   draggable
                   onDragStart={(e) => {
+                    if (e.target.closest?.('[data-no-row-drag]')) {
+                      e.preventDefault();
+                      return;
+                    }
                     e.dataTransfer.setData('text/plain', String(index));
                     e.dataTransfer.effectAllowed = 'move';
                   }}
@@ -270,10 +306,32 @@ const Products = () => {
                     </p>
                   </td>
                   <td className="py-3 px-4">{product.packaging || '-'}</td>
-                  <td className="py-3 px-4">INR {product.price}/kg</td>
                   <td className="py-3 px-4">
+                    <span translate="no">INR {product.price}/kg</span>
+                  </td>
+                  <td
+                    className="py-3 px-4 text-center align-middle"
+                    data-no-row-drag
+                  >
+                    <label className="inline-flex items-center justify-center gap-2 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                        checked={Boolean(product.hidePrice)}
+                        disabled={hidePriceUpdatingId === product._id}
+                        onChange={(e) => handleToggleHidePrice(product, e.target.checked)}
+                        title={`${product.hidePrice ? 'Price hidden' : 'Price visible'} on storefront — click to toggle`}
+                        aria-label={product.hidePrice ? 'Show price on website' : 'Hide price on website'}
+                      />
+                      <span className="text-xs text-gray-600 whitespace-nowrap">
+                        {product.hidePrice ? 'Hidden' : 'Visible'}
+                      </span>
+                    </label>
+                  </td>
+                  <td className="py-3 px-4" data-no-row-drag>
                     <div className="flex justify-end gap-2">
                       <button
+                        type="button"
                         className="p-2 text-blue-600 hover:bg-blue-50 rounded"
                         onClick={() => openEdit(product)}
                         title="Edit"
@@ -281,6 +339,7 @@ const Products = () => {
                         <Edit size={18} />
                       </button>
                       <button
+                        type="button"
                         className="p-2 text-red-600 hover:bg-red-50 rounded"
                         onClick={() => openDelete(product)}
                         title="Delete"
@@ -343,6 +402,22 @@ const Products = () => {
               onChange={handleInputChange}
             />
           </div>
+
+          <label className="flex items-start gap-3 mt-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="hidePrice"
+              checked={formData.hidePrice}
+              onChange={(e) => setFormData((prev) => ({ ...prev, hidePrice: e.target.checked }))}
+              className="mt-1 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+            />
+            <span className="text-sm text-gray-700">
+              <span className="font-medium text-gray-900">Hide price on website</span>
+              <span className="block text-gray-500 mt-0.5">
+                Storefront hides the product price only; cart and orders still use the price you enter above.
+              </span>
+            </span>
+          </label>
           
           <Textarea
             label="Description"
@@ -422,6 +497,22 @@ const Products = () => {
               onChange={handleInputChange}
             />
           </div>
+
+          <label className="flex items-start gap-3 mt-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="hidePrice"
+              checked={formData.hidePrice}
+              onChange={(e) => setFormData((prev) => ({ ...prev, hidePrice: e.target.checked }))}
+              className="mt-1 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+            />
+            <span className="text-sm text-gray-700">
+              <span className="font-medium text-gray-900">Hide price on website</span>
+              <span className="block text-gray-500 mt-0.5">
+                Storefront hides the product price only; cart and orders still use the price above.
+              </span>
+            </span>
+          </label>
 
           <Textarea
             label="Description"

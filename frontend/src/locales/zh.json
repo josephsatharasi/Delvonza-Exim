@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "products": "产品",
+    "services": "服务",
+    "contact": "联系我们"
+  },
+  "header": {
+    "selectLanguage": "选择语言",
+    "cart": "购物车",
+    "profile": "个人资料",
+    "myCart": "我的购物车",
+    "myOrders": "我的订单",
+    "logout": "退出登录",
+    "login": "登录",
+    "toggleMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "menu": "菜单",
+    "language": "语言",
+    "myProfile": "我的资料",
+    "loginSignUp": "登录 / 注册",
+    "getQuote": "获取报价"
+  },
+  "footer": {
+    "tagline": "以优质品质与可靠服务，将最上乘的印度香料带给世界。",
+    "quickLinks": "快速链接",
+    "socialMedia": "社交媒体",
+    "ourSpices": "我们的香料",
+    "contactInfo": "联系信息",
+    "address": "印度特伦甘纳邦马布布纳加尔",
+    "copyright": "© 2024 Delvonza Exim. 保留所有权利。",
+    "availability": "全天候 24/7 受理商务咨询",
+    "spices": {
+      "turmeric": "姜黄",
+      "blackPepper": "黑胡椒",
+      "cardamom": "豆蔻",
+      "driedChillies": "干辣椒",
+      "cinnamon": "肉桂",
+      "cloves": "丁香"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "将最优质的印度香料带给世界",
+    "description": "从印度向全球市场出口优质香料的可信赖出口商",
+    "exploreProducts": "浏览产品",
+    "getQuote": "获取报价"
+  },
+  "home": {
+    "welcomeTitle": "欢迎访问 Delvonza Exim",
+    "welcomeP1": "Delvonza Exim 是一家值得信赖的企业，专注于从印度向全球市场进出口高品质香料。我们致力于提供体现印度丰富农业遗产的优质香料。",
+    "welcomeP2": "我们的目标是在保持最高质量与客户满意度的同时，将国际买家与印度香料的正宗风味与香气连接起来。凭借强大的采购网络与高效物流，确保每一件产品安全准时送达。",
+    "premiumQuality": "优质品质",
+    "premiumQualityDesc": "精选自印度各地值得信赖供应商的香料",
+    "globalReach": "全球覆盖",
+    "globalReachDesc": "以可靠的出口服务面向国际市场",
+    "trustedPartner": "值得信赖的伙伴",
+    "trustedPartnerDesc": "通过质量与服务建立长期关系",
+    "featuredTitle": "我们的优质印度香料",
+    "featuredSubtitle": "我们出口多种正宗印度香料，精选自品质、香气与风味",
+    "viewAllProducts": "查看全部产品"
+  },
+  "inquiry": {
+    "title": "想进口高品质印度香料？",
+    "description": "请在下方提交出口咨询。我们的团队将在管理后台收到并尽快回复。全天候为您的业务服务。",
+    "fullContact": "完整联系页面",
+    "browseProducts": "浏览产品",
+    "formTitle": "出口咨询",
+    "formHint": "字段与联系表单一致并保存供管理员审核。",
+    "name": "您的姓名",
+    "email": "电子邮箱",
+    "phone": "电话（含国家区号）",
+    "country": "国家",
+    "message": "您的咨询 — 产品、数量、目的港、时间线等",
+    "submit": "提交咨询",
+    "sending": "发送中…",
+    "success": "谢谢。我们已收到您的咨询，将尽快回复。",
+    "error": "无法发送咨询。"
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "我们全天候协助您的香料出口咨询",
+    "formHeading": "给我们留言",
+    "name": "您的姓名",
+    "email": "电子邮箱",
+    "phone": "电话（含国家区号）",
+    "country": "国家",
+    "message": "留言内容",
+    "submit": "发送留言",
+    "sending": "发送中…",
+    "success": "留言已发送。我们将尽快回复。",
+    "error": "无法发送留言。",
+    "infoHeading": "联系信息",
+    "addressLabel": "地址",
+    "emailLabel": "邮箱",
+    "phoneLabel": "电话",
+    "hoursLabel": "营业时间",
+    "hoursValue": "每周 7 天、每天 24 小时",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "我们的理念",
+    "slideLabel": "引言",
+    "showSlide": "显示第 {{n}} 条，共 {{total}} 条",
+    "slides": {
+      "0": {
+        "text": "印度烹饪的灵魂在香料中旅行——真实、大胆、诚实。我们以应有的谨慎出口这份传承。",
+        "attr": "对全球合作伙伴的承诺"
+      },
+      "1": {
+        "text": "卓越体现在每一次采收、烘焙与封装。您的声誉与我们的装在同一个箱子里。",
+        "attr": "毫不妥协的品质"
+      },
+      "2": {
+        "text": "从特伦甘纳的网络到您的港口——沟通清晰、物流稳定、香料与样品一致。",
+        "attr": "可规划的出口"
+      },
+      "3": {
+        "text": "贸易在信任生长的地方繁荣。我们不仅运送商品——还建立复购与友谊。",
+        "attr": "长期关系"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "通过 WhatsApp 联系",
+    "scrollTop": "返回顶部"
+  },
+  "product": {
+    "loading": "加载产品中…",
+    "notFound": "未找到产品",
+    "backToProducts": "返回产品列表",
+    "contactPricing": "价格请咨询",
+    "details": "产品详情",
+    "origin": "产地",
+    "packaging": "包装",
+    "formsTitle": "可选形态",
+    "addToCart": "加入购物车",
+    "goToCart": "去购物车",
+    "about": "关于 {{name}}",
+    "featuresTitle": "主要特点"
+  },
+  "contactPage": {
+    "title": "联系我们",
+    "intro": "感谢您对 Delvonza Exim 的关注。我们随时准备协助香料出口、产品采购与国际贸易合作。"
+  },
+  "productsPage": {
+    "heroTitle": "我们的优质香料",
+    "heroSubtitle": "我们从印度值得信赖的供应商处出口多种优质香料",
+    "sectionTitle": "我们出口的香料",
+    "sectionBody": "我们的产品经过精心挑选，以保持新鲜度、纯度与国际质量标准。可根据客户需求提供整粒、碎粒或粉末等形式。",
+    "highlightsTitle": "要点",
+    "highlight1": "优质印度香料",
+    "highlight2": "可靠的全球供应",
+    "highlight3": "强大的供应商网络",
+    "highlight4": "质量保证标准",
+    "highlight5": "专业出口服务",
+    "closing": "我们的目标是将香气浓郁、风味自然、品质稳定的正宗印度香料带给国际市场。",
+    "requestQuote": "请求报价"
+  },
+  "productCard": {
+    "viewDetails": "查看详情 →"
+  },
+  "common": {
+    "loading": "加载中…"
+  }
+}

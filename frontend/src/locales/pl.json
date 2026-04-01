@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Strona główna",
+    "about": "O nas",
+    "products": "Produkty",
+    "services": "Usługi",
+    "contact": "Kontakt"
+  },
+  "header": {
+    "selectLanguage": "Wybierz język",
+    "cart": "Koszyk",
+    "profile": "Profil",
+    "myCart": "Mój koszyk",
+    "myOrders": "Moje zamówienia",
+    "logout": "Wyloguj",
+    "login": "Zaloguj",
+    "toggleMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu",
+    "menu": "Menu",
+    "language": "Język",
+    "myProfile": "Mój profil",
+    "loginSignUp": "Logowanie / Rejestracja",
+    "getQuote": "Poproś o wycenę"
+  },
+  "footer": {
+    "tagline": "Dostarczamy najlepsze indyjskie przyprawy na świat z premium jakością i niezawodną obsługą.",
+    "quickLinks": "Szybkie linki",
+    "socialMedia": "Media społecznościowe",
+    "ourSpices": "Nasze przyprawy",
+    "contactInfo": "Dane kontaktowe",
+    "address": "MahabubNagar, Telangana, Indie",
+    "copyright": "© 2024 Delvonza Exim. Wszelkie prawa zastrzeżone.",
+    "availability": "Dostępni 24/7 w sprawach biznesowych",
+    "spices": {
+      "turmeric": "Kurkuma",
+      "blackPepper": "Pieprz czarny",
+      "cardamom": "Kardamon",
+      "driedChillies": "Suszone papryczki",
+      "cinnamon": "Cynamon",
+      "cloves": "Goździki"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "Najlepsze indyjskie przyprawy dla świata",
+    "description": "Zaufany eksporter premium przypraw z Indii na rynki globalne",
+    "exploreProducts": "Przeglądaj produkty",
+    "getQuote": "Poproś o wycenę"
+  },
+  "home": {
+    "welcomeTitle": "Witamy w Delvonza Exim",
+    "welcomeP1": "Delvonza Exim to zaufana firma specjalizująca się w eksporcie i imporcie wysokiej jakości przypraw z Indii na rynki globalne. Dostarczamy przyprawy premium odzwierciedlające bogate dziedzictwo rolnicze Indii.",
+    "welcomeP2": "Naszym celem jest łączenie międzynarodowych nabywców z autentycznym smakiem indyjskich przypraw przy zachowaniu najwyższych standardów jakości. Dzięki silnej sieci zaopatrzenia i logistyce każdy produkt dociera bezpiecznie i na czas.",
+    "premiumQuality": "Jakość premium",
+    "premiumQualityDesc": "Starannie wybrane przyprawy od zaufanych dostawców w całych Indiach",
+    "globalReach": "Zasięg globalny",
+    "globalReachDesc": "Obsługa rynków międzynarodowych z niezawodnym eksportem",
+    "trustedPartner": "Zaufany partner",
+    "trustedPartnerDesc": "Długoterminowe relacje poprzez jakość i obsługę",
+    "featuredTitle": "Nasze premium indyjskie przyprawy",
+    "featuredSubtitle": "Eksportujemy szeroki asortyment autentycznych przypraw, dobranych pod kątem jakości, aromatu i smaku",
+    "viewAllProducts": "Zobacz wszystkie produkty"
+  },
+  "inquiry": {
+    "title": "Chcesz importować wysokiej jakości indyjskie przyprawy?",
+    "description": "Wyślij zapytanie eksportowe poniżej. Nasz zespół otrzyma je w panelu i odpowie. Dostępni 24/7.",
+    "fullContact": "Pełna strona kontaktowa",
+    "browseProducts": "Przeglądaj produkty",
+    "formTitle": "Zapytanie eksportowe",
+    "formHint": "Pola odpowiadają formularzowi kontaktowemu i są zapisywane do przeglądu.",
+    "name": "Imię i nazwisko",
+    "email": "E-mail",
+    "phone": "Telefon (z kodem kraju)",
+    "country": "Kraj",
+    "message": "Twoje zapytanie — produkty, wolumeny, port, harmonogram…",
+    "submit": "Wyślij zapytanie",
+    "sending": "Wysyłanie…",
+    "success": "Dziękujemy. Otrzymaliśmy zapytanie i wkrótce odpowiemy.",
+    "error": "Nie udało się wysłać zapytania."
+  },
+  "contact": {
+    "title": "Skontaktuj się",
+    "subtitle": "Pomagamy w sprawach eksportu przypraw 24/7",
+    "formHeading": "Wyślij wiadomość",
+    "name": "Imię i nazwisko",
+    "email": "Adres e-mail",
+    "phone": "Telefon (z kodem kraju)",
+    "country": "Kraj",
+    "message": "Wiadomość",
+    "submit": "Wyślij wiadomość",
+    "sending": "Wysyłanie…",
+    "success": "Wiadomość wysłana. Wkrótce odpowiemy.",
+    "error": "Nie udało się wysłać wiadomości.",
+    "infoHeading": "Informacje kontaktowe",
+    "addressLabel": "Adres",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefon",
+    "hoursLabel": "Godziny pracy",
+    "hoursValue": "24 godziny / 7 dni w tygodniu",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "Nasze wartości",
+    "slideLabel": "Cytaty",
+    "showSlide": "Pokaż cytat {{n}} z {{total}}",
+    "slides": {
+      "0": {
+        "text": "Dusza indyjskiej kuchni podróżuje w przyprawie—autentyczna, odważna i uczciwa. Eksportujemy to dziedzictwo z należytą troską.",
+        "attr": "Nasza obietnica dla partnerów globalnych"
+      },
+      "1": {
+        "text": "Doskonałość to nawyk przy każdym zbiorze, pieczeniu i plombie. Twoja reputacja jest w tym samym pudełku co nasza.",
+        "attr": "Jakość bez kompromisów"
+      },
+      "2": {
+        "text": "Od sieci Telangana do Twojego portu—jasna komunikacja, stabilna logistyka i przyprawy zgodne z próbką.",
+        "attr": "Eksport, na którym możesz polegać"
+      },
+      "3": {
+        "text": "Handel rośnie tam, gdzie pielęgnuje się zaufanie. Nie tylko wysyłamy towary—budujemy powtarzalne zamówienia i przyjaźń.",
+        "attr": "Długoterminowe relacje"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "Skontaktuj się przez WhatsApp",
+    "scrollTop": "Do góry"
+  },
+  "product": {
+    "loading": "Ładowanie produktu…",
+    "notFound": "Nie znaleziono produktu",
+    "backToProducts": "Powrót do produktów",
+    "contactPricing": "Skontaktuj się w sprawie ceny",
+    "details": "Szczegóły produktu",
+    "origin": "Pochodzenie",
+    "packaging": "Opakowanie",
+    "formsTitle": "Dostępne formy",
+    "addToCart": "Dodaj do koszyka",
+    "goToCart": "Przejdź do koszyka",
+    "about": "O {{name}}",
+    "featuresTitle": "Kluczowe cechy"
+  },
+  "contactPage": {
+    "title": "Kontakt",
+    "intro": "Dziękujemy za zainteresowanie Delvonza Exim. Pomagamy w eksporcie przypraw, sourcingu i międzynarodowych partnerstwach handlowych."
+  },
+  "productsPage": {
+    "heroTitle": "Nasze premium przyprawy",
+    "heroSubtitle": "Eksportujemy szeroki asortyment przypraw premium od zaufanych dostawców w Indiach",
+    "sectionTitle": "Przyprawy, które eksportujemy",
+    "sectionBody": "Produkty są starannie dobierane pod kątem świeżości, czystości i norm międzynarodowych. Dostarczamy całe, kruszone lub mielone według potrzeb.",
+    "highlightsTitle": "Najważniejsze punkty",
+    "highlight1": "Premium indyjskie przyprawy",
+    "highlight2": "Niezawodny globalny dostawca",
+    "highlight3": "Silna sieć dostawców",
+    "highlight4": "Standardy zapewnienia jakości",
+    "highlight5": "Profesjonalne usługi eksportowe",
+    "closing": "Naszym celem jest dostarczanie autentycznych indyjskich przypraw z bogatym aromatem i stałą jakością na rynki międzynarodowe.",
+    "requestQuote": "Poproś o wycenę"
+  },
+  "productCard": {
+    "viewDetails": "Zobacz szczegóły →"
+  },
+  "common": {
+    "loading": "Ładowanie…"
+  }
+}

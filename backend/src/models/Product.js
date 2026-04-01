@@ -13,6 +13,8 @@ const productSchema = new mongoose.Schema(
     origin: { type: String, default: '' },
     packaging: { type: String, default: '' },
     price: { type: Number, required: true, min: 0 },
+    /** When true, storefront hides list/detail price (cart still uses stored price). */
+    hidePrice: { type: Boolean, default: false },
     /** Display order on storefront (lower first). Drag-reorder in admin updates this. */
     sortOrder: { type: Number, default: 0 }
   },

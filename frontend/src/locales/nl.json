@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Home",
+    "about": "Over ons",
+    "products": "Producten",
+    "services": "Diensten",
+    "contact": "Contact"
+  },
+  "header": {
+    "selectLanguage": "Taal kiezen",
+    "cart": "Winkelwagen",
+    "profile": "Profiel",
+    "myCart": "Mijn winkelwagen",
+    "myOrders": "Mijn bestellingen",
+    "logout": "Uitloggen",
+    "login": "Inloggen",
+    "toggleMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "menu": "Menu",
+    "language": "Taal",
+    "myProfile": "Mijn profiel",
+    "loginSignUp": "Inloggen / Registreren",
+    "getQuote": "Offerte aanvragen"
+  },
+  "footer": {
+    "tagline": "De beste Indiase kruiden wereldwijd, met premium kwaliteit en betrouwbare service.",
+    "quickLinks": "Snelle links",
+    "socialMedia": "Social media",
+    "ourSpices": "Onze kruiden",
+    "contactInfo": "Contactgegevens",
+    "address": "MahabubNagar, Telangana, India",
+    "copyright": "© 2024 Delvonza Exim. Alle rechten voorbehouden.",
+    "availability": "24/7 beschikbaar voor uw zakelijke vragen",
+    "spices": {
+      "turmeric": "Kurkuma",
+      "blackPepper": "Zwarte peper",
+      "cardamom": "Kardemom",
+      "driedChillies": "Gedroogde pepers",
+      "cinnamon": "Kaneel",
+      "cloves": "Kruidnagels"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "De fijnste Indiase kruiden voor de wereld",
+    "description": "Betrouwbare exporteur van premium kruiden uit India naar wereldmarkten",
+    "exploreProducts": "Producten bekijken",
+    "getQuote": "Offerte aanvragen"
+  },
+  "home": {
+    "welcomeTitle": "Welkom bij Delvonza Exim",
+    "welcomeP1": "Delvonza Exim is een betrouwbaar bedrijf gespecialiseerd in export en import van hoogwaardige kruiden uit India naar wereldmarkten. Wij leveren premium kruiden die het rijke agrarische erfgoed van India weerspiegelen.",
+    "welcomeP2": "Ons doel is internationale kopers te verbinden met de authentieke smaak van Indiase kruiden, met de hoogste kwaliteit en klanttevredenheid. Met een sterk netwerk en efficiënte logistiek bereikt elk product veilig en op tijd.",
+    "premiumQuality": "Premium kwaliteit",
+    "premiumQualityDesc": "Zorgvuldig geselecteerde kruiden van betrouwbare leveranciers in India",
+    "globalReach": "Wereldwijde reikwijdte",
+    "globalReachDesc": "Internationale markten met betrouwbare export",
+    "trustedPartner": "Betrouwbare partner",
+    "trustedPartnerDesc": "Langdurige relaties door kwaliteit en service",
+    "featuredTitle": "Onze premium Indiase kruiden",
+    "featuredSubtitle": "Wij exporteren een breed assortiment authentieke Indiase kruiden, geselecteerd op kwaliteit, aroma en smaak",
+    "viewAllProducts": "Alle producten"
+  },
+  "inquiry": {
+    "title": "Wilt u hoogwaardige Indiase kruiden importeren?",
+    "description": "Stuur hieronder uw exportaanvraag. Ons team ontvangt deze in het beheer en neemt contact op. 24/7 beschikbaar.",
+    "fullContact": "Volledige contactpagina",
+    "browseProducts": "Producten bekijken",
+    "formTitle": "Exportaanvraag",
+    "formHint": "Velden komen overeen met het contactformulier en worden opgeslagen voor beoordeling.",
+    "name": "Uw naam",
+    "email": "E-mail",
+    "phone": "Telefoon (met landcode)",
+    "country": "Land",
+    "message": "Uw aanvraag — producten, volumes, haven, planning…",
+    "submit": "Exportaanvraag verzenden",
+    "sending": "Verzenden…",
+    "success": "Bedankt. We hebben uw aanvraag ontvangen en reageren spoedig.",
+    "error": "Aanvraag kon niet worden verzonden."
+  },
+  "contact": {
+    "title": "Neem contact op",
+    "subtitle": "Wij helpen u 24/7 met vragen over kruidenexport",
+    "formHeading": "Stuur ons een bericht",
+    "name": "Uw naam",
+    "email": "E-mailadres",
+    "phone": "Telefoon (met landcode)",
+    "country": "Land",
+    "message": "Uw bericht",
+    "submit": "Bericht verzenden",
+    "sending": "Verzenden…",
+    "success": "Bericht verzonden. We reageren spoedig.",
+    "error": "Bericht kon niet worden verzonden.",
+    "infoHeading": "Contactgegevens",
+    "addressLabel": "Adres",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefoon",
+    "hoursLabel": "Openingstijden",
+    "hoursValue": "24 uur per dag, 7 dagen per week",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "Onze waarden",
+    "slideLabel": "Citaten",
+    "showSlide": "Toon citaat {{n}} van {{total}}",
+    "slides": {
+      "0": {
+        "text": "De ziel van de Indiase keuken reist in het kruid—authentiek, krachtig en eerlijk. Wij exporteren dat erfgoed met de zorg die het verdient.",
+        "attr": "Onze belofte aan wereldwijde partners"
+      },
+      "1": {
+        "text": "Excellentie is een gewoonte bij elke oogst, roast en verzegeling. Uw reputatie zit in dezelfde doos als de onze.",
+        "attr": "Kwaliteit zonder compromis"
+      },
+      "2": {
+        "text": "Van Telangana tot uw haven: duidelijke communicatie, stabiele logistiek en kruiden die het monster evenaren.",
+        "attr": "Export waarop u kunt bouwen"
+      },
+      "3": {
+        "text": "Handel groeit waar vertrouwen wordt gekweekt. Wij verzenden niet alleen goederen—wij bouwen herhaalde orders en vriendschap.",
+        "attr": "Langdurige relaties"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "Contact via WhatsApp",
+    "scrollTop": "Naar boven"
+  },
+  "product": {
+    "loading": "Product laden…",
+    "notFound": "Product niet gevonden",
+    "backToProducts": "Terug naar producten",
+    "contactPricing": "Neem contact op voor prijs",
+    "details": "Productdetails",
+    "origin": "Herkomst",
+    "packaging": "Verpakking",
+    "formsTitle": "Beschikbare vormen",
+    "addToCart": "In winkelwagen",
+    "goToCart": "Naar winkelwagen",
+    "about": "Over {{name}}",
+    "featuresTitle": "Belangrijkste kenmerken"
+  },
+  "contactPage": {
+    "title": "Contact",
+    "intro": "Bedankt voor uw interesse in Delvonza Exim. Wij helpen u graag bij kruidenexport, sourcing en internationale handelspartnerschappen."
+  },
+  "productsPage": {
+    "heroTitle": "Onze premium kruiden",
+    "heroSubtitle": "Wij exporteren een breed assortiment premium kruiden van betrouwbare leveranciers in India",
+    "sectionTitle": "Kruiden die wij exporteren",
+    "sectionBody": "Onze producten zijn zorgvuldig geselecteerd voor versheid, zuiverheid en internationale normen. Wij leveren heel, gebroken of gemalen naar wens.",
+    "highlightsTitle": "Hoogtepunten",
+    "highlight1": "Premium Indiase kruiden",
+    "highlight2": "Betrouwbare wereldwijde levering",
+    "highlight3": "Sterk leveranciersnetwerk",
+    "highlight4": "Kwaliteitsborging",
+    "highlight5": "Professionele exportdiensten",
+    "closing": "Ons doel is authentieke Indiase kruiden met rijk aroma en constante kwaliteit op internationale markten te leveren.",
+    "requestQuote": "Offerte aanvragen"
+  },
+  "productCard": {
+    "viewDetails": "Details bekijken →"
+  },
+  "common": {
+    "loading": "Laden…"
+  }
+}

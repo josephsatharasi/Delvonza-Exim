@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../common/Button';
 import homeHero from '../../assets/home.jpg';
 
 const HeroSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="min-h-screen relative flex items-center justify-center pt-20">
       <div 
@@ -17,17 +19,17 @@ const HeroSection = () => {
       </div>
       
       <div className="relative z-10 text-center text-white px-6 max-w-4xl">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg">Delvonza Exim</h1>
-        <p className="text-2xl md:text-3xl mb-4 font-light">Delivering the Finest Indian Spices to the World</p>
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg">{t('hero.title')}</h1>
+        <p className="text-2xl md:text-3xl mb-4 font-light">{t('hero.subtitle')}</p>
         <p className="text-lg md:text-xl mb-8 text-gray-100 max-w-2xl mx-auto">
-          Trusted exporter of premium quality spices from India to global markets
+          {t('hero.description')}
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Link to="/products">
-            <Button variant="secondary">Explore Products</Button>
+            <Button variant="secondary">{t('hero.exploreProducts')}</Button>
           </Link>
           <Link to="/contact">
-            <Button variant="outline">Get Quote</Button>
+            <Button variant="outline">{t('hero.getQuote')}</Button>
           </Link>
         </div>
       </div>

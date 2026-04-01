@@ -1,42 +1,30 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Quote } from 'lucide-react';
 
 const AUTO_MS = 5500;
 
-const SLIDES = [
-  {
-    quote:
-      'The soul of Indian cooking travels in the spice—authentic, bold, and honest. We export that legacy with the care it deserves.',
-    attribution: 'Our promise to global partners',
-    image:
-      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1600&q=80'
-  },
-  {
-    quote:
-      'Excellence is a habit forged in every harvest, every roast, every seal. Your reputation lands in the same box as ours.',
-    attribution: 'Quality without compromise',
-    image:
-      'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80'
-  },
-  {
-    quote:
-      'From Telangana’s networks to your port—clear communication, steady logistics, and spices that match the sample every time.',
-    attribution: 'Export you can plan around',
-    image:
-      'https://images.unsplash.com/photo-1517686469429-8b88fef79ca9?auto=format&fit=crop&w=1600&q=80'
-  },
-  {
-    quote:
-      'Trade grows where trust is cultivated. We don’t just ship commodities—we build seasons of repeat orders and friendship.',
-    attribution: 'Long-term relationships',
-    image:
-      'https://images.unsplash.com/photo-1466637574441-449b1a07fd7d?auto=format&fit=crop&w=1600&q=80'
-  }
+const SLIDE_IMAGES = [
+  'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1517686469429-8b88fef79ca9?auto=format&fit=crop&w=1600&q=80',
+  'https://images.unsplash.com/photo-1466637574441-449b1a07fd7d?auto=format&fit=crop&w=1600&q=80'
 ];
 
 const QuoteBannerCarousel = () => {
+  const { t } = useTranslation();
+  const slides = useMemo(
+    () =>
+      SLIDE_IMAGES.map((image, i) => ({
+        quote: t(`quote.slides.${i}.text`),
+        attribution: t(`quote.slides.${i}.attr`),
+        image
+      })),
+    [t]
+  );
+
   const [active, setActive] = useState(0);
-  const n = SLIDES.length;
+  const n = slides.length;
   const pct = 100 / n;
 
   const go = useCallback(
@@ -58,7 +46,7 @@ const QuoteBannerCarousel = () => {
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="flex items-center justify-center gap-2 mb-6 text-gray-700">
           <Quote className="w-8 h-8 opacity-80" aria-hidden />
-          <p className="text-sm font-semibold uppercase tracking-[0.2em]">Words we live by</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em]">{t('quote.sectionLabel')}</p>
         </div>
 
         <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200/80">
@@ -69,7 +57,7 @@ const QuoteBannerCarousel = () => {
               transform: `translateX(-${active * pct}%)`
             }}
           >
-            {SLIDES.map((slide, i) => (
+            {slides.map((slide, i) => (
               <div
                 key={i}
                 className="flex flex-col md:flex-row min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex-shrink-0 overflow-hidden md:items-stretch"
@@ -96,14 +84,14 @@ const QuoteBannerCarousel = () => {
           </div>
         </div>
 
-        <div className="mt-8 flex items-center justify-center gap-2.5" role="tablist" aria-label="Quote slides">
-          {SLIDES.map((_, i) => (
+        <div className="mt-8 flex items-center justify-center gap-2.5" role="tablist" aria-label={t('quote.slideLabel')}>
+          {slides.map((_, i) => (
             <button
               key={i}
               type="button"
               role="tab"
               aria-selected={i === active}
-              aria-label={`Show quote ${i + 1} of ${n}`}
+              aria-label={t('quote.showSlide', { n: i + 1, total: n })}
               onClick={() => go(i)}
               className={`rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
                 i === active

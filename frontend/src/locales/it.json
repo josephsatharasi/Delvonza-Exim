@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Home",
+    "about": "Chi siamo",
+    "products": "Prodotti",
+    "services": "Servizi",
+    "contact": "Contatti"
+  },
+  "header": {
+    "selectLanguage": "Seleziona lingua",
+    "cart": "Carrello",
+    "profile": "Profilo",
+    "myCart": "Il mio carrello",
+    "myOrders": "I miei ordini",
+    "logout": "Esci",
+    "login": "Accedi",
+    "toggleMenu": "Apri menu",
+    "closeMenu": "Chiudi menu",
+    "menu": "Menu",
+    "language": "Lingua",
+    "myProfile": "Il mio profilo",
+    "loginSignUp": "Accedi / Registrati",
+    "getQuote": "Richiedi preventivo"
+  },
+  "footer": {
+    "tagline": "Le migliori spezie indiane nel mondo, con qualità premium e servizio affidabile.",
+    "quickLinks": "Link rapidi",
+    "socialMedia": "Social media",
+    "ourSpices": "Le nostre spezie",
+    "contactInfo": "Contatti",
+    "address": "MahabubNagar, Telangana, India",
+    "copyright": "© 2024 Delvonza Exim. Tutti i diritti riservati.",
+    "availability": "Disponibili 24/7 per le richieste commerciali",
+    "spices": {
+      "turmeric": "Curcuma",
+      "blackPepper": "Pepe nero",
+      "cardamom": "Cardamomo",
+      "driedChillies": "Peperoncini secchi",
+      "cinnamon": "Cannella",
+      "cloves": "Chiodi di garofano"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "Le migliori spezie indiane per il mondo",
+    "description": "Esportatore affidabile di spezie premium dall'India ai mercati globali",
+    "exploreProducts": "Esplora prodotti",
+    "getQuote": "Richiedi preventivo"
+  },
+  "home": {
+    "welcomeTitle": "Benvenuti in Delvonza Exim",
+    "welcomeP1": "Delvonza Exim è un'azienda affidabile specializzata nell'import-export di spezie di alta qualità dall'India ai mercati globali. Ci impegniamo a fornire spezie premium che riflettono il ricco patrimonio agricolo indiano.",
+    "welcomeP2": "Il nostro obiettivo è collegare acquirenti internazionali al gusto autentico delle spezie indiane, mantenendo elevati standard di qualità e soddisfazione. Con una solida rete di approvvigionamento e logistica efficiente, ogni prodotto arriva in sicurezza e in tempo.",
+    "premiumQuality": "Qualità premium",
+    "premiumQualityDesc": "Spezie selezionate da fornitori affidabili in tutta l'India",
+    "globalReach": "Portata globale",
+    "globalReachDesc": "Serviamo mercati internazionali con export affidabili",
+    "trustedPartner": "Partner affidabile",
+    "trustedPartnerDesc": "Relazioni a lungo termine attraverso qualità e servizio",
+    "featuredTitle": "Le nostre spezie indiane premium",
+    "featuredSubtitle": "Esportiamo un'ampia gamma di spezie autentiche, selezionate per qualità, aroma e sapore",
+    "viewAllProducts": "Vedi tutti i prodotti"
+  },
+  "inquiry": {
+    "title": "Vuoi importare spezie indiane di alta qualità?",
+    "description": "Invia la richiesta di export qui sotto. Il team la riceve nel pannello admin e ti risponderà. Disponibili 24/7.",
+    "fullContact": "Pagina contatti completa",
+    "browseProducts": "Sfoglia prodotti",
+    "formTitle": "Richiesta export",
+    "formHint": "I campi corrispondono al modulo contatti e sono salvati per la revisione.",
+    "name": "Il tuo nome",
+    "email": "Email",
+    "phone": "Telefono (con prefisso internazionale)",
+    "country": "Paese",
+    "message": "La tua richiesta — prodotti, volumi, porto, tempistiche…",
+    "submit": "Invia richiesta export",
+    "sending": "Invio in corso…",
+    "success": "Grazie. Abbiamo ricevuto la richiesta e risponderemo presto.",
+    "error": "Impossibile inviare la richiesta."
+  },
+  "contact": {
+    "title": "Contattaci",
+    "subtitle": "Siamo qui per le richieste di export spezie 24/7",
+    "formHeading": "Inviaci un messaggio",
+    "name": "Il tuo nome",
+    "email": "Indirizzo email",
+    "phone": "Telefono (con prefisso)",
+    "country": "Paese",
+    "message": "Il tuo messaggio",
+    "submit": "Invia messaggio",
+    "sending": "Invio…",
+    "success": "Messaggio inviato. Risponderemo presto.",
+    "error": "Impossibile inviare il messaggio.",
+    "infoHeading": "Informazioni di contatto",
+    "addressLabel": "Indirizzo",
+    "emailLabel": "Email",
+    "phoneLabel": "Telefono",
+    "hoursLabel": "Orari",
+    "hoursValue": "24 ore su 24, 7 giorni su 7",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "I nostri valori",
+    "slideLabel": "Citazioni",
+    "showSlide": "Mostra citazione {{n}} di {{total}}",
+    "slides": {
+      "0": {
+        "text": "L'anima della cucina indiana viaggia nella spezia—autentica, decisa e onesta. Esportiamo quell'eredità con la cura che merita.",
+        "attr": "La nostra promessa ai partner globali"
+      },
+      "1": {
+        "text": "L'eccellenza è abitudine in ogni raccolto, tostatura e sigillo. La tua reputazione è nella stessa scatola della nostra.",
+        "attr": "Qualità senza compromessi"
+      },
+      "2": {
+        "text": "Dalle reti del Telangana al tuo porto: comunicazione chiara, logistica stabile e spezie conformi al campione.",
+        "attr": "Export su cui puoi contare"
+      },
+      "3": {
+        "text": "Il commercio cresce dove si coltiva la fiducia. Non spediamo solo merce—costruiamo ordini ripetuti e amicizia.",
+        "attr": "Relazioni a lungo termine"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "Contattaci su WhatsApp",
+    "scrollTop": "Torna su"
+  },
+  "product": {
+    "loading": "Caricamento prodotto…",
+    "notFound": "Prodotto non trovato",
+    "backToProducts": "Torna ai prodotti",
+    "contactPricing": "Prezzo su richiesta",
+    "details": "Dettagli prodotto",
+    "origin": "Origine",
+    "packaging": "Imballaggio",
+    "formsTitle": "Forme disponibili",
+    "addToCart": "Aggiungi al carrello",
+    "goToCart": "Vai al carrello",
+    "about": "Su {{name}}",
+    "featuresTitle": "Caratteristiche principali"
+  },
+  "contactPage": {
+    "title": "Contatti",
+    "intro": "Grazie per l'interesse in Delvonza Exim. Siamo pronti ad assisterti su export spezie, approvvigionamento e partnership commerciali internazionali."
+  },
+  "productsPage": {
+    "heroTitle": "Le nostre spezie premium",
+    "heroSubtitle": "Esportiamo un'ampia gamma di spezie premium da fornitori affidabili in India",
+    "sectionTitle": "Spezie che esportiamo",
+    "sectionBody": "I nostri prodotti sono selezionati per freschezza, purezza e standard internazionali. Forniamo spezie intere, spezzate o macinate secondo le esigenze dei clienti.",
+    "highlightsTitle": "Punti salienti",
+    "highlight1": "Spezie indiane premium",
+    "highlight2": "Fornitura globale affidabile",
+    "highlight3": "Rete fornitori solida",
+    "highlight4": "Garanzia di qualità",
+    "highlight5": "Servizi di export professionali",
+    "closing": "Il nostro obiettivo è fornire spezie indiane autentiche con aroma ricco e qualità costante sui mercati internazionali.",
+    "requestQuote": "Richiedi preventivo"
+  },
+  "productCard": {
+    "viewDetails": "Vedi dettagli →"
+  },
+  "common": {
+    "loading": "Caricamento…"
+  }
+}

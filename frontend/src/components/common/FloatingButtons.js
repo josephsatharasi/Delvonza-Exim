@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MessageCircle, ArrowUp } from 'lucide-react';
 
 const FloatingButtons = () => {
+  const { t } = useTranslation();
   const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const FloatingButtons = () => {
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition z-50"
-        aria-label="Contact us on WhatsApp"
+        aria-label={t('floating.whatsapp')}
       >
         <MessageCircle className="w-6 h-6" />
       </a>
@@ -32,7 +34,7 @@ const FloatingButtons = () => {
         <button
           onClick={scrollToTop}
           className="fixed bottom-24 right-6 bg-primary-600 text-white p-4 rounded-full shadow-lg hover:bg-primary-700 transition z-50"
-          aria-label="Scroll to top"
+          aria-label={t('floating.scrollTop')}
         >
           <ArrowUp className="w-6 h-6" />
         </button>

@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Início",
+    "about": "Sobre nós",
+    "products": "Produtos",
+    "services": "Serviços",
+    "contact": "Contato"
+  },
+  "header": {
+    "selectLanguage": "Selecionar idioma",
+    "cart": "Carrinho",
+    "profile": "Perfil",
+    "myCart": "Meu carrinho",
+    "myOrders": "Meus pedidos",
+    "logout": "Sair",
+    "login": "Entrar",
+    "toggleMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "menu": "Menu",
+    "language": "Idioma",
+    "myProfile": "Meu perfil",
+    "loginSignUp": "Entrar / Cadastrar",
+    "getQuote": "Solicitar orçamento"
+  },
+  "footer": {
+    "tagline": "Levamos as melhores especiarias indianas ao mundo com qualidade premium e serviço confiável.",
+    "quickLinks": "Links rápidos",
+    "socialMedia": "Redes sociais",
+    "ourSpices": "Nossas especiarias",
+    "contactInfo": "Contato",
+    "address": "MahabubNagar, Telangana, Índia",
+    "copyright": "© 2024 Delvonza Exim. Todos os direitos reservados.",
+    "availability": "Disponível 24 horas por dia, 7 dias por semana para consultas comerciais",
+    "spices": {
+      "turmeric": "Açafrão-da-terra",
+      "blackPepper": "Pimenta-do-reino",
+      "cardamom": "Cardamomo",
+      "driedChillies": "Pimentas secas",
+      "cinnamon": "Canela",
+      "cloves": "Cravo"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "As melhores especiarias indianas para o mundo",
+    "description": "Exportador confiável de especiarias premium da Índia para mercados globais",
+    "exploreProducts": "Explorar produtos",
+    "getQuote": "Solicitar orçamento"
+  },
+  "home": {
+    "welcomeTitle": "Bem-vindo à Delvonza Exim",
+    "welcomeP1": "A Delvonza Exim é uma empresa confiável especializada na exportação e importação de especiarias de alta qualidade da Índia para mercados globais. Comprometemo-nos a entregar especiarias premium que refletem o rico patrimônio agrícola da Índia.",
+    "welcomeP2": "Nosso objetivo é conectar compradores internacionais ao sabor autêntico das especiarias indianas, mantendo os mais altos padrões de qualidade e satisfação. Com rede de fornecimento sólida e logística eficiente, cada produto chega com segurança e no prazo.",
+    "premiumQuality": "Qualidade premium",
+    "premiumQualityDesc": "Especiarias selecionadas de fornecedores confiáveis em toda a Índia",
+    "globalReach": "Alcance global",
+    "globalReachDesc": "Atendemos mercados internacionais com exportação confiável",
+    "trustedPartner": "Parceiro confiável",
+    "trustedPartnerDesc": "Relacionamentos de longo prazo por meio de qualidade e serviço",
+    "featuredTitle": "Nossas especiarias indianas premium",
+    "featuredSubtitle": "Exportamos uma ampla gama de especiarias autênticas, selecionadas por qualidade, aroma e sabor",
+    "viewAllProducts": "Ver todos os produtos"
+  },
+  "inquiry": {
+    "title": "Quer importar especiarias indianas de alta qualidade?",
+    "description": "Envie sua consulta de exportação abaixo. Nossa equipe recebe no painel administrativo e retornará. Disponível 24/7 para seu negócio.",
+    "fullContact": "Página de contato completa",
+    "browseProducts": "Ver produtos",
+    "formTitle": "Consulta de exportação",
+    "formHint": "Os campos correspondem ao formulário de contato e são armazenados para revisão.",
+    "name": "Seu nome",
+    "email": "E-mail",
+    "phone": "Telefone (com código do país)",
+    "country": "País",
+    "message": "Sua consulta — produtos, volumes, porto, prazos…",
+    "submit": "Enviar consulta",
+    "sending": "Enviando…",
+    "success": "Obrigado. Recebemos sua consulta e responderemos em breve.",
+    "error": "Não foi possível enviar a consulta."
+  },
+  "contact": {
+    "title": "Fale conosco",
+    "subtitle": "Estamos aqui para ajudar com consultas de exportação de especiarias 24/7",
+    "formHeading": "Envie-nos uma mensagem",
+    "name": "Seu nome",
+    "email": "E-mail",
+    "phone": "Telefone (com código do país)",
+    "country": "País",
+    "message": "Sua mensagem",
+    "submit": "Enviar mensagem",
+    "sending": "Enviando…",
+    "success": "Mensagem enviada. Responderemos em breve.",
+    "error": "Não foi possível enviar a mensagem.",
+    "infoHeading": "Informações de contato",
+    "addressLabel": "Endereço",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefone",
+    "hoursLabel": "Horário comercial",
+    "hoursValue": "24 horas / 7 dias por semana",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "Nossos valores",
+    "slideLabel": "Citações",
+    "showSlide": "Mostrar citação {{n}} de {{total}}",
+    "slides": {
+      "0": {
+        "text": "A alma da culinária indiana viaja na especiaria—autêntica, ousada e honesta. Exportamos esse legado com o cuidado que merece.",
+        "attr": "Nossa promessa aos parceiros globais"
+      },
+      "1": {
+        "text": "A excelência é hábito em cada colheita, torra e lacre. Sua reputação está na mesma caixa que a nossa.",
+        "attr": "Qualidade sem compromissos"
+      },
+      "2": {
+        "text": "Das redes de Telangana ao seu porto: comunicação clara, logística estável e especiarias fiéis à amostra.",
+        "attr": "Exportação em que você pode confiar"
+      },
+      "3": {
+        "text": "O comércio cresce onde a confiança é cultivada. Não apenas enviamos mercadorias—construímos pedidos recorrentes e amizade.",
+        "attr": "Relacionamentos de longo prazo"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "Fale conosco no WhatsApp",
+    "scrollTop": "Voltar ao topo"
+  },
+  "product": {
+    "loading": "Carregando produto…",
+    "notFound": "Produto não encontrado",
+    "backToProducts": "Voltar aos produtos",
+    "contactPricing": "Consulte o preço",
+    "details": "Detalhes do produto",
+    "origin": "Origem",
+    "packaging": "Embalagem",
+    "formsTitle": "Formas disponíveis",
+    "addToCart": "Adicionar ao carrinho",
+    "goToCart": "Ir ao carrinho",
+    "about": "Sobre {{name}}",
+    "featuresTitle": "Principais características"
+  },
+  "contactPage": {
+    "title": "Contato",
+    "intro": "Obrigado pelo interesse na Delvonza Exim. Estamos prontos para ajudar com exportação de especiarias, abastecimento e parcerias comerciais internacionais."
+  },
+  "productsPage": {
+    "heroTitle": "Nossas especiarias premium",
+    "heroSubtitle": "Exportamos uma ampla gama de especiarias de qualidade premium de fornecedores confiáveis na Índia",
+    "sectionTitle": "Especiarias que exportamos",
+    "sectionBody": "Nossos produtos são cuidadosamente selecionados para manter frescor, pureza e padrões internacionais. Fornecemos inteiras, trituradas ou moídas conforme a necessidade dos clientes.",
+    "highlightsTitle": "Destaques",
+    "highlight1": "Especiarias indianas premium",
+    "highlight2": "Fornecimento global confiável",
+    "highlight3": "Rede de fornecedores forte",
+    "highlight4": "Garantia de qualidade",
+    "highlight5": "Serviços de exportação profissionais",
+    "closing": "Nosso foco é entregar especiarias indianas autênticas com aroma rico, sabor natural e qualidade consistente nos mercados internacionais.",
+    "requestQuote": "Solicitar orçamento"
+  },
+  "productCard": {
+    "viewDetails": "Ver detalhes →"
+  },
+  "common": {
+    "loading": "Carregando…"
+  }
+}

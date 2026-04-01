@@ -1,39 +1,45 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { fetchGlobalLanguages } from '../utils/globalLocales';
+import i18n, { SUPPORTED_LOCALES } from '../i18n/config';
 
 const LanguageContext = createContext(null);
 const STORAGE_KEY = 'delvonza_lang_v1';
 
+const supportedSet = new Set(SUPPORTED_LOCALES);
+
 const getAutoLanguage = () => {
   const locale = navigator.language || 'en';
-  const [languagePart, countryPart] = locale.split('-');
-  // Prefer the browser's language code (Google Translate accepts ISO-639-1 codes).
-  return (languagePart || 'en').toLowerCase();
-};
-
-const setGoogleTranslateCookie = (langCode) => {
-  const cookieValue = `/en/${langCode}`;
-  const host = window.location.hostname;
-  document.cookie = `googtrans=${cookieValue}; path=/`;
-  document.cookie = `googtrans=${cookieValue}; path=/; domain=.${host}`;
+  const [languagePart] = locale.split('-');
+  const code = (languagePart || 'en').toLowerCase();
+  return supportedSet.has(code) ? code : 'en';
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState(() => i18n.language || 'en');
   const [languages, setLanguages] = useState([{ code: 'en', label: 'English' }]);
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem(STORAGE_KEY);
-    const nextLanguage = savedLanguage || getAutoLanguage();
-    setLanguage(nextLanguage);
-    setGoogleTranslateCookie(nextLanguage);
+    const onLang = (lng) => {
+      setLanguage(lng);
+      document.documentElement.lang = lng;
+    };
+    i18n.on('languageChanged', onLang);
+    onLang(i18n.language);
+    return () => {
+      i18n.off('languageChanged', onLang);
+    };
   }, []);
 
   useEffect(() => {
-    if (language) {
-      document.documentElement.lang = language;
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved || !supportedSet.has(saved)) {
+      const next = getAutoLanguage();
+      if (next !== i18n.language) {
+        i18n.changeLanguage(next);
+      }
+      localStorage.setItem(STORAGE_KEY, next);
     }
-  }, [language]);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -41,10 +47,17 @@ export const LanguageProvider = ({ children }) => {
       try {
         const list = await fetchGlobalLanguages();
         if (!cancelled && Array.isArray(list) && list.length) {
-          setLanguages(list);
+          const filtered = list.filter((l) => supportedSet.has(l.code));
+          if (filtered.length) {
+            setLanguages(filtered);
+            return;
+          }
         }
       } catch {
-        // Keep fallback language list if API is unavailable.
+        // ignore
+      }
+      if (!cancelled) {
+        setLanguages([{ code: 'en', label: 'English' }]);
       }
     }
     load();
@@ -54,17 +67,18 @@ export const LanguageProvider = ({ children }) => {
   }, []);
 
   const changeLanguage = (langCode) => {
-    setLanguage(langCode);
-    localStorage.setItem(STORAGE_KEY, langCode);
-    setGoogleTranslateCookie(langCode);
-    window.location.reload();
+    const code = String(langCode || '').toLowerCase();
+    if (!supportedSet.has(code)) return;
+    localStorage.setItem(STORAGE_KEY, code);
+    i18n.changeLanguage(code);
   };
 
   const value = useMemo(
     () => ({
       language,
       languages,
-      changeLanguage
+      changeLanguage,
+      supportedLocales: SUPPORTED_LOCALES
     }),
     [language, languages]
   );

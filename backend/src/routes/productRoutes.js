@@ -4,6 +4,7 @@ const {
   createProduct,
   getProductBySlug,
   updateProduct,
+  patchHidePrice,
   deleteProduct,
   reorderProducts
 } = require('../controllers/productController');
@@ -14,6 +15,7 @@ const router = express.Router();
 router.get('/', getProducts);
 router.put('/reorder', reorderProducts);
 router.post('/', upload.array('images', 4), createProduct);
+router.patch('/:id/hide-price', patchHidePrice);
 router.put('/:id', upload.array('images', 4), updateProduct);
 router.delete('/:id', deleteProduct);
 router.get('/:slug', getProductBySlug);

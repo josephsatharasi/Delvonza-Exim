@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "products": "Produkte",
+    "services": "Leistungen",
+    "contact": "Kontakt"
+  },
+  "header": {
+    "selectLanguage": "Sprache wählen",
+    "cart": "Warenkorb",
+    "profile": "Profil",
+    "myCart": "Mein Warenkorb",
+    "myOrders": "Meine Bestellungen",
+    "logout": "Abmelden",
+    "login": "Anmelden",
+    "toggleMenu": "Menü umschalten",
+    "closeMenu": "Menü schließen",
+    "menu": "Menü",
+    "language": "Sprache",
+    "myProfile": "Mein Profil",
+    "loginSignUp": "Anmelden / Registrieren",
+    "getQuote": "Angebot anfordern"
+  },
+  "footer": {
+    "tagline": "Wir liefern die feinsten indischen Gewürze weltweit – mit Premiumqualität und zuverlässigem Service.",
+    "quickLinks": "Schnelllinks",
+    "socialMedia": "Soziale Medien",
+    "ourSpices": "Unsere Gewürze",
+    "contactInfo": "Kontakt",
+    "address": "MahabubNagar, Telangana, Indien",
+    "copyright": "© 2024 Delvonza Exim. Alle Rechte vorbehalten.",
+    "availability": "24/7 für Ihre geschäftlichen Anfragen erreichbar",
+    "spices": {
+      "turmeric": "Kurkuma",
+      "blackPepper": "Schwarzer Pfeffer",
+      "cardamom": "Kardamom",
+      "driedChillies": "Getrocknete Chilis",
+      "cinnamon": "Zimt",
+      "cloves": "Nelken"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "Die feinsten indischen Gewürze für die Welt",
+    "description": "Zuverlässiger Exporteur von Premium-Gewürzen aus Indien in globale Märkte",
+    "exploreProducts": "Produkte entdecken",
+    "getQuote": "Angebot anfordern"
+  },
+  "home": {
+    "welcomeTitle": "Willkommen bei Delvonza Exim",
+    "welcomeP1": "Delvonza Exim ist ein vertrauenswürdiges Unternehmen für Import und Export hochwertiger Gewürze aus Indien in globale Märkte. Wir liefern Premiumqualität, die das reiche Erbe der indischen Landwirtschaft widerspiegelt.",
+    "welcomeP2": "Unser Ziel ist es, internationale Käufer mit authentischem Geschmack und Aroma indischer Gewürze zu verbinden – bei höchsten Standards für Qualität, Zuverlässigkeit und Kundenzufriedenheit. Mit einem starken Netzwerk und effizienter Logistik erreicht jedes Produkt unsere Kunden sicher und termingerecht.",
+    "premiumQuality": "Premium-Qualität",
+    "premiumQualityDesc": "Sorgfältig ausgewählte Gewürze von vertrauenswürdigen Lieferanten in ganz Indien",
+    "globalReach": "Globale Reichweite",
+    "globalReachDesc": "Internationale Märkte mit zuverlässigen Exportdienstleistungen",
+    "trustedPartner": "Verlässlicher Partner",
+    "trustedPartnerDesc": "Langfristige Partnerschaften durch Qualität und Service",
+    "featuredTitle": "Unsere Premium-Indien-Gewürze",
+    "featuredSubtitle": "Wir exportieren eine breite Palette authentischer indischer Gewürze – ausgewählt für Qualität, Aroma und Geschmack",
+    "viewAllProducts": "Alle Produkte anzeigen"
+  },
+  "inquiry": {
+    "title": "Möchten Sie hochwertige indische Gewürze importieren?",
+    "description": "Senden Sie unten Ihre Exportanfrage. Unser Team erhält sie im Admin-Bereich und meldet sich bei Ihnen. Für Ihr Geschäft 24/7 erreichbar.",
+    "fullContact": "Zur vollständigen Kontaktseite",
+    "browseProducts": "Produkte durchsuchen",
+    "formTitle": "Exportanfrage",
+    "formHint": "Die Felder entsprechen dem Kontaktformular und werden zur Admin-Prüfung gespeichert.",
+    "name": "Ihr Name",
+    "email": "E-Mail",
+    "phone": "Telefon (mit Ländervorwahl)",
+    "country": "Land",
+    "message": "Ihre Anfrage – Produkte, Mengen, Zielhafen, Zeitplan …",
+    "submit": "Exportanfrage senden",
+    "sending": "Wird gesendet…",
+    "success": "Vielen Dank. Wir haben Ihre Anfrage erhalten und melden uns bald.",
+    "error": "Anfrage konnte nicht gesendet werden."
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "subtitle": "Wir helfen bei Ihren Gewürz-Exportanfragen – rund um die Uhr",
+    "formHeading": "Nachricht senden",
+    "name": "Ihr Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer (mit Ländervorwahl)",
+    "country": "Land",
+    "message": "Ihre Nachricht",
+    "submit": "Nachricht senden",
+    "sending": "Wird gesendet…",
+    "success": "Nachricht gesendet. Wir melden uns bald.",
+    "error": "Nachricht konnte nicht gesendet werden.",
+    "infoHeading": "Kontaktdaten",
+    "addressLabel": "Adresse",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon",
+    "hoursLabel": "Geschäftszeiten",
+    "hoursValue": "24 Stunden / 7 Tage die Woche",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "Wofür wir stehen",
+    "slideLabel": "Zitate",
+    "showSlide": "Zitat {{n}} von {{total}} anzeigen",
+    "slides": {
+      "0": {
+        "text": "Die Seele des indischen Kochens liegt im Gewürz – authentisch, kräftig und ehrlich. Wir exportieren dieses Erbe mit der Sorgfalt, die es verdient.",
+        "attr": "Unser Versprechen an Partner weltweit"
+      },
+      "1": {
+        "text": "Exzellenz ist Gewohnheit – bei jeder Ernte, jeder Röstung, jedem Verschluss. Ihr Ruf liegt in derselben Kiste wie unserer.",
+        "attr": "Qualität ohne Kompromisse"
+      },
+      "2": {
+        "text": "Von Telanganas Netzwerken bis zu Ihrem Hafen – klare Kommunikation, stabile Logistik und Gewürze, die dem Muster entsprechen.",
+        "attr": "Export, auf den Sie sich verlassen können"
+      },
+      "3": {
+        "text": "Handel wächst, wo Vertrauen gepflegt wird. Wir versenden nicht nur Ware – wir bauen wiederkehrende Aufträge und Partnerschaften auf.",
+        "attr": "Langfristige Beziehungen"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "Kontakt über WhatsApp",
+    "scrollTop": "Nach oben scrollen"
+  },
+  "product": {
+    "loading": "Produkt wird geladen…",
+    "notFound": "Produkt nicht gefunden",
+    "backToProducts": "Zurück zu den Produkten",
+    "contactPricing": "Preis auf Anfrage",
+    "details": "Produktdetails",
+    "origin": "Herkunft",
+    "packaging": "Verpackung",
+    "formsTitle": "Verfügbare Formen",
+    "addToCart": "In den Warenkorb",
+    "goToCart": "Zum Warenkorb",
+    "about": "Über {{name}}",
+    "featuresTitle": "Hauptmerkmale"
+  },
+  "contactPage": {
+    "title": "Kontakt",
+    "intro": "Vielen Dank für Ihr Interesse an Delvonza Exim. Wir unterstützen Sie gern bei Fragen zu Gewürzexport, Produktbeschaffung und internationalen Handelspartnerschaften."
+  },
+  "productsPage": {
+    "heroTitle": "Unsere Premium-Gewürze",
+    "heroSubtitle": "Wir exportieren eine breite Palette hochwertiger Gewürze von vertrauenswürdigen Lieferanten in Indien",
+    "sectionTitle": "Gewürze, die wir exportieren",
+    "sectionBody": "Unsere Produkte werden sorgfältig ausgewählt, um Frische, Reinheit und internationale Qualitätsstandards zu gewährleisten. Wir liefern in verschiedenen Formen – ganz, gebrochen oder gemahlen – je nach den Anforderungen unserer Kunden weltweit.",
+    "highlightsTitle": "Kernpunkte",
+    "highlight1": "Premium-Indien-Gewürze",
+    "highlight2": "Zuverlässige globale Lieferung",
+    "highlight3": "Starkes Lieferantennetzwerk",
+    "highlight4": "Qualitätssicherung",
+    "highlight5": "Professionelle Exportdienstleistungen",
+    "closing": "Unser Fokus liegt auf authentischen indischen Gewürzen mit intensivem Aroma, natürlichem Geschmack und gleichbleibender Qualität für internationale Märkte.",
+    "requestQuote": "Angebot anfordern"
+  },
+  "productCard": {
+    "viewDetails": "Details ansehen →"
+  },
+  "common": {
+    "loading": "Laden…"
+  }
+}

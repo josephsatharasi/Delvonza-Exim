@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "ホーム",
+    "about": "会社概要",
+    "products": "製品",
+    "services": "サービス",
+    "contact": "お問い合わせ"
+  },
+  "header": {
+    "selectLanguage": "言語を選択",
+    "cart": "カート",
+    "profile": "プロフィール",
+    "myCart": "マイカート",
+    "myOrders": "注文履歴",
+    "logout": "ログアウト",
+    "login": "ログイン",
+    "toggleMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "menu": "メニュー",
+    "language": "言語",
+    "myProfile": "マイプロフィール",
+    "loginSignUp": "ログイン / 新規登録",
+    "getQuote": "見積もり依頼"
+  },
+  "footer": {
+    "tagline": "プレミアム品質と信頼できるサービスで、世界に最高のインドスパイスをお届けします。",
+    "quickLinks": "クイックリンク",
+    "socialMedia": "ソーシャルメディア",
+    "ourSpices": "スパイス一覧",
+    "contactInfo": "連絡先",
+    "address": "マハブブナガル、テランガーナ、インド",
+    "copyright": "© 2024 Delvonza Exim. All rights reserved.",
+    "availability": "ビジネスお問い合わせは24時間365日対応",
+    "spices": {
+      "turmeric": "ターメリック",
+      "blackPepper": "黒胡椒",
+      "cardamom": "カルダモン",
+      "driedChillies": "乾燥チリ",
+      "cinnamon": "シナモン",
+      "cloves": "クローブ"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "世界へ最高のインドスパイスを",
+    "description": "インドから世界市場へプレミアムスパイスを輸出する信頼のパートナー",
+    "exploreProducts": "製品を見る",
+    "getQuote": "見積もり依頼"
+  },
+  "home": {
+    "welcomeTitle": "Delvonza Eximへようこそ",
+    "welcomeP1": "Delvonza Eximは、インドから世界市場へ高品質スパイスの輸出入に特化した信頼できる企業です。インドの豊かな農業遺産を反映したプレミアムスパイスをお届けします。",
+    "welcomeP2": "私たちの目標は、最高水準の品質と顧客満足を保ちながら、国際的なバイヤーにインドスパイスの本物の味と香りを届けることです。強固な調達ネットワークと効率的な物流で、すべての製品が安全かつ迅速にお届けします。",
+    "premiumQuality": "プレミアム品質",
+    "premiumQualityDesc": "インド各地の信頼できるサプライヤーから厳選したスパイス",
+    "globalReach": "グローバル展開",
+    "globalReachDesc": "信頼できる輸出サービスで国際市場へ",
+    "trustedPartner": "信頼できるパートナー",
+    "trustedPartnerDesc": "品質とサービスで長期的な関係を構築",
+    "featuredTitle": "プレミアムインドスパイス",
+    "featuredSubtitle": "品質・香り・風味に優れた本格的なインドスパイスを幅広く輸出しています",
+    "viewAllProducts": "すべての製品"
+  },
+  "inquiry": {
+    "title": "高品質なインドスパイスを輸入しませんか？",
+    "description": "下記に輸出に関するお問い合わせを送信してください。管理画面で受け取り、担当がご連絡します。ビジネス向けに24時間365日対応。",
+    "fullContact": "お問い合わせページ",
+    "browseProducts": "製品を見る",
+    "formTitle": "輸出お問い合わせ",
+    "formHint": "項目はお問い合わせフォームと同じで、管理者が確認します。",
+    "name": "お名前",
+    "email": "メール",
+    "phone": "電話（国番号付き）",
+    "country": "国",
+    "message": "お問い合わせ内容 — 製品、数量、港、スケジュールなど",
+    "submit": "送信する",
+    "sending": "送信中…",
+    "success": "ありがとうございます。お問い合わせを受け付けました。近日中にご返信します。",
+    "error": "送信できませんでした。"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "スパイス輸出に関するご相談は24時間365日承ります",
+    "formHeading": "メッセージを送る",
+    "name": "お名前",
+    "email": "メールアドレス",
+    "phone": "電話（国番号付き）",
+    "country": "国",
+    "message": "メッセージ",
+    "submit": "送信",
+    "sending": "送信中…",
+    "success": "送信しました。近日中にご返信します。",
+    "error": "送信できませんでした。",
+    "infoHeading": "連絡先情報",
+    "addressLabel": "住所",
+    "emailLabel": "メール",
+    "phoneLabel": "電話",
+    "hoursLabel": "営業時間",
+    "hoursValue": "24時間 / 週7日",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "私たちの価値観",
+    "slideLabel": "引用",
+    "showSlide": "{{total}}件中{{n}}件目を表示",
+    "slides": {
+      "0": {
+        "text": "インド料理の魂はスパイスに宿る—本物で、力強く、誠実に。その伝統を丁寧に輸出します。",
+        "attr": "世界のパートナーへの約束"
+      },
+      "1": {
+        "text": "卓越は収穫、焙煎、封入のたびに培われます。お客様の評判は私たちと同じ箱に載ります。",
+        "attr": "妥協なき品質"
+      },
+      "2": {
+        "text": "テランガーナのネットワークからお客様の港まで—明確な連携、安定した物流、サンプル通りのスパイス。",
+        "attr": "計画に使える輸出"
+      },
+      "3": {
+        "text": "信頼が育つところで商いは育ちます。商品を送るだけでなく、リピート注文と友情を築きます。",
+        "attr": "長期的な関係"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "WhatsAppで連絡",
+    "scrollTop": "ページ上部へ"
+  },
+  "product": {
+    "loading": "読み込み中…",
+    "notFound": "製品が見つかりません",
+    "backToProducts": "製品一覧へ",
+    "contactPricing": "価格はお問い合わせください",
+    "details": "製品詳細",
+    "origin": "原産地",
+    "packaging": "包装",
+    "formsTitle": "取り扱い形態",
+    "addToCart": "カートに入れる",
+    "goToCart": "カートへ",
+    "about": "{{name}}について",
+    "featuresTitle": "主な特徴"
+  },
+  "contactPage": {
+    "title": "お問い合わせ",
+    "intro": "Delvonza Eximにご関心をお寄せいただきありがとうございます。スパイス輸出、調達、国際貿易パートナーシップについてお手伝いします。"
+  },
+  "productsPage": {
+    "heroTitle": "プレミアムスパイス",
+    "heroSubtitle": "インドの信頼できるサプライヤーから幅広いプレミアムスパイスを輸出しています",
+    "sectionTitle": "輸出スパイス",
+    "sectionBody": "鮮度・純度・国際品質基準を満たすよう厳選しています。ホール、砕き、粉末などご要望に応じて供給します。",
+    "highlightsTitle": "主なポイント",
+    "highlight1": "プレミアムインドスパイス",
+    "highlight2": "信頼できるグローバル供給",
+    "highlight3": "強固なサプライヤーネットワーク",
+    "highlight4": "品質保証基準",
+    "highlight5": "プロフェッショナル輸出サービス",
+    "closing": "豊かな香り、自然な風味、一貫した品質で本格的なインドスパイスを国際市場へ届けることが私たちの使命です。",
+    "requestQuote": "見積もり依頼"
+  },
+  "productCard": {
+    "viewDetails": "詳細を見る →"
+  },
+  "common": {
+    "loading": "読み込み中…"
+  }
+}

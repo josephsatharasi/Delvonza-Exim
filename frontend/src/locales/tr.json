@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Ana sayfa",
+    "about": "Hakkımızda",
+    "products": "Ürünler",
+    "services": "Hizmetler",
+    "contact": "İletişim"
+  },
+  "header": {
+    "selectLanguage": "Dil seçin",
+    "cart": "Sepet",
+    "profile": "Profil",
+    "myCart": "Sepetim",
+    "myOrders": "Siparişlerim",
+    "logout": "Çıkış",
+    "login": "Giriş",
+    "toggleMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "menu": "Menü",
+    "language": "Dil",
+    "myProfile": "Profilim",
+    "loginSignUp": "Giriş / Kayıt",
+    "getQuote": "Teklif al"
+  },
+  "footer": {
+    "tagline": "Hindistan'ın en iyi baharatlarını premium kalite ve güvenilir hizmetle dünyaya ulaştırıyoruz.",
+    "quickLinks": "Hızlı bağlantılar",
+    "socialMedia": "Sosyal medya",
+    "ourSpices": "Baharatlarımız",
+    "contactInfo": "İletişim bilgileri",
+    "address": "MahabubNagar, Telangana, Hindistan",
+    "copyright": "© 2024 Delvonza Exim. Tüm hakları saklıdır.",
+    "availability": "İş talepleriniz için 7/24 ulaşılabilir",
+    "spices": {
+      "turmeric": "Zerdeçal",
+      "blackPepper": "Karabiber",
+      "cardamom": "Kakule",
+      "driedChillies": "Kuru biber",
+      "cinnamon": "Tarçın",
+      "cloves": "Karanfil"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "Dünyanın en iyi Hint baharatları",
+    "description": "Hindistan'dan küresel pazarlara premium baharatların güvenilir ihracatçısı",
+    "exploreProducts": "Ürünleri keşfet",
+    "getQuote": "Teklif al"
+  },
+  "home": {
+    "welcomeTitle": "Delvonza Exim'e hoş geldiniz",
+    "welcomeP1": "Delvonza Exim, Hindistan'dan küresel pazarlara yüksek kaliteli baharat ihracatı ve ithalatında uzman güvenilir bir şirkettir. Hindistan'ın zengin tarım mirasını yansıtan premium baharatlar sunuyoruz.",
+    "welcomeP2": "Amacımız, uluslararası alıcıları Hint baharatlarının otantik tadı ve aromasıyla buluşturmak; en yüksek kalite ve müşteri memnuniyetini korumaktır. Güçlü tedarik ağı ve verimli lojistikle her ürün güvenle ve zamanında ulaşır.",
+    "premiumQuality": "Premium kalite",
+    "premiumQualityDesc": "Hindistan genelinde güvenilir tedarikçilerden özenle seçilmiş baharatlar",
+    "globalReach": "Küresel erişim",
+    "globalReachDesc": "Güvenilir ihracatla uluslararası pazarlara hizmet",
+    "trustedPartner": "Güvenilir ortak",
+    "trustedPartnerDesc": "Kalite ve hizmetle uzun vadeli ilişkiler",
+    "featuredTitle": "Premium Hint baharatlarımız",
+    "featuredSubtitle": "Kalite, aroma ve lezzet için özenle seçilmiş geniş bir otantik Hint baharatı yelpazesi ihraç ediyoruz",
+    "viewAllProducts": "Tüm ürünler"
+  },
+  "inquiry": {
+    "title": "Yüksek kaliteli Hint baharatı ithal etmek ister misiniz?",
+    "description": "Aşağıya ihracat talebinizi gönderin. Ekibimiz yönetici panelinde alır ve size döner. 7/24 işiniz için buradayız.",
+    "fullContact": "Tam iletişim sayfası",
+    "browseProducts": "Ürünlere göz at",
+    "formTitle": "İhracat talebi",
+    "formHint": "Alanlar iletişim formuyla eşleşir ve inceleme için kaydedilir.",
+    "name": "Adınız",
+    "email": "E-posta",
+    "phone": "Telefon (ülke kodu ile)",
+    "country": "Ülke",
+    "message": "Talebiniz — ürünler, hacimler, liman, zaman çizelgesi…",
+    "submit": "Talebi gönder",
+    "sending": "Gönderiliyor…",
+    "success": "Teşekkürler. Talebinizi aldık, yakında yanıtlayacağız.",
+    "error": "Talep gönderilemedi."
+  },
+  "contact": {
+    "title": "Bize ulaşın",
+    "subtitle": "Baharat ihracatı taleplerinizde 7/24 yardımcı oluyoruz",
+    "formHeading": "Bize mesaj gönderin",
+    "name": "Adınız",
+    "email": "E-posta adresi",
+    "phone": "Telefon (ülke kodu ile)",
+    "country": "Ülke",
+    "message": "Mesajınız",
+    "submit": "Mesajı gönder",
+    "sending": "Gönderiliyor…",
+    "success": "Mesaj gönderildi. Yakında yanıtlayacağız.",
+    "error": "Mesaj gönderilemedi.",
+    "infoHeading": "İletişim bilgileri",
+    "addressLabel": "Adres",
+    "emailLabel": "E-posta",
+    "phoneLabel": "Telefon",
+    "hoursLabel": "Çalışma saatleri",
+    "hoursValue": "Haftanın 7 günü 24 saat",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "Değerlerimiz",
+    "slideLabel": "Alıntılar",
+    "showSlide": "{{total}} içinden {{n}}. alıntıyı göster",
+    "slides": {
+      "0": {
+        "text": "Hint mutfağının ruhu baharatla yolculuk eder—otantik, cesur ve dürüst. Bu mirası hak ettiği özenle ihraç ediyoruz.",
+        "attr": "Küresel ortaklara sözümüz"
+      },
+      "1": {
+        "text": "Mükemmellik her hasatta, kavurmada ve mühürde alışkanlıktır. İtibarınız bizimkiyle aynı kutuda.",
+        "attr": "Tavizsiz kalite"
+      },
+      "2": {
+        "text": "Telangana ağlarından limanınıza—net iletişim, istikrarlı lojistik ve numuneyle eşleşen baharatlar.",
+        "attr": "Güvenebileceğiniz ihracat"
+      },
+      "3": {
+        "text": "Ticaret güvenin yetiştirildiği yerde büyür. Sadece emtia göndermiyoruz—tekrarlayan siparişler ve dostluk kuruyoruz.",
+        "attr": "Uzun vadeli ilişkiler"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "WhatsApp ile iletişim",
+    "scrollTop": "Yukarı çık"
+  },
+  "product": {
+    "loading": "Ürün yükleniyor…",
+    "notFound": "Ürün bulunamadı",
+    "backToProducts": "Ürünlere dön",
+    "contactPricing": "Fiyat için iletişime geçin",
+    "details": "Ürün detayları",
+    "origin": "Menşei",
+    "packaging": "Ambalaj",
+    "formsTitle": "Mevcut formlar",
+    "addToCart": "Sepete ekle",
+    "goToCart": "Sepete git",
+    "about": "{{name}} hakkında",
+    "featuresTitle": "Öne çıkan özellikler"
+  },
+  "contactPage": {
+    "title": "İletişim",
+    "intro": "Delvonza Exim'e ilginiz için teşekkürler. Baharat ihracatı, tedarik ve uluslararası ticaret ortaklıklarında yardımcı olmaya hazırız."
+  },
+  "productsPage": {
+    "heroTitle": "Premium baharatlarımız",
+    "heroSubtitle": "Hindistan'daki güvenilir tedarikçilerden geniş bir premium baharat yelpazesi ihraç ediyoruz",
+    "sectionTitle": "İhraç ettiğimiz baharatlar",
+    "sectionBody": "Ürünlerimiz tazelik, saflık ve uluslararası kalite standartları için özenle seçilir. Bütün, kırık veya öğütülmüş olarak tedarik ederiz.",
+    "highlightsTitle": "Öne çıkanlar",
+    "highlight1": "Premium kalite Hint baharatları",
+    "highlight2": "Güvenilir küresel tedarik",
+    "highlight3": "Güçlü tedarikçi ağı",
+    "highlight4": "Kalite güvencesi",
+    "highlight5": "Profesyonel ihracat hizmetleri",
+    "closing": "Odamız, uluslararası pazarlara zengin aroma, doğal lezzet ve tutarlı kaliteyle otantik Hint baharatları sunmaktır.",
+    "requestQuote": "Teklif iste"
+  },
+  "productCard": {
+    "viewDetails": "Detayları gör →"
+  },
+  "common": {
+    "loading": "Yükleniyor…"
+  }
+}

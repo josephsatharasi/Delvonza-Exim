@@ -95,7 +95,7 @@ export async function fetchGlobalLanguages() {
       code: String(l.code || '').toLowerCase(),
       label: String(l.name || '').trim()
     }))
-    // Google Translate widget expects ISO-639-1 codes; keep short codes.
+    // Keep ISO-639-1 style codes for i18n / locale matching.
     .filter((l) => l.code && l.label && l.code.length <= 3)
     .sort((a, b) => a.label.localeCompare(b.label));
 

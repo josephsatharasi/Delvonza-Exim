@@ -28,6 +28,12 @@ export const adminApi = {
     }),
   createProduct: (body) => request('/products', { method: 'POST', body }),
   updateProduct: (id, body) => request(`/products/${id}`, { method: 'PUT', body }),
+  /** JSON-only; avoids multipart body issues when toggling hidePrice without a full form submit. */
+  patchProductHidePrice: (id, hidePrice) =>
+    request(`/products/${id}/hide-price`, {
+      method: 'PATCH',
+      body: JSON.stringify({ hidePrice })
+    }),
   deleteProduct: (id) => request(`/products/${id}`, { method: 'DELETE' }),
   getInquiries: () => request('/inquiries/admin/all'),
   updateInquiryStatus: (id, status) =>

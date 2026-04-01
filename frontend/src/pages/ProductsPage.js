@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import FloatingButtons from '../components/common/FloatingButtons';
@@ -8,6 +9,7 @@ import Button from '../components/common/Button';
 import { apiClient } from '../api/client';
 
 const ProductsPage = () => {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -28,9 +30,9 @@ const ProductsPage = () => {
       
       <section className="pt-32 pb-20 bg-gradient-to-br from-primary-50 to-white">
         <div className="container mx-auto px-6">
-          <h1 className="text-5xl font-bold text-center text-gray-800 mb-6">Our Premium Spices</h1>
+          <h1 className="text-5xl font-bold text-center text-gray-800 mb-6">{t('productsPage.heroTitle')}</h1>
           <p className="text-xl text-center text-gray-600 max-w-3xl mx-auto">
-            We specialize in exporting a wide range of premium quality spices sourced from trusted suppliers in India
+            {t('productsPage.heroSubtitle')}
           </p>
         </div>
       </section>
@@ -38,9 +40,9 @@ const ProductsPage = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Spices We Export</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">{t('productsPage.sectionTitle')}</h2>
             <p className="text-gray-600 leading-relaxed max-w-3xl">
-              Our products are carefully selected to maintain freshness, purity, and international quality standards. We supply these spices in different forms such as whole, crushed, or ground, based on the requirements of our global clients.
+              {t('productsPage.sectionBody')}
             </p>
           </div>
 
@@ -57,32 +59,32 @@ const ProductsPage = () => {
           </div>
 
           <div className="bg-gradient-to-br from-primary-50 to-white rounded-lg p-12">
-            <h3 className="text-3xl font-bold text-gray-800 mb-6 text-center">Key Highlights</h3>
+            <h3 className="text-3xl font-bold text-gray-800 mb-6 text-center">{t('productsPage.highlightsTitle')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="font-semibold text-gray-800">Premium Quality Indian Spices</p>
+                <p className="font-semibold text-gray-800">{t('productsPage.highlight1')}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="font-semibold text-gray-800">Reliable Global Supply</p>
+                <p className="font-semibold text-gray-800">{t('productsPage.highlight2')}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="font-semibold text-gray-800">Strong Supplier Network</p>
+                <p className="font-semibold text-gray-800">{t('productsPage.highlight3')}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="font-semibold text-gray-800">Quality Assurance Standards</p>
+                <p className="font-semibold text-gray-800">{t('productsPage.highlight4')}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="font-semibold text-gray-800">Professional Export Services</p>
+                <p className="font-semibold text-gray-800">{t('productsPage.highlight5')}</p>
               </div>
             </div>
           </div>
 
           <div className="mt-16 text-center">
             <p className="text-xl text-gray-600 mb-6">
-              Our focus is to deliver authentic Indian spices with rich aroma, natural flavor, and consistent quality to international markets.
+              {t('productsPage.closing')}
             </p>
             <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
-              <Button variant="primary">Request a Quote</Button>
+              <Button variant="primary">{t('productsPage.requestQuote')}</Button>
             </Link>
           </div>
         </div>

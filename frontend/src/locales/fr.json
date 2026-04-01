@@ -1,0 +1,175 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "products": "Produits",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "header": {
+    "selectLanguage": "Choisir la langue",
+    "cart": "Panier",
+    "profile": "Profil",
+    "myCart": "Mon panier",
+    "myOrders": "Mes commandes",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "toggleMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "menu": "Menu",
+    "language": "Langue",
+    "myProfile": "Mon profil",
+    "loginSignUp": "Connexion / Inscription",
+    "getQuote": "Demander un devis"
+  },
+  "footer": {
+    "tagline": "Les meilleures épices indiennes dans le monde entier, avec une qualité premium et un service fiable.",
+    "quickLinks": "Liens rapides",
+    "socialMedia": "Réseaux sociaux",
+    "ourSpices": "Nos épices",
+    "contactInfo": "Coordonnées",
+    "address": "MahabubNagar, Telangana, Inde",
+    "copyright": "© 2024 Delvonza Exim. Tous droits réservés.",
+    "availability": "Disponible 24h/24 et 7j/7 pour vos demandes professionnelles",
+    "spices": {
+      "turmeric": "Curcuma",
+      "blackPepper": "Poivre noir",
+      "cardamom": "Cardamome",
+      "driedChillies": "Piments séchés",
+      "cinnamon": "Cannelle",
+      "cloves": "Clous de girofle"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "Les plus fines épices indiennes pour le monde",
+    "description": "Exportateur de confiance d'épices premium de l'Inde vers les marchés mondiaux",
+    "exploreProducts": "Découvrir les produits",
+    "getQuote": "Demander un devis"
+  },
+  "home": {
+    "welcomeTitle": "Bienvenue chez Delvonza Exim",
+    "welcomeP1": "Delvonza Exim est une entreprise de confiance spécialisée dans l'export et l'import d'épices de haute qualité de l'Inde vers les marchés mondiaux. Nous nous engageons à livrer des épices premium qui reflètent le riche patrimoine agricole de l'Inde.",
+    "welcomeP2": "Notre objectif est de connecter les acheteurs internationaux au goût authentique des épices indiennes tout en maintenant les plus hauts standards de qualité et de satisfaction. Avec un réseau d'approvisionnement solide et une logistique efficace, chaque produit arrive en toute sécurité et à temps.",
+    "premiumQuality": "Qualité premium",
+    "premiumQualityDesc": "Épices sélectionnées auprès de fournisseurs de confiance en Inde",
+    "globalReach": "Présence mondiale",
+    "globalReachDesc": "Des marchés internationaux servis avec des exportations fiables",
+    "trustedPartner": "Partenaire de confiance",
+    "trustedPartnerDesc": "Des relations durables par la qualité et le service",
+    "featuredTitle": "Nos épices indiennes premium",
+    "featuredSubtitle": "Nous exportons une large gamme d'épices authentiques, sélectionnées pour leur qualité, arôme et saveur",
+    "viewAllProducts": "Voir tous les produits"
+  },
+  "inquiry": {
+    "title": "Vous souhaitez importer des épices indiennes de qualité ?",
+    "description": "Envoyez votre demande d'export ci-dessous. Notre équipe la reçoit dans l'administration et vous répondra. Disponible 24/7 pour vos besoins.",
+    "fullContact": "Page contact complète",
+    "browseProducts": "Parcourir les produits",
+    "formTitle": "Demande d'export",
+    "formHint": "Les champs correspondent au formulaire de contact et sont enregistrés pour examen.",
+    "name": "Votre nom",
+    "email": "E-mail",
+    "phone": "Téléphone (indicatif pays)",
+    "country": "Pays",
+    "message": "Votre demande — produits, volumes, port, délais…",
+    "submit": "Envoyer la demande",
+    "sending": "Envoi…",
+    "success": "Merci. Nous avons reçu votre demande et répondrons bientôt.",
+    "error": "Impossible d'envoyer la demande."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour vos demandes d'export d'épices 24/7",
+    "formHeading": "Envoyez-nous un message",
+    "name": "Votre nom",
+    "email": "Adresse e-mail",
+    "phone": "Téléphone (indicatif pays)",
+    "country": "Pays",
+    "message": "Votre message",
+    "submit": "Envoyer le message",
+    "sending": "Envoi…",
+    "success": "Message envoyé. Nous répondrons bientôt.",
+    "error": "Impossible d'envoyer le message.",
+    "infoHeading": "Informations de contact",
+    "addressLabel": "Adresse",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Téléphone",
+    "hoursLabel": "Heures d'ouverture",
+    "hoursValue": "24 h/24, 7 j/7",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "Nos engagements",
+    "slideLabel": "Citations",
+    "showSlide": "Afficher la citation {{n}} sur {{total}}",
+    "slides": {
+      "0": {
+        "text": "L'âme de la cuisine indienne voyage dans l'épice—authentique, intense et honnête. Nous exportons cet héritage avec le soin qu'il mérite.",
+        "attr": "Notre promesse aux partenaires mondiaux"
+      },
+      "1": {
+        "text": "L'excellence est une habitude à chaque récolte, torréfaction et scellage. Votre réputation voyage dans la même caisse que la nôtre.",
+        "attr": "Qualité sans compromis"
+      },
+      "2": {
+        "text": "Des réseaux du Télangana à votre port : communication claire, logistique stable et épices conformes à l'échantillon.",
+        "attr": "Une exportation sur laquelle vous pouvez compter"
+      },
+      "3": {
+        "text": "Le commerce grandit où la confiance est cultivée. Nous n'expédions pas seulement des marchandises—nous construisons des commandes répétées et l'amitié.",
+        "attr": "Relations à long terme"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "Nous contacter sur WhatsApp",
+    "scrollTop": "Haut de page"
+  },
+  "product": {
+    "loading": "Chargement du produit…",
+    "notFound": "Produit introuvable",
+    "backToProducts": "Retour aux produits",
+    "contactPricing": "Prix sur demande",
+    "details": "Détails du produit",
+    "origin": "Origine",
+    "packaging": "Emballage",
+    "formsTitle": "Formes disponibles",
+    "addToCart": "Ajouter au panier",
+    "goToCart": "Voir le panier",
+    "about": "À propos de {{name}}",
+    "featuresTitle": "Points clés"
+  },
+  "contactPage": {
+    "title": "Contact",
+    "intro": "Merci de votre intérêt pour Delvonza Exim. Nous sommes prêts à vous aider pour l'export d'épices, l'approvisionnement et les partenariats commerciaux internationaux."
+  },
+  "productsPage": {
+    "heroTitle": "Nos épices premium",
+    "heroSubtitle": "Nous exportons une large gamme d'épices de qualité premium auprès de fournisseurs de confiance en Inde",
+    "sectionTitle": "Épices que nous exportons",
+    "sectionBody": "Nos produits sont sélectionnés avec soin pour la fraîcheur, la pureté et les normes internationales. Nous les fournissons entiers, broyés ou moulus selon vos besoins.",
+    "highlightsTitle": "Points forts",
+    "highlight1": "Épices indiennes premium",
+    "highlight2": "Approvisionnement mondial fiable",
+    "highlight3": "Réseau fournisseurs solide",
+    "highlight4": "Assurance qualité",
+    "highlight5": "Services d'export professionnels",
+    "closing": "Notre objectif est de livrer des épices indiennes authentiques, riches en arôme et saveur, sur les marchés internationaux.",
+    "requestQuote": "Demander un devis"
+  },
+  "productCard": {
+    "viewDetails": "Voir les détails →"
+  },
+  "common": {
+    "loading": "Chargement…"
+  }
+}

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ProductCard = ({ name, image, slug, description = '' }) => {
+  const { t } = useTranslation();
   const fallbackImage = 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800';
 
   return (
@@ -23,7 +25,7 @@ const ProductCard = ({ name, image, slug, description = '' }) => {
               {description}
             </p>
           ) : null}
-          <p className="text-sm text-primary-600 mt-3">View Details →</p>
+          <p className="text-sm text-primary-600 mt-3">{t('productCard.viewDetails')}</p>
         </div>
       </div>
     </Link>
