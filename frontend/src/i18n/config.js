@@ -42,7 +42,12 @@ export const SUPPORTED_LOCALES = [
   'tr',
   'it',
   'nl',
-  'pl'
+  'pl',
+  'id',
+  'vi',
+  'th',
+  'fa',
+  'uk'
 ];
 
 const clone = (obj) => JSON.parse(JSON.stringify(obj));
@@ -66,7 +71,13 @@ const BUNDLED_TRANSLATIONS = {
   bn,
   ja,
   zh,
-  ko
+  ko,
+  // Temporary base bundles until dedicated translations are added.
+  id: en,
+  vi: en,
+  th: en,
+  fa: en,
+  uk: en
 };
 
 const resources = {};

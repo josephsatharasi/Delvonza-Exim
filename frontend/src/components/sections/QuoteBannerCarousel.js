@@ -7,8 +7,8 @@ const AUTO_MS = 5500;
 const SLIDE_IMAGES = [
   'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1600&q=80',
   'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80',
-  'https://images.unsplash.com/photo-1517686469429-8b88fef79ca9?auto=format&fit=crop&w=1600&q=80',
-  'https://images.unsplash.com/photo-1466637574441-449b1a07fd7d?auto=format&fit=crop&w=1600&q=80'
+  'https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  'https://images.pexels.com/photos/4198055/pexels-photo-4198055.jpeg?auto=compress&cs=tinysrgb&w=1600'
 ];
 
 const QuoteBannerCarousel = () => {
