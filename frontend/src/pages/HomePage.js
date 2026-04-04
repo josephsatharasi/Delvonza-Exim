@@ -80,7 +80,7 @@ const HomePage = () => {
       </section>
 
       {/* Featured Spices Preview */}
-      <section className="py-12 md:py-16 bg-gray-50">
+      <section className="pt-12 md:pt-16 pb-4 md:pb-5 bg-gray-50">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">{t('home.featuredTitle')}</h2>
           <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">

@@ -7,6 +7,8 @@ const inquirySchema = new mongoose.Schema(
     phone: { type: String, default: '', trim: true },
     country: { type: String, default: '', trim: true },
     message: { type: String, required: true, trim: true },
+    productSlug: { type: String, default: '', trim: true },
+    productName: { type: String, default: '', trim: true },
     status: { type: String, enum: ['new', 'read'], default: 'new' }
   },
   { timestamps: true }

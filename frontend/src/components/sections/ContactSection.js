@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MessageCircle, MapPin, Clock } from 'lucide-react';
 import { apiClient } from '../../api/client';
 
 const ContactSection = () => {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const prefillDone = useRef(false);
+  const [productContext, setProductContext] = useState({ slug: '', name: '' });
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -14,6 +18,19 @@ const ContactSection = () => {
   });
   const [status, setStatus] = useState({ type: '', text: '' });
   const [sending, setSending] = useState(false);
+
+  useEffect(() => {
+    const slug = (searchParams.get('product') || '').trim();
+    const pname = (searchParams.get('name') || '').trim();
+    setProductContext({ slug, name: pname });
+    if (prefillDone.current || (!slug && !pname)) return;
+    prefillDone.current = true;
+    const label = pname || slug;
+    setForm((f) => ({
+      ...f,
+      message: f.message.trim() ? f.message : t('contact.prefillProduct', { name: label })
+    }));
+  }, [searchParams, t]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +42,11 @@ const ContactSection = () => {
     setStatus({ type: '', text: '' });
     setSending(true);
     try {
-      await apiClient.submitInquiry(form);
+      await apiClient.submitInquiry({
+        ...form,
+        ...(productContext.slug ? { productSlug: productContext.slug } : {}),
+        ...(productContext.name ? { productName: productContext.name } : {})
+      });
       setStatus({ type: 'ok', text: t('contact.success') });
       setForm({ name: '', email: '', phone: '', country: '', message: '' });
     } catch (err) {

@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import AdminProfileModal from './AdminProfileModal';
 import OrderAlertHost from './OrderAlertHost';
+import InquiryAlertHost from './InquiryAlertHost';
 
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,6 +21,7 @@ const Layout = ({ children }) => {
 
       <AdminProfileModal isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
       <OrderAlertHost />
+      <InquiryAlertHost />
     </div>
   );
 };

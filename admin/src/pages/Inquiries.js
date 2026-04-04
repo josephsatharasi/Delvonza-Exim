@@ -3,6 +3,7 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import { Mail, Phone, Globe, RefreshCw } from 'lucide-react';
 import { adminApi } from '../api/client';
+import { getAdminSocket } from '../socket';
 
 const Inquiries = () => {
   const [inquiries, setInquiries] = useState([]);
@@ -24,6 +25,37 @@ const Inquiries = () => {
 
   useEffect(() => {
     load();
+  }, []);
+
+  useEffect(() => {
+    const s = getAdminSocket();
+    if (!s) return undefined;
+
+    const onNew = (payload) => {
+      const raw = payload?.inquiry;
+      if (!raw?._id) return;
+      setInquiries((prev) => {
+        if (prev.some((q) => String(q._id) === String(raw._id))) return prev;
+        const row = {
+          _id: raw._id,
+          name: raw.name,
+          email: raw.email,
+          phone: raw.phone,
+          country: raw.country,
+          message: raw.message,
+          status: raw.status || 'new',
+          productSlug: raw.productSlug,
+          productName: raw.productName,
+          createdAt: raw.createdAt || new Date().toISOString()
+        };
+        return [row, ...prev];
+      });
+    };
+
+    s.on('inquiry:new', onNew);
+    return () => {
+      s.off('inquiry:new', onNew);
+    };
   }, []);
 
   const markRead = async (id) => {
@@ -91,6 +123,16 @@ const Inquiries = () => {
                   </div>
                 ) : null}
               </div>
+
+              {(inquiry.productName || inquiry.productSlug) && (
+                <p className="text-sm text-primary-700 bg-primary-50 px-3 py-2 rounded-lg mb-3">
+                  <span className="font-semibold">Product:</span>{' '}
+                  {inquiry.productName || inquiry.productSlug}
+                  {inquiry.productSlug && inquiry.productName ? (
+                    <span className="text-gray-500"> ({inquiry.productSlug})</span>
+                  ) : null}
+                </p>
+              )}
 
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700 whitespace-pre-wrap">{inquiry.message}</p>

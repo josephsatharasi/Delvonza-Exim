@@ -42,7 +42,7 @@ const QuoteBannerCarousel = () => {
   }, [active, go]);
 
   return (
-    <section className="pt-4 pb-8 md:pt-6 md:pb-16 lg:pt-8 lg:pb-20 bg-gray-50">
+    <section className="pt-0 pb-8 md:pb-16 lg:pb-20 bg-gray-50">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="flex items-center justify-center gap-2 mb-4 md:mb-6 text-gray-700">
           <Quote className="w-8 h-8 opacity-80" aria-hidden />

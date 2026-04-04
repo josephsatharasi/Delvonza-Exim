@@ -14,7 +14,7 @@ const Button = ({
     outline: 'border-2 border-white text-white hover:bg-white hover:text-primary-600'
   };
 
-  const disabledCls = disabled ? 'opacity-50 cursor-not-allowed pointer-events-none shadow-none hover:scale-100' : '';
+  const disabledCls = disabled ? 'opacity-50 shadow-none hover:scale-100 cursor-not-allowed' : '';
 
   return (
     <button

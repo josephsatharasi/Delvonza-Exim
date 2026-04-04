@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../components/common/Header';
@@ -14,6 +14,7 @@ const ProductDetailPage = () => {
   const { t } = useTranslation();
   const fallbackImage = 'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=800';
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -160,19 +161,26 @@ const ProductDetailPage = () => {
                 <Button
                   variant="primary"
                   className="w-full"
-                  disabled={Boolean(product.hidePrice)}
                   title={
-                    product.hidePrice
-                      ? t('product.addToCartDisabledHint')
-                      : undefined
+                    product.hidePrice ? t('product.contactForPriceHint') : undefined
                   }
-                  onClick={async () => {
-                    if (product.hidePrice) return;
-                    const result = await addToCart(product._id);
-                    setMessage(result.message);
+                  onClick={() => {
+                    if (product.hidePrice) {
+                      const q = new URLSearchParams({
+                        product: product.slug || slug,
+                        name: product.name || ''
+                      });
+                      navigate(`/contact?${q.toString()}`);
+                      window.scrollTo(0, 0);
+                      return;
+                    }
+                    (async () => {
+                      const result = await addToCart(product._id);
+                      setMessage(result.message);
+                    })();
                   }}
                 >
-                  {product.hidePrice ? t('product.addToCartDisabled') : t('product.addToCart')}
+                  {product.hidePrice ? t('product.contactForPrice') : t('product.addToCart')}
                 </Button>
                 <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
                   <Button variant="secondary" className="w-full border border-primary-600">
