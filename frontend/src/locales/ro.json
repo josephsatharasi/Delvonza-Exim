@@ -1,0 +1,178 @@
+{
+  "brand": "Delvonza Exim",
+  "nav": {
+    "home": "Acasă",
+    "about": "Despre noi",
+    "products": "Produse",
+    "services": "Servicii",
+    "contact": "Contact"
+  },
+  "header": {
+    "selectLanguage": "Selectați limba",
+    "cart": "Coș",
+    "profile": "Profil",
+    "myCart": "Coșul meu",
+    "myOrders": "Comenzile mele",
+    "logout": "Deconectare",
+    "login": "Autentificare",
+    "toggleMenu": "Comută meniul",
+    "closeMenu": "Închide meniul",
+    "menu": "Meniu",
+    "language": "Limbă",
+    "myProfile": "Profilul meu",
+    "loginSignUp": "Autentificare / Înregistrare",
+    "getQuote": "Cere ofertă"
+  },
+  "footer": {
+    "tagline": "Livrăm cele mai fine condimente indiene în lume, cu calitate premium și servicii de încredere.",
+    "quickLinks": "Linkuri rapide",
+    "socialMedia": "Rețele sociale",
+    "ourSpices": "Condimentele noastre",
+    "contactInfo": "Date de contact",
+    "address": "MahabubNagar, India",
+    "copyright": "© 2024 Delvonza Exim. Toate drepturile rezervate.",
+    "availability": "Disponibili 24/7 pentru solicitările dumneavoastră de business",
+    "spices": {
+      "turmeric": "Turmeric",
+      "blackPepper": "Piper negru",
+      "cardamom": "Cardamom",
+      "driedChillies": "Ardei uscați",
+      "cinnamon": "Scorțișoară",
+      "cloves": "Cuișoare"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp"
+    }
+  },
+  "hero": {
+    "title": "Delvonza Exim",
+    "subtitle": "Cele mai fine condimente indiene către lume",
+    "description": "Exportator de încredere de condimente premium din India pe piețele globale",
+    "exploreProducts": "Explorează produsele",
+    "getQuote": "Cere ofertă"
+  },
+  "home": {
+    "welcomeTitle": "Bun venit la Delvonza Exim",
+    "welcomeP1": "Delvonza Exim este o companie de încredere specializată în exportul și importul de condimente de înaltă calitate din India pe piețele globale. Ne angajăm să livrăm condimente premium care reflectă bogata moștenire agricolă a Indiei.",
+    "welcomeP2": "Obiectivul nostru este să conectăm cumpărătorii internaționali cu gustul și aroma autentică a condimentelor indiene, menținând cele mai înalte standarde de calitate, fiabilitate și satisfacție a clienților. Cu o rețea solidă de aprovizionare și logistică eficientă, Delvonza Exim se asigură că fiecare produs ajunge în siguranță și la timp.",
+    "premiumQuality": "Calitate premium",
+    "premiumQualityDesc": "Condimente alese cu grijă de la furnizori de încredere din India",
+    "globalReach": "Acoperire globală",
+    "globalReachDesc": "Servim piețe internaționale cu servicii de export de încredere",
+    "trustedPartner": "Partener de încredere",
+    "trustedPartnerDesc": "Construim relații pe termen lung prin calitate și servicii",
+    "featuredTitle": "Condimente indiene premium",
+    "featuredSubtitle": "Exportăm o gamă largă de condimente indiene autentice, alese pentru calitate, aromă și gust",
+    "viewAllProducts": "Vezi toate produsele"
+  },
+  "inquiry": {
+    "title": "Doriți să importați condimente indiene de înaltă calitate?",
+    "description": "Trimiteți solicitarea de export mai jos. Echipa noastră o primește în panoul de administrare și vă va răspunde. Disponibili 24/7 pentru afacerea dumneavoastră.",
+    "fullContact": "Pagină completă de contact",
+    "browseProducts": "Răsfoiește produsele",
+    "formTitle": "Solicitare export",
+    "formHint": "Câmpurile corespund formularului de contact și sunt stocate pentru revizuirea administratorului.",
+    "name": "Numele dumneavoastră",
+    "email": "E-mail",
+    "phone": "Telefon (cu prefix țară)",
+    "country": "Țara",
+    "message": "Solicitarea dumneavoastră — produse, volume, port destinație, termen…",
+    "submit": "Trimite solicitarea de export",
+    "sending": "Se trimite…",
+    "success": "Mulțumim. Am primit solicitarea și vom răspunde în curând.",
+    "error": "Nu s-a putut trimite solicitarea."
+  },
+  "contact": {
+    "title": "Luați legătura",
+    "subtitle": "Suntem aici pentru solicitările legate de exportul de condimente, 24/7",
+    "formHeading": "Trimiteți-ne un mesaj",
+    "name": "Numele dumneavoastră",
+    "email": "Adresă de e-mail",
+    "phone": "Număr de telefon (cu prefix țară)",
+    "country": "Țara",
+    "message": "Mesajul dumneavoastră",
+    "prefillProduct": "Mă interesează „{{name}}” (prețul nu este afișat pe site). Vă rugăm să indicați disponibilitatea și o ofertă.\n\n",
+    "submit": "Trimite mesajul",
+    "sending": "Se trimite…",
+    "success": "Mesaj trimis. Vom răspunde în curând.",
+    "error": "Nu s-a putut trimite mesajul.",
+    "infoHeading": "Informații de contact",
+    "addressLabel": "Adresă",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefon",
+    "hoursLabel": "Program",
+    "hoursValue": "24 ore / 7 zile pe săptămână",
+    "whatsapp": "WhatsApp"
+  },
+  "quote": {
+    "sectionLabel": "Principiile noastre",
+    "slideLabel": "Citate",
+    "showSlide": "Afișează citatul {{n}} din {{total}}",
+    "slides": {
+      "0": {
+        "text": "Sufletul bucătăriei indiene călătorește în condiment — autentic, îndrăzneț și cinstit. Exportăm această moștenire cu grija cuvenită.",
+        "attr": "Promisiunea noastră către partenerii globali"
+      },
+      "1": {
+        "text": "Excelența este un obicei la fiecare recoltă, prăjire și sigilare. Reputația dumneavoastră ajunge în aceeași cutie cu a noastră.",
+        "attr": "Calitate fără compromisuri"
+      },
+      "2": {
+        "text": "De la rețelele Indiei până la portul dumneavoastră — comunicare clară, logistică stabilă și condimente care se potrivesc eșantionului.",
+        "attr": "Export pe care vă puteți baza"
+      },
+      "3": {
+        "text": "Comerțul crește unde se cultivă încrederea. Nu trimitem doar mărfuri — construim sezoane de comenzi repetate și prietenie.",
+        "attr": "Relații pe termen lung"
+      }
+    }
+  },
+  "floating": {
+    "whatsapp": "Contactați-ne pe WhatsApp",
+    "scrollTop": "Sus"
+  },
+  "product": {
+    "loading": "Se încarcă produsul…",
+    "notFound": "Produs negăsit",
+    "backToProducts": "Înapoi la produse",
+    "contactPricing": "Contactați-ne pentru preț",
+    "details": "Detalii produs",
+    "origin": "Origine",
+    "packaging": "Ambalare",
+    "formsTitle": "Forme disponibile",
+    "addToCart": "Adaugă în coș",
+    "contactForPrice": "Contactați-ne pentru acest produs",
+    "contactForPriceHint": "Deschide pagina de contact pentru a cere prețul echipei noastre.",
+    "goToCart": "Mergi la coș",
+    "about": "Despre {{name}}",
+    "featuresTitle": "Caracteristici principale"
+  },
+  "contactPage": {
+    "title": "Contactați-ne",
+    "intro": "Vă mulțumim pentru interesul față de Delvonza Exim. Suntem mereu pregătiți să vă ajutăm cu solicitări legate de exportul de condimente, sursarea produselor și parteneriate comerciale internaționale."
+  },
+  "productsPage": {
+    "heroTitle": "Condimentele noastre premium",
+    "heroSubtitle": "Suntem specializați în exportul unei game largi de condimente de calitate premium de la furnizori de încredere din India",
+    "sectionTitle": "Condimente pe care le exportăm",
+    "sectionBody": "Produsele noastre sunt alese cu grijă pentru prospețime, puritate și standarde internaționale de calitate. Oferim aceste condimente întregi, măcinate sau pudră, în funcție de cerințele clienților noștri globali.",
+    "highlightsTitle": "Puncte cheie",
+    "highlight1": "Condimente indiene de calitate premium",
+    "highlight2": "Aprovizionare globală de încredere",
+    "highlight3": "Rețea puternică de furnizori",
+    "highlight4": "Standarde de asigurare a calității",
+    "highlight5": "Servicii profesionale de export",
+    "closing": "Ne concentrăm pe livrarea condimentelor indiene autentice, cu aromă bogată, gust natural și calitate constantă pe piețele internaționale.",
+    "requestQuote": "Cere o ofertă"
+  },
+  "productCard": {
+    "viewDetails": "Vezi detalii →"
+  },
+  "common": {
+    "loading": "Se încarcă…"
+  }
+}

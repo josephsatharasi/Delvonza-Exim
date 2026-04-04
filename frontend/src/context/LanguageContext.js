@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { fetchGlobalLanguages } from '../utils/globalLocales';
-import i18n, { SUPPORTED_LOCALES } from '../i18n/config';
+import i18n, { SUPPORTED_LOCALES, LOCALE_NATIVE_LABELS } from '../i18n/config';
 
 const LanguageContext = createContext(null);
 const STORAGE_KEY = 'delvonza_lang_v1';
@@ -16,7 +16,12 @@ const getAutoLanguage = () => {
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => i18n.language || 'en');
-  const [languages, setLanguages] = useState([{ code: 'en', label: 'English' }]);
+  const [languages, setLanguages] = useState(() =>
+    SUPPORTED_LOCALES.map((code) => ({
+      code,
+      label: LOCALE_NATIVE_LABELS[code] || code
+    }))
+  );
 
   useEffect(() => {
     const onLang = (lng) => {
@@ -44,21 +49,25 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     let cancelled = false;
     async function load() {
+      const fallback = SUPPORTED_LOCALES.map((code) => ({
+        code,
+        label: LOCALE_NATIVE_LABELS[code] || code
+      }));
       try {
         const list = await fetchGlobalLanguages();
         if (!cancelled && Array.isArray(list) && list.length) {
-          const filtered = list.filter((l) => supportedSet.has(l.code));
-          if (filtered.length) {
-            setLanguages(filtered);
-            return;
-          }
+          const apiMap = new Map(list.map((l) => [l.code, l.label]));
+          const merged = SUPPORTED_LOCALES.map((code) => ({
+            code,
+            label: apiMap.get(code) || LOCALE_NATIVE_LABELS[code] || code
+          }));
+          setLanguages(merged);
+          return;
         }
       } catch {
         // ignore
       }
-      if (!cancelled) {
-        setLanguages([{ code: 'en', label: 'English' }]);
-      }
+      if (!cancelled) setLanguages(fallback);
     }
     load();
     return () => {

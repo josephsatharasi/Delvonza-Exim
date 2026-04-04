@@ -19,6 +19,8 @@ import bn from '../locales/bn.json';
 import ja from '../locales/ja.json';
 import zh from '../locales/zh.json';
 import ko from '../locales/ko.json';
+import ne from '../locales/ne.json';
+import ro from '../locales/ro.json';
 
 const STORAGE_KEY = 'delvonza_lang_v1';
 
@@ -38,6 +40,8 @@ export const SUPPORTED_LOCALES = [
   'bn',
   'ja',
   'zh',
+  'ne',
+  'ro',
   'ko',
   'tr',
   'it',
@@ -49,6 +53,36 @@ export const SUPPORTED_LOCALES = [
   'fa',
   'uk'
 ];
+
+/** Native / best display names for the language picker (used when API labels are missing). */
+export const LOCALE_NATIVE_LABELS = {
+  en: 'English',
+  ar: 'العربية',
+  hi: 'हिन्दी',
+  es: 'Español',
+  fr: 'Français',
+  de: 'Deutsch',
+  pt: 'Português',
+  ru: 'Русский',
+  ur: 'اردو',
+  ta: 'தமிழ்',
+  te: 'తెలుగు',
+  bn: 'বাংলা',
+  ja: '日本語',
+  zh: '中文',
+  ne: 'नेपाली',
+  ro: 'Română',
+  ko: '한국어',
+  tr: 'Türkçe',
+  it: 'Italiano',
+  nl: 'Nederlands',
+  pl: 'Polski',
+  id: 'Bahasa Indonesia',
+  vi: 'Tiếng Việt',
+  th: 'ไทย',
+  fa: 'فارسی',
+  uk: 'Українська'
+};
 
 const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
@@ -71,6 +105,8 @@ const BUNDLED_TRANSLATIONS = {
   bn,
   ja,
   zh,
+  ne,
+  ro,
   ko,
   // Temporary base bundles until dedicated translations are added.
   id: en,

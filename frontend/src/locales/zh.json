@@ -95,6 +95,7 @@
     "phone": "电话（含国家区号）",
     "country": "国家",
     "message": "留言内容",
+    "prefillProduct": "我对「{{name}}」感兴趣（网站上未显示价格）。请提供库存与报价。\n\n",
     "submit": "发送留言",
     "sending": "发送中…",
     "success": "留言已发送。我们将尽快回复。",
@@ -144,6 +145,8 @@
     "packaging": "包装",
     "formsTitle": "可选形态",
     "addToCart": "加入购物车",
+    "contactForPrice": "联系咨询此产品",
+    "contactForPriceHint": "打开联系页面，向我们的团队询价。",
     "goToCart": "去购物车",
     "about": "关于 {{name}}",
     "featuresTitle": "主要特点"
