@@ -6,13 +6,13 @@ import homeHero from '../../assets/home.jpg';
 const HeroSection = () => {
   const { t } = useTranslation();
   return (
-    <section className="min-h-screen relative flex items-center justify-center pt-20">
+    <section className="min-h-[55vh] sm:min-h-[65vh] md:min-h-screen relative flex items-center justify-center pt-20 pb-12 md:pb-0">
       <div 
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${homeHero})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center top',
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/70 to-primary-700/60"></div>

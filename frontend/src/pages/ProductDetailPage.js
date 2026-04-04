@@ -160,12 +160,19 @@ const ProductDetailPage = () => {
                 <Button
                   variant="primary"
                   className="w-full"
+                  disabled={Boolean(product.hidePrice)}
+                  title={
+                    product.hidePrice
+                      ? t('product.addToCartDisabledHint')
+                      : undefined
+                  }
                   onClick={async () => {
+                    if (product.hidePrice) return;
                     const result = await addToCart(product._id);
                     setMessage(result.message);
                   }}
                 >
-                  {t('product.addToCart')}
+                  {product.hidePrice ? t('product.addToCartDisabled') : t('product.addToCart')}
                 </Button>
                 <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
                   <Button variant="secondary" className="w-full border border-primary-600">

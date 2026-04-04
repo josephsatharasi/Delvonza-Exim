@@ -42,9 +42,9 @@ const QuoteBannerCarousel = () => {
   }, [active, go]);
 
   return (
-    <section className="py-16 md:py-20 bg-gray-50">
+    <section className="pt-4 pb-8 md:pt-6 md:pb-16 lg:pt-8 lg:pb-20 bg-gray-50">
       <div className="container mx-auto px-6 max-w-5xl">
-        <div className="flex items-center justify-center gap-2 mb-6 text-gray-700">
+        <div className="flex items-center justify-center gap-2 mb-4 md:mb-6 text-gray-700">
           <Quote className="w-8 h-8 opacity-80" aria-hidden />
           <p className="text-sm font-semibold uppercase tracking-[0.2em]">{t('quote.sectionLabel')}</p>
         </div>
@@ -60,10 +60,10 @@ const QuoteBannerCarousel = () => {
             {slides.map((slide, i) => (
               <div
                 key={i}
-                className="flex flex-col md:flex-row min-h-[280px] sm:min-h-[300px] md:min-h-[320px] flex-shrink-0 overflow-hidden md:items-stretch"
+                className="flex flex-col md:flex-row min-h-[220px] sm:min-h-[260px] md:min-h-[300px] lg:min-h-[320px] flex-shrink-0 overflow-hidden md:items-stretch"
                 style={{ width: `${pct}%` }}
               >
-                <div className="relative h-48 sm:h-52 md:h-auto md:w-[52%] md:min-h-[320px] shrink-0">
+                <div className="relative h-36 sm:h-44 md:h-auto md:w-[52%] md:min-h-[280px] lg:min-h-[320px] shrink-0">
                   <img
                     src={slide.image}
                     alt=""

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { apiClient } from '../../api/client';
 
 /** Replace hrefs with your real profile URLs when ready. */
 const FOOTER_SOCIAL = [
@@ -59,16 +61,42 @@ const FOOTER_SPICES = [
   { labelKey: 'cloves', slug: 'cloves' }
 ];
 
+const defaultSocialVis = () =>
+  FOOTER_SOCIAL.reduce((acc, { key }) => {
+    acc[key] = true;
+    return acc;
+  }, {});
+
 const Footer = () => {
   const { t } = useTranslation();
+  const [socialVis, setSocialVis] = useState(defaultSocialVis);
+
+  useEffect(() => {
+    let cancelled = false;
+    apiClient
+      .getSiteSettings()
+      .then(({ socialVisibility }) => {
+        if (!cancelled && socialVisibility) {
+          setSocialVis((prev) => ({ ...prev, ...socialVisibility }));
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const handleLinkClick = () => {
     window.scrollTo(0, 0);
   };
 
+  const visibleSocial = FOOTER_SOCIAL.filter(({ key }) => socialVis[key] !== false);
+  const colClass = visibleSocial.length ? 'lg:grid-cols-5' : 'lg:grid-cols-4';
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:gap-3 xl:gap-4">
+        <div className={`grid grid-cols-1 gap-6 ${colClass} lg:gap-3 xl:gap-4`}>
           <div className="min-w-0">
           <h3 className="text-2xl font-bold text-primary-400 mb-4">{t('brand')}</h3>
           <p className="text-gray-400">{t('footer.tagline')}</p>
@@ -105,24 +133,26 @@ const Footer = () => {
           </ul>
           </div>
 
-          <div className="min-w-0">
-          <h4 className="text-lg font-semibold mb-4">{t('footer.socialMedia')}</h4>
-          <ul className="space-y-2 text-gray-400">
-            {FOOTER_SOCIAL.map(({ key, href, icon }) => (
-              <li key={key}>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-primary-400 transition"
-                >
-                  <SocialSvg name={icon} className="h-5 w-5 flex-shrink-0" />
-                  <span>{t(`footer.social.${key}`)}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-          </div>
+          {visibleSocial.length > 0 ? (
+            <div className="min-w-0">
+              <h4 className="text-lg font-semibold mb-4">{t('footer.socialMedia')}</h4>
+              <ul className="space-y-2 text-gray-400">
+                {visibleSocial.map(({ key, href, icon }) => (
+                  <li key={key}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 hover:text-primary-400 transition"
+                    >
+                      <SocialSvg name={icon} className="h-5 w-5 flex-shrink-0" />
+                      <span>{t(`footer.social.${key}`)}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           <div className="min-w-0">
           <h4 className="text-lg font-semibold mb-4">{t('footer.ourSpices')}</h4>

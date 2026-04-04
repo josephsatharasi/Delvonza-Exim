@@ -111,6 +111,7 @@ const getAllOrders = async (_req, res) => {
   try {
     const orders = await Order.find()
       .populate('user', 'name email')
+      .populate('items.product', 'hidePrice name')
       .sort({ createdAt: -1 });
     return res.json({ orders });
   } catch (error) {

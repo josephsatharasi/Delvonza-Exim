@@ -11,15 +11,20 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">Our Services</h2>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
           Professional services for smooth international spice trade
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <FeatureCard key={index} icon={service.icon} title={service.title} description={service.description} />
+            <div
+              key={index}
+              className="flex-[0_1_100%] w-full max-w-[320px] sm:flex-[0_1_calc(50%-12px)] sm:max-w-[calc(50%-12px)] lg:flex-[0_1_300px] lg:max-w-[300px] lg:w-[300px]"
+            >
+              <FeatureCard icon={service.icon} title={service.title} description={service.description} />
+            </div>
           ))}
         </div>
       </div>

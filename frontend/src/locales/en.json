@@ -29,7 +29,7 @@
     "socialMedia": "Social Media",
     "ourSpices": "Our Spices",
     "contactInfo": "Contact Info",
-    "address": "MahabubNagar, Telangana, India",
+    "address": "MahabubNagar, India",
     "copyright": "© 2024 Delvonza Exim. All rights reserved.",
     "availability": "Available 24/7 for your business inquiries",
     "spices": {
@@ -121,7 +121,7 @@
         "attr": "Quality without compromise"
       },
       "2": {
-        "text": "From Telangana's networks to your port—clear communication, steady logistics, and spices that match the sample every time.",
+        "text": "From India's networks to your port—clear communication, steady logistics, and spices that match the sample every time.",
         "attr": "Export you can plan around"
       },
       "3": {
@@ -144,6 +144,8 @@
     "packaging": "Packaging",
     "formsTitle": "Available Forms",
     "addToCart": "Add to Cart",
+    "addToCartDisabled": "Unavailable (price on request)",
+    "addToCartDisabledHint": "Add to cart is turned off when the price is hidden on the site. Please contact us for a quote.",
     "goToCart": "Go to Cart",
     "about": "About {{name}}",
     "featuresTitle": "Key Features"

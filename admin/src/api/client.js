@@ -47,5 +47,8 @@ export const adminApi = {
     request(`/orders/admin/${orderId}/status`, {
       method: 'PUT',
       body: JSON.stringify({ status })
-    })
+    }),
+  getSiteSettings: () => request('/settings/public'),
+  updateSiteSettings: (socialVisibility) =>
+    request('/settings', { method: 'PUT', body: JSON.stringify({ socialVisibility }) })
 };

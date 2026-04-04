@@ -73,5 +73,7 @@ export const apiClient = {
     request('/payments/stripe/create', { method: 'POST', body: JSON.stringify({ orderId }) }),
   verifyStripeSession: (body) =>
     request('/payments/stripe/verify', { method: 'POST', body: JSON.stringify(body) }),
-  submitInquiry: (body) => request('/inquiries', { method: 'POST', body: JSON.stringify(body) })
+  submitInquiry: (body) => request('/inquiries', { method: 'POST', body: JSON.stringify(body) }),
+  /** Public site settings (footer social visibility). No auth. */
+  getSiteSettings: () => request('/settings/public')
 };

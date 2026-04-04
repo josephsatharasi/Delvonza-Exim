@@ -2,13 +2,17 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Modal from '../components/common/Modal';
-import { Eye, Download, Truck, CheckCircle, XCircle, Clock, Package, Wallet, Trash2 } from 'lucide-react';
+import { Eye, Download, FileDown, Truck, CheckCircle, XCircle, Clock, Package, Wallet, Trash2 } from 'lucide-react';
 import { adminApi } from '../api/client';
+import { downloadOrdersPdf } from '../utils/pdfExport';
 
 const THUMB_FALLBACK =
   'https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=200';
 
 const inr = (n) => `₹${Number(n || 0).toLocaleString('en-IN')}`;
+
+const lineItemHidesPrice = (item) =>
+  item?.product && typeof item.product === 'object' && item.product.hidePrice === true;
 
 const Orders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -106,6 +110,19 @@ const Orders = () => {
     return { label: 'Online', className: 'bg-blue-100 text-blue-800' };
   };
 
+  const handleDownloadOrdersPdf = () => {
+    if (!orders.length) {
+      setMessage('No orders to export.');
+      return;
+    }
+    try {
+      downloadOrdersPdf(orders);
+      setMessage('Orders PDF downloaded.');
+    } catch (e) {
+      setMessage(e?.message || 'Could not generate PDF.');
+    }
+  };
+
   const deleteOrder = async (orderId) => {
     try {
       await adminApi.deleteOrder(orderId);
@@ -120,16 +137,21 @@ const Orders = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between mb-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">Orders Management</h1>
           <p className="text-gray-600 mt-1">
             New paid orders start as <strong>Accepted</strong>. Update fulfillment below. Auto refresh every 10s.
           </p>
         </div>
-        <Button icon={Download} variant="outline" onClick={() => loadOrders()}>
-          Refresh
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button icon={FileDown} variant="outline" onClick={handleDownloadOrdersPdf} disabled={loading || !orders.length}>
+            All orders [PDF]
+          </Button>
+          <Button icon={Download} variant="outline" onClick={() => loadOrders()}>
+            Refresh
+          </Button>
+        </div>
       </div>
 
       {message && <p className="mb-4 text-sm text-primary-700 bg-primary-50 px-4 py-2 rounded-lg">{message}</p>}
@@ -320,24 +342,27 @@ const Orders = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {selectedOrder.items.map((item, index) => (
-                      <tr key={index} className="border-t">
-                        <td className="py-2 px-2">
-                          <img
-                            src={item.image || THUMB_FALLBACK}
-                            alt=""
-                            className="w-12 h-12 rounded object-cover bg-gray-100"
-                            onError={(e) => {
-                              e.currentTarget.src = THUMB_FALLBACK;
-                            }}
-                          />
-                        </td>
-                        <td className="py-2 px-2">{item.name}</td>
-                        <td className="py-2 px-2 text-center">{item.quantity}</td>
-                        <td className="py-2 px-2 text-right">{inr(item.price)}</td>
-                        <td className="py-2 px-2 text-right font-medium">{inr(item.subtotal)}</td>
-                      </tr>
-                    ))}
+                    {selectedOrder.items.map((item, index) => {
+                      const hide = lineItemHidesPrice(item);
+                      return (
+                        <tr key={index} className="border-t">
+                          <td className="py-2 px-2">
+                            <img
+                              src={item.image || THUMB_FALLBACK}
+                              alt=""
+                              className="w-12 h-12 rounded object-cover bg-gray-100"
+                              onError={(e) => {
+                                e.currentTarget.src = THUMB_FALLBACK;
+                              }}
+                            />
+                          </td>
+                          <td className="py-2 px-2">{item.name}</td>
+                          <td className="py-2 px-2 text-center">{item.quantity}</td>
+                          <td className="py-2 px-2 text-right">{hide ? '—' : inr(item.price)}</td>
+                          <td className="py-2 px-2 text-right font-medium">{hide ? '—' : inr(item.subtotal)}</td>
+                        </tr>
+                      );
+                    })}
                     <tr className="border-t bg-gray-50">
                       <td colSpan="4" className="py-3 px-2 text-right font-semibold">
                         Total:

@@ -6,8 +6,9 @@ import Input from '../components/common/Input';
 import Select from '../components/common/Select';
 import Textarea from '../components/common/Textarea';
 import ImageUpload from '../components/common/ImageUpload';
-import { Plus, Edit, Trash2, GripVertical } from 'lucide-react';
+import { Plus, Edit, Trash2, GripVertical, FileDown } from 'lucide-react';
 import { adminApi } from '../api/client';
+import { downloadProductsPdf } from '../utils/pdfExport';
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -206,6 +207,19 @@ const Products = () => {
     persistProductOrder(next);
   };
 
+  const handleDownloadProductsPdf = () => {
+    if (!products.length) {
+      setMessage('No products to export.');
+      return;
+    }
+    try {
+      downloadProductsPdf(products);
+      setMessage('Products PDF downloaded.');
+    } catch (e) {
+      setMessage(e?.message || 'Could not generate PDF.');
+    }
+  };
+
   const handleToggleHidePrice = async (product, nextHidden) => {
     if (!product?._id) return;
     setHidePriceUpdatingId(product._id);
@@ -229,11 +243,16 @@ const Products = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Products</h1>
-        <Button icon={Plus} onClick={() => setIsModalOpen(true)}>
-          Add Product
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button variant="outline" icon={FileDown} onClick={handleDownloadProductsPdf} disabled={loading || !products.length}>
+            All products [PDF]
+          </Button>
+          <Button icon={Plus} onClick={() => setIsModalOpen(true)}>
+            Add Product
+          </Button>
+        </div>
       </div>
       {message && <p className="mb-4 text-sm text-primary-700 bg-primary-50 px-4 py-2 rounded-lg">{message}</p>}
       <p className="text-sm text-gray-600 mb-3">

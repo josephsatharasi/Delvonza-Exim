@@ -80,36 +80,43 @@ const HomePage = () => {
       </section>
 
       {/* Featured Spices Preview */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">{t('home.featuredTitle')}</h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
             {t('home.featuredSubtitle')}
           </p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-5 mb-4">
             {featuredProducts.map((spice) => (
-              <Link key={spice._id} to={`/products/${spice.slug}`} onClick={() => window.scrollTo(0, 0)}>
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105 cursor-pointer">
-                  <div className="h-40 overflow-hidden">
+              <Link
+                key={spice._id}
+                to={`/products/${spice.slug}`}
+                onClick={() => window.scrollTo(0, 0)}
+                className="flex-[0_1_calc(50%-8px)] w-[calc(50%-8px)] max-w-[200px] sm:flex-[0_1_calc(33.333%-11px)] sm:w-[calc(33.333%-11px)] sm:max-w-[200px] md:flex-[0_1_calc(25%-14px)] md:max-w-[220px] lg:flex-[0_1_180px] lg:w-[180px] lg:max-w-[180px] h-full"
+              >
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105 cursor-pointer h-full min-h-[220px] sm:min-h-[240px] flex flex-col">
+                  <div className="h-[7.5rem] sm:h-32 shrink-0 bg-gray-100 overflow-hidden">
                     <img
                       src={spice.images?.[0] || fallbackImage}
                       alt={spice.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
                       onError={(event) => {
                         event.currentTarget.src = fallbackImage;
                       }}
                     />
                   </div>
-                  <div className="p-3 text-left">
-                    <p className="font-semibold text-gray-800">{spice.name}</p>
-                    {(spice.shortDescription || spice.description) && (
+                  <div className="p-3 text-left flex-1 flex flex-col min-h-0">
+                    <p className="font-semibold text-gray-800 text-sm line-clamp-2">{spice.name}</p>
+                    {(spice.shortDescription || spice.description) ? (
                       <p
-                        className="text-xs text-gray-600 mt-1 line-clamp-2"
+                        className="text-xs text-gray-600 mt-2 line-clamp-2 flex-1 min-h-[2.5rem]"
                         title={spice.shortDescription || spice.description}
                       >
                         {spice.shortDescription || spice.description}
                       </p>
+                    ) : (
+                      <div className="flex-1 min-h-[2.5rem]" aria-hidden />
                     )}
                   </div>
                 </div>
@@ -117,7 +124,7 @@ const HomePage = () => {
             ))}
           </div>
 
-          <div className="text-center">
+          <div className="text-center pb-2">
             <Link 
               to="/products" 
               onClick={() => window.scrollTo(0, 0)}
