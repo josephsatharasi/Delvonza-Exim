@@ -3,17 +3,23 @@ const nodemailer = require('nodemailer');
 const getMailConfig = () => {
   const host = process.env.SMTP_HOST;
   const port = process.env.SMTP_PORT;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const from = process.env.MAIL_FROM;
-  if (!host || !port || !user || !pass || !from) {
+  const user = process.env.SMTP_USER || process.env.EMAIL_USER;
+  const passRaw = process.env.SMTP_PASS || process.env.EMAIL_PASS;
+  const from = process.env.MAIL_FROM || process.env.SMTP_USER || process.env.EMAIL_USER;
+  if (!host || !port || !user || !passRaw || !from) {
     return null;
   }
+  const portNum = Number(String(port).trim());
+  if (!Number.isFinite(portNum) || portNum <= 0) {
+    return null;
+  }
+  // Gmail app passwords are 16 chars; spaces in .env are ignored for auth.
+  const pass = String(passRaw).replace(/\s/g, '');
   return {
     host: String(host).trim(),
-    port: Number(port),
+    port: portNum,
     user: String(user).trim(),
-    pass: String(pass),
+    pass,
     from: String(from).trim()
   };
 };
@@ -23,13 +29,21 @@ const isMailConfigured = () => Boolean(getMailConfig());
 const createTransport = () => {
   const cfg = getMailConfig();
   if (!cfg) return null;
-  const secure = cfg.port === 465 || String(process.env.SMTP_SECURE).toLowerCase() === 'true';
-  return nodemailer.createTransport({
+  const secure = cfg.port === 465 || String(process.env.SMTP_SECURE || '').toLowerCase() === 'true';
+  const opts = {
     host: cfg.host,
     port: cfg.port,
     secure,
-    auth: { user: cfg.user, pass: cfg.pass }
-  });
+    auth: { user: cfg.user, pass: cfg.pass },
+    connectionTimeout: 25_000,
+    greetingTimeout: 25_000,
+    socketTimeout: 25_000
+  };
+  // Port 587 uses STARTTLS; required for Gmail and most hosts behind Render/cloud.
+  if (!secure && cfg.port === 587) {
+    opts.requireTLS = true;
+  }
+  return nodemailer.createTransport(opts);
 };
 
 /**

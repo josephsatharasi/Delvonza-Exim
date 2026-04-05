@@ -166,9 +166,23 @@ const forgotPassword = async (req, res) => {
             'Email is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, and MAIL_FROM on the server.'
         });
       }
-      return res.status(502).json({
-        message: 'Failed to send email. Check SMTP settings and the sender account (e.g. Gmail app password).'
+      // eslint-disable-next-line no-console
+      console.error('[adminAuth forgotPassword] SMTP send failed', {
+        code: e.code,
+        command: e.command,
+        responseCode: e.responseCode,
+        message: e.message
       });
+      let message =
+        'Failed to send email. On Render, set SMTP_HOST, SMTP_PORT=587, SMTP_SECURE=false, SMTP_USER, SMTP_PASS (Gmail App Password), MAIL_FROM (usually same as SMTP_USER). No quotes around values.';
+      if (e.code === 'EAUTH') {
+        message =
+          'Gmail rejected login (EAUTH). Create a Google App Password (Account → Security → 2-Step Verification → App passwords), paste it as SMTP_PASS in Render, and use the same Gmail as SMTP_USER and MAIL_FROM.';
+      } else if (e.code === 'ETIMEDOUT' || e.code === 'ESOCKET' || e.code === 'ECONNRESET') {
+        message =
+          'Could not connect to the mail server in time. Confirm SMTP_HOST and SMTP_PORT (587 for Gmail) and redeploy.';
+      }
+      return res.status(502).json({ message });
     }
 
     if (process.env.NODE_ENV !== 'production' && process.env.ADMIN_OTP_LOG === 'true') {
