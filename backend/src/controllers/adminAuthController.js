@@ -141,8 +141,7 @@ const forgotPassword = async (req, res) => {
 
     if (!isMailConfigured()) {
       return res.status(503).json({
-        message:
-          'Email is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, and MAIL_FROM on the server.'
+        message: 'Email is not configured. Set EMAIL_USER and EMAIL_PASS (Gmail App Password) on the server.'
       });
     }
 
@@ -162,27 +161,15 @@ const forgotPassword = async (req, res) => {
       await AdminPasswordReset.deleteOne({ email: emailLower });
       if (e.code === 'MAIL_NOT_CONFIGURED') {
         return res.status(503).json({
-          message:
-            'Email is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, and MAIL_FROM on the server.'
+          message: 'Email is not configured. Set EMAIL_USER and EMAIL_PASS (Gmail App Password).'
         });
       }
       // eslint-disable-next-line no-console
-      console.error('[adminAuth forgotPassword] SMTP send failed', {
-        code: e.code,
-        command: e.command,
-        responseCode: e.responseCode,
-        message: e.message
+      console.error('[adminAuth forgotPassword] mail send failed', e.code, e.message);
+      return res.status(502).json({
+        message:
+          'Could not send email. Check EMAIL_USER, EMAIL_PASS (App Password), and that MAIL_FROM matches EMAIL_USER if set.'
       });
-      let message =
-        'Failed to send email. On Render, set SMTP_HOST, SMTP_PORT=587, SMTP_SECURE=false, SMTP_USER, SMTP_PASS (Gmail App Password), MAIL_FROM (usually same as SMTP_USER). No quotes around values.';
-      if (e.code === 'EAUTH') {
-        message =
-          'Gmail rejected login (EAUTH). Create a Google App Password (Account → Security → 2-Step Verification → App passwords), paste it as SMTP_PASS in Render, and use the same Gmail as SMTP_USER and MAIL_FROM.';
-      } else if (e.code === 'ETIMEDOUT' || e.code === 'ESOCKET' || e.code === 'ECONNRESET') {
-        message =
-          'Could not reach Gmail SMTP in time (common on cloud hosts). Redeploy with latest server code (IPv4 fix). On Render set MAIL_FROM to the same address as EMAIL_USER. If it persists, try SMTP_PORT=465 and SMTP_SECURE=true, or use a relay (Resend/SendGrid).';
-      }
-      return res.status(502).json({ message });
     }
 
     if (process.env.NODE_ENV !== 'production' && process.env.ADMIN_OTP_LOG === 'true') {
