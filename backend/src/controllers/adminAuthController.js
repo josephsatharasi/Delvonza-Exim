@@ -180,7 +180,7 @@ const forgotPassword = async (req, res) => {
           'Gmail rejected login (EAUTH). Create a Google App Password (Account → Security → 2-Step Verification → App passwords), paste it as SMTP_PASS in Render, and use the same Gmail as SMTP_USER and MAIL_FROM.';
       } else if (e.code === 'ETIMEDOUT' || e.code === 'ESOCKET' || e.code === 'ECONNRESET') {
         message =
-          'Could not connect to the mail server in time. Confirm SMTP_HOST and SMTP_PORT (587 for Gmail) and redeploy.';
+          'Could not reach Gmail SMTP in time (common on cloud hosts). Redeploy with latest server code (IPv4 fix). On Render set MAIL_FROM to the same address as EMAIL_USER. If it persists, try SMTP_PORT=465 and SMTP_SECURE=true, or use a relay (Resend/SendGrid).';
       }
       return res.status(502).json({ message });
     }

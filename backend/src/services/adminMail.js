@@ -1,3 +1,5 @@
+const net = require('net');
+const dns = require('dns').promises;
 const nodemailer = require('nodemailer');
 
 const getMailConfig = () => {
@@ -26,24 +28,65 @@ const getMailConfig = () => {
 
 const isMailConfigured = () => Boolean(getMailConfig());
 
-const createTransport = () => {
-  const cfg = getMailConfig();
-  if (!cfg) return null;
-  const secure = cfg.port === 465 || String(process.env.SMTP_SECURE || '').toLowerCase() === 'true';
+/**
+ * Nodemailer mixes A + AAAA and picks randomly; IPv6 to Gmail often hangs on cloud hosts.
+ * Prefer dns.resolve4, then lookup IPv4 only; connect by IP with SNI = hostname.
+ */
+const resolveSmtpConnectTarget = async (hostname) => {
+  if (net.isIP(hostname)) {
+    return { connectHost: hostname, tlsName: hostname, ipv4: net.isIPv4(hostname) };
+  }
+  const forceIpv4 = String(process.env.SMTP_FORCE_IPV4 || 'true').toLowerCase() !== 'false';
+  if (!forceIpv4) {
+    return { connectHost: hostname, tlsName: hostname, ipv4: false };
+  }
+  try {
+    const records = await dns.resolve4(hostname);
+    if (records && records.length > 0) {
+      return { connectHost: records[0], tlsName: hostname, ipv4: true };
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('[adminMail] resolve4 failed', hostname, e && e.message);
+  }
+  try {
+    const { address } = await dns.lookup(hostname, { family: 4 });
+    return { connectHost: address, tlsName: hostname, ipv4: true };
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('[adminMail] IPv4 lookup failed', hostname, e && e.message);
+    return { connectHost: hostname, tlsName: hostname, ipv4: false };
+  }
+};
+
+const buildTransportOptions = (cfg, connectHost, tlsName, port, secure, requireTls587) => {
   const opts = {
-    host: cfg.host,
-    port: cfg.port,
+    host: connectHost,
+    port,
     secure,
+    servername: tlsName,
     auth: { user: cfg.user, pass: cfg.pass },
-    connectionTimeout: 25_000,
-    greetingTimeout: 25_000,
-    socketTimeout: 25_000
+    connectionTimeout: 18_000,
+    greetingTimeout: 18_000,
+    socketTimeout: 25_000,
+    tls: {
+      minVersion: 'TLSv1.2',
+      servername: tlsName
+    }
   };
-  // Port 587 uses STARTTLS; required for Gmail and most hosts behind Render/cloud.
-  if (!secure && cfg.port === 587) {
+  if (!secure && port === 587 && requireTls587) {
     opts.requireTLS = true;
   }
-  return nodemailer.createTransport(opts);
+  return opts;
+};
+
+const createTransport = (cfg, connectHost, tlsName, port, secure, requireTls587) =>
+  nodemailer.createTransport(buildTransportOptions(cfg, connectHost, tlsName, port, secure, requireTls587));
+
+const shouldRetryAlternateSmtp = (err) => {
+  const c = err && err.code;
+  if (c === 'EAUTH' || c === 'EENVELOPE') return false;
+  return ['ETIMEDOUT', 'ESOCKET', 'ECONNRESET', 'ECONNREFUSED', 'ETLS', 'EDNS', 'ENOTFOUND'].includes(c);
 };
 
 /**
@@ -56,17 +99,57 @@ const sendAdminPasswordResetEmail = async (toEmail, otp) => {
     throw err;
   }
   const cfg = getMailConfig();
-  const transporter = createTransport();
+  const { connectHost, tlsName, ipv4 } = await resolveSmtpConnectTarget(cfg.host);
+  if (!ipv4) {
+    // eslint-disable-next-line no-console
+    console.warn('[adminMail] SMTP not resolved to IPv4; nodemailer may pick IPv6 and hang.', cfg.host);
+  }
+
   const subject = 'Delvonza Exim Admin — Password reset code';
   const text = `Your Delvonza Exim admin password reset code is ${otp}. It expires in 10 minutes. If you did not request this, ignore this email.`;
   const html = `<p>Your Delvonza Exim admin password reset code is <strong>${otp}</strong>.</p><p>It expires in 10 minutes.</p><p>If you did not request a reset, you can ignore this email.</p>`;
-  await transporter.sendMail({
-    from: cfg.from,
-    to: toEmail,
-    subject,
-    text,
-    html
-  });
+  const mailPayload = { from: cfg.from, to: toEmail, subject, text, html };
+
+  const envSecure = String(process.env.SMTP_SECURE || '').toLowerCase() === 'true';
+  const primaryPort = cfg.port;
+  const primarySecure = primaryPort === 465 || envSecure;
+  const wantRequireTls =
+    String(process.env.SMTP_REQUIRE_TLS || 'true').toLowerCase() !== 'false';
+
+  /** @type {{ port: number, secure: boolean, requireTls587: boolean }[]} */
+  const steps = [];
+  steps.push({ port: primaryPort, secure: primarySecure, requireTls587: wantRequireTls && !primarySecure });
+
+  // 587 STARTTLS often times out on some clouds; try implicit TLS on 465 next.
+  if (primaryPort === 587 && !primarySecure) {
+    steps.push({ port: 465, secure: true, requireTls587: false });
+  }
+
+  let lastErr;
+  for (let i = 0; i < steps.length; i++) {
+    const step = steps[i];
+    const transporter = createTransport(cfg, connectHost, tlsName, step.port, step.secure, step.requireTls587);
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await transporter.sendMail(mailPayload);
+      transporter.close();
+      return;
+    } catch (e) {
+      lastErr = e;
+      try {
+        transporter.close();
+      } catch (_) {
+        /* ignore */
+      }
+      const retry = i < steps.length - 1 && shouldRetryAlternateSmtp(e);
+      // eslint-disable-next-line no-console
+      console.error('[adminMail] send attempt failed', { port: step.port, secure: step.secure, code: e.code, message: e.message });
+      if (!retry) {
+        throw e;
+      }
+    }
+  }
+  throw lastErr;
 };
 
 module.exports = { sendAdminPasswordResetEmail, isMailConfigured };
