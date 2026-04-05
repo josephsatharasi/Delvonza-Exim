@@ -9,6 +9,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const inquiryRoutes = require('./routes/inquiryRoutes');
 const siteSettingsRoutes = require('./routes/siteSettingsRoutes');
+const adminAuthRoutes = require('./routes/adminAuthRoutes');
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/admin/auth', adminAuthRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);

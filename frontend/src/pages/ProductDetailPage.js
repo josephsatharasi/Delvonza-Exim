@@ -7,7 +7,7 @@ import FloatingButtons from '../components/common/FloatingButtons';
 import { ArrowLeft, Package, MapPin, CheckCircle } from 'lucide-react';
 import Button from '../components/common/Button';
 import { useStore } from '../context/StoreContext';
-import { formatCurrency } from '../utils/productPricing';
+import { formatCurrency, formatPackagingForDisplay } from '../utils/productPricing';
 import { apiClient } from '../api/client';
 
 const ProductDetailPage = () => {
@@ -59,6 +59,8 @@ const ProductDetailPage = () => {
       </div>
     );
   }
+
+  const packagingForDisplay = formatPackagingForDisplay(product.packaging);
 
   return (
     <div>
@@ -132,13 +134,15 @@ const ProductDetailPage = () => {
                       <p className="text-gray-600">{product.origin}</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Package className="w-5 h-5 text-primary-600 mt-1" />
-                    <div>
-                      <p className="font-semibold text-gray-800">{t('product.packaging')}</p>
-                      <p className="text-gray-600">{product.packaging}</p>
+                  {packagingForDisplay ? (
+                    <div className="flex items-start gap-3">
+                      <Package className="w-5 h-5 text-primary-600 mt-1" />
+                      <div>
+                        <p className="font-semibold text-gray-800">{t('product.packaging')}</p>
+                        <p className="text-gray-600">{packagingForDisplay}</p>
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -157,7 +161,9 @@ const ProductDetailPage = () => {
               </div>
 
               {message && <p className="mb-3 text-green-700 bg-green-50 p-3 rounded-lg">{message}</p>}
-              <div className="grid grid-cols-2 gap-3">
+              <div
+                className={`grid gap-3 ${product.hidePrice ? 'grid-cols-1' : 'grid-cols-2'}`}
+              >
                 <Button
                   variant="primary"
                   className="w-full"
@@ -182,11 +188,13 @@ const ProductDetailPage = () => {
                 >
                   {product.hidePrice ? t('product.contactForPrice') : t('product.addToCart')}
                 </Button>
-                <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
-                  <Button variant="secondary" className="w-full border border-primary-600">
-                    {t('product.goToCart')}
-                  </Button>
-                </Link>
+                {!product.hidePrice && (
+                  <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
+                    <Button variant="secondary" className="w-full border border-primary-600">
+                      {t('product.goToCart')}
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -200,17 +208,19 @@ const ProductDetailPage = () => {
           </div>
 
           {/* Features */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">{t('product.featuresTitle')}</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {product.features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                  <span className="text-gray-700 font-medium">{feature}</span>
-                </div>
-              ))}
+          {Array.isArray(product.features) && product.features.length > 0 ? (
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">{t('product.featuresTitle')}</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {product.features.map((feature, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                    <span className="text-gray-700 font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </section>
 

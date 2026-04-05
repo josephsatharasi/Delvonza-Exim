@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAdminAuth } from '../context/AdminAuthContext';
-import { ADMIN_EMAIL, ADMIN_PASSWORD } from '../config/adminCredentials';
+import RequiredMark from '../components/RequiredMark';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -11,42 +11,42 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    const result = login(email, password);
-    if (!result.success) {
-      setError(result.message || 'Login failed.');
-      return;
+    setSubmitting(true);
+    try {
+      const result = await login(email, password);
+      if (!result.success) {
+        setError(result.message || 'Login failed.');
+        return;
+      }
+      navigate('/dashboard', { replace: true });
+    } catch (err) {
+      setError(err.message || 'Login failed.');
+    } finally {
+      setSubmitting(false);
     }
-    navigate('/dashboard', { replace: true });
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-1">Admin Login</h1>
-        <p className="text-sm text-gray-600 mb-4">Delvonza Exim — Admin Panel</p>
-        <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
-          <p className="font-semibold mb-1">Demo login (change in production)</p>
-          <p>
-            <span className="text-gray-600">Email:</span>{' '}
-            <code className="text-xs bg-white/80 px-1 rounded">{ADMIN_EMAIL}</code>
-          </p>
-          <p className="mt-1">
-            <span className="text-gray-600">Password:</span>{' '}
-            <code className="text-xs bg-white/80 px-1 rounded">{ADMIN_PASSWORD}</code>
-          </p>
-        </div>
+        <h1 className="text-2xl font-bold text-gray-800 mb-1">Admin sign in</h1>
+        <p className="text-sm text-gray-600 mb-6">Delvonza Exim — Admin Panel</p>
         {error && <p className="mb-4 text-red-600 bg-red-50 p-3 rounded-lg text-sm">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+              <RequiredMark />
+            </label>
             <input
               type="email"
               value={email}
@@ -57,7 +57,10 @@ const AdminLogin = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+              <RequiredMark />
+            </label>
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -79,11 +82,23 @@ const AdminLogin = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white rounded-lg py-3 font-semibold"
+            disabled={submitting}
+            className="w-full bg-primary-600 hover:bg-primary-700 disabled:opacity-60 text-white rounded-lg py-3 font-semibold"
           >
-            Sign in
+            {submitting ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
+        <div className="mt-6 flex flex-col gap-2 text-sm text-center text-gray-600">
+          <Link to="/forgot-password" className="text-primary-600 hover:text-primary-700 font-medium">
+            Forgot password?
+          </Link>
+          <p>
+            No account?{' '}
+            <Link to="/signup" className="text-primary-600 hover:text-primary-700 font-medium">
+              Create admin account
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

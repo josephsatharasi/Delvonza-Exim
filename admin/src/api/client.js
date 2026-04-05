@@ -1,22 +1,81 @@
 const DEFAULT_API_BASE_URL = 'https://delvonza-exim-backend.onrender.com/api';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || DEFAULT_API_BASE_URL;
 
+const ADMIN_TOKEN_KEY = 'delvonza_admin_access_token';
+
+export const adminTokenStore = {
+  get: () => {
+    try {
+      return sessionStorage.getItem(ADMIN_TOKEN_KEY);
+    } catch {
+      return null;
+    }
+  },
+  set: (token) => {
+    try {
+      if (token) sessionStorage.setItem(ADMIN_TOKEN_KEY, token);
+      else sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+    } catch {
+      /* ignore */
+    }
+  },
+  clear: () => {
+    try {
+      sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+    } catch {
+      /* ignore */
+    }
+  }
+};
+
 const request = async (path, options = {}) => {
   const isFormData = options.body instanceof FormData;
+  const token = adminTokenStore.get();
+  const headers = isFormData
+    ? { ...(options.headers || {}) }
+    : {
+        'Content-Type': 'application/json',
+        ...(options.headers || {})
+      };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   const response = await fetch(`${API_BASE_URL}${path}`, {
-    headers: isFormData
-      ? { ...(options.headers || {}) }
-      : {
-          'Content-Type': 'application/json',
-          ...(options.headers || {})
-        },
+    headers,
     ...options
   });
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(payload.message || 'Request failed');
+    const err = new Error(payload.message || 'Request failed');
+    err.status = response.status;
+    throw err;
   }
   return payload;
+};
+
+export const adminAuthApi = {
+  register: (body) =>
+    request('/admin/auth/register', {
+      method: 'POST',
+      body: JSON.stringify(body)
+    }),
+  login: (body) =>
+    request('/admin/auth/login', {
+      method: 'POST',
+      body: JSON.stringify(body)
+    }),
+  forgotPassword: (body) =>
+    request('/admin/auth/forgot-password', {
+      method: 'POST',
+      body: JSON.stringify(body)
+    }),
+  resetPassword: (body) =>
+    request('/admin/auth/reset-password', {
+      method: 'POST',
+      body: JSON.stringify(body)
+    }),
+  me: () => request('/admin/auth/me')
 };
 
 export const adminApi = {
@@ -28,7 +87,6 @@ export const adminApi = {
     }),
   createProduct: (body) => request('/products', { method: 'POST', body }),
   updateProduct: (id, body) => request(`/products/${id}`, { method: 'PUT', body }),
-  /** JSON-only; avoids multipart body issues when toggling hidePrice without a full form submit. */
   patchProductHidePrice: (id, hidePrice) =>
     request(`/products/${id}/hide-price`, {
       method: 'PATCH',

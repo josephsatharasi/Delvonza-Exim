@@ -51,14 +51,15 @@ const SocialSvg = ({ name, className }) => {
   }
 };
 
-/** Slugs match product URLs (/products/:slug). Update if you rename products in admin. */
+/** Slugs match admin product slugs (/products/:slug). */
 const FOOTER_SPICES = [
+  { labelKey: 'redChilli', slug: 'red-chilli' },
   { labelKey: 'turmeric', slug: 'turmeric' },
-  { labelKey: 'blackPepper', slug: 'black-pepper' },
+  { labelKey: 'cumin', slug: 'cumin' },
+  { labelKey: 'ginger', slug: 'ginger' },
   { labelKey: 'cardamom', slug: 'cardamom' },
-  { labelKey: 'driedChillies', slug: 'dried-red-chillies' },
-  { labelKey: 'cinnamon', slug: 'cinnamon' },
-  { labelKey: 'cloves', slug: 'cloves' }
+  { labelKey: 'onion', slug: 'onion' },
+  { labelKey: 'jaggery', slug: 'jaggery' }
 ];
 
 const defaultSocialVis = () =>

@@ -33,12 +33,13 @@
     "copyright": "© 2024 Delvonza Exim. All rights reserved.",
     "availability": "Available 24/7 for your business inquiries",
     "spices": {
+      "redChilli": "Red chilli",
       "turmeric": "Turmeric",
-      "blackPepper": "Black Pepper",
+      "cumin": "Cumin",
+      "ginger": "Ginger",
       "cardamom": "Cardamom",
-      "driedChillies": "Dried Chillies",
-      "cinnamon": "Cinnamon",
-      "cloves": "Cloves"
+      "onion": "Onion",
+      "jaggery": "Jaggery"
     },
     "social": {
       "facebook": "Facebook",
@@ -174,5 +175,35 @@
   },
   "common": {
     "loading": "Loading..."
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Common questions about our spices, exports, and how to work with us",
+    "items": {
+      "0": {
+        "q": "Do you export spices outside India?",
+        "a": "Yes. Delvonza Exim supplies premium Indian spices to importers, distributors, and food businesses worldwide. Share your destination port, volumes, and specifications through our contact form or a quote request, and our team will respond with availability and next steps."
+      },
+      "1": {
+        "q": "How do I request pricing or a formal quote?",
+        "a": "Use Get Quote on the homepage, the export inquiry section, or the Contact page. Include product names, grades, packaging, approximate volumes, and destination. For products with hidden prices on the site, the product page will direct you to contact us so we can quote based on your market and order size."
+      },
+      "2": {
+        "q": "What quality and packaging options do you offer?",
+        "a": "We focus on export-grade lots with clear specifications. Packaging can often be aligned to wholesale, retail, or bulk needs depending on the product. Details vary by item—tell us your preferred bag size, labeling, and any certifications you need when you inquire."
+      },
+      "3": {
+        "q": "Can I order a sample before a larger shipment?",
+        "a": "Many buyers start with samples to match aroma, color, and purity to their standards. Mention that you need samples in your message, along with the products and grades you are evaluating, and we will advise what is possible and typical lead times."
+      },
+      "4": {
+        "q": "How long does it take to process an inquiry?",
+        "a": "We aim to reply to business inquiries quickly, often within one business day depending on time zone and detail required. For complex quotes or custom grades, a little more time may be needed to confirm stock and documentation."
+      },
+      "5": {
+        "q": "Is my information kept confidential?",
+        "a": "Commercial inquiries you send through the website are handled for the purpose of quoting and fulfilling export discussions. Use a secure device and avoid sharing passwords; log out of any shared computer after using your account if you are a registered customer."
+      }
+    }
   }
 }

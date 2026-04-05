@@ -1,18 +1,13 @@
 import React from 'react';
 import Modal from '../common/Modal';
 import Button from '../common/Button';
-import { Download, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import { useAdminAuth } from '../../context/AdminAuthContext';
-import { downloadAdminProfilePdf } from '../../utils/pdfExport';
 
 const ORG = 'Delvonza Exim';
 
 const AdminProfileModal = ({ isOpen, onClose }) => {
-  const { adminEmail } = useAdminAuth();
-
-  const handlePdf = () => {
-    downloadAdminProfilePdf({ email: adminEmail, organization: ORG });
-  };
+  const { adminEmail, adminUsername, adminUser } = useAdminAuth();
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Admin profile" size="md">
@@ -27,20 +22,27 @@ const AdminProfileModal = ({ isOpen, onClose }) => {
           <p>
             <span className="font-semibold text-gray-900">Role:</span> Administrator
           </p>
+          {adminUsername ? (
+            <p>
+              <span className="font-semibold text-gray-900">User name:</span> {adminUsername}
+            </p>
+          ) : null}
           <p>
             <span className="font-semibold text-gray-900">Email:</span> {adminEmail}
           </p>
+          {adminUser?.phone ? (
+            <p>
+              <span className="font-semibold text-gray-900">Mobile:</span> {adminUser.phone}
+            </p>
+          ) : null}
           <p className="text-xs text-gray-500 pt-2">
             This panel uses a secure session. Log out from the sidebar when finished on a shared device.
           </p>
         </div>
       </div>
       <div className="flex flex-wrap gap-3 justify-end mt-8 pt-4 border-t">
-        <Button type="button" variant="secondary" onClick={onClose}>
+        <Button type="button" variant="primary" onClick={onClose}>
           Close
-        </Button>
-        <Button type="button" icon={Download} onClick={handlePdf}>
-          Download PDF
         </Button>
       </div>
     </Modal>

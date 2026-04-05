@@ -18,22 +18,6 @@ const addWrappedLines = (doc, text, x, y, maxWidth, lineHeight) => {
   return cy;
 };
 
-export function downloadAdminProfilePdf({ email, organization = 'Delvonza Exim' }) {
-  const doc = new jsPDF();
-  let y = 16;
-  doc.setFontSize(16);
-  doc.setFont('helvetica', 'normal');
-  doc.text('Admin profile', 14, y);
-  y += 10;
-  doc.setFontSize(11);
-  y = addWrappedLines(doc, `Organization: ${organization}`, 14, y, 180, 6);
-  y += 2;
-  y = addWrappedLines(doc, `Administrator email: ${email}`, 14, y, 180, 6);
-  y += 2;
-  y = addWrappedLines(doc, `Exported: ${new Date().toLocaleString()}`, 14, y, 180, 6);
-  doc.save(`delvonza-admin-profile-${Date.now()}.pdf`);
-}
-
 export function downloadProductsPdf(products) {
   const doc = new jsPDF();
   let y = 16;

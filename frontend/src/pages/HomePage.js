@@ -9,6 +9,7 @@ import { Package, Globe, Award, ArrowRight } from 'lucide-react';
 import { apiClient } from '../api/client';
 import InquirySection from '../components/sections/InquirySection';
 import QuoteBannerCarousel from '../components/sections/QuoteBannerCarousel';
+import FaqSection from '../components/sections/FaqSection';
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -136,6 +137,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      <FaqSection />
 
       <QuoteBannerCarousel />
 

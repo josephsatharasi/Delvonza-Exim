@@ -7,6 +7,8 @@ import Orders from './pages/Orders';
 import Inquiries from './pages/Inquiries';
 import Settings from './pages/Settings';
 import AdminLogin from './pages/AdminLogin';
+import AdminSignup from './pages/AdminSignup';
+import AdminForgotPassword from './pages/AdminForgotPassword';
 import { useAdminAuth } from './context/AdminAuthContext';
 import './App.css';
 
@@ -25,6 +27,8 @@ function App() {
     return (
       <Routes>
         <Route path="/login" element={<AdminLogin />} />
+        <Route path="/signup" element={<AdminSignup />} />
+        <Route path="/forgot-password" element={<AdminForgotPassword />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );

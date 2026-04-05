@@ -6,7 +6,7 @@ import homeHero from '../../assets/home.jpg';
 const HeroSection = () => {
   const { t } = useTranslation();
   return (
-    <section className="min-h-[55vh] sm:min-h-[65vh] md:min-h-screen relative flex items-center justify-center pt-20 pb-12 md:pb-0">
+    <section className="min-h-screen min-h-[100dvh] relative flex items-center justify-center pt-20 pb-16 md:pb-12">
       <div 
         className="absolute inset-0 z-0"
         style={{

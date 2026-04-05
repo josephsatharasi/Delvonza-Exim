@@ -10,6 +10,16 @@ import { Plus, Edit, Trash2, GripVertical, FileDown } from 'lucide-react';
 import { adminApi } from '../api/client';
 import { downloadProductsPdf } from '../utils/pdfExport';
 
+const joinFeaturesForPayload = (text) =>
+  String(text || '')
+    .split(/\r?\n/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .join(',');
+
+const formatFeaturesForInput = (features) =>
+  Array.isArray(features) && features.length ? features.join('\n') : '';
+
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -27,7 +37,8 @@ const Products = () => {
     stock: '',
     origin: '',
     images: [],
-    hidePrice: false
+    hidePrice: false,
+    features: ''
   });
   
   // All spices list
@@ -91,7 +102,7 @@ const Products = () => {
       payload.append('price', String(Number(formData.price)));
       payload.append('hidePrice', formData.hidePrice ? 'true' : 'false');
       payload.append('forms', 'Whole');
-      payload.append('features', 'Premium Quality,Export Grade');
+      payload.append('features', joinFeaturesForPayload(formData.features));
       formData.images.forEach((file) => payload.append('images', file));
 
       await adminApi.createProduct(payload);
@@ -104,7 +115,8 @@ const Products = () => {
         stock: '',
         origin: '',
         images: [],
-        hidePrice: false
+        hidePrice: false,
+        features: ''
       });
       await loadProducts();
     } catch (error) {
@@ -121,7 +133,8 @@ const Products = () => {
       stock: '',
       origin: product.origin || '',
       images: [],
-      hidePrice: Boolean(product.hidePrice)
+      hidePrice: Boolean(product.hidePrice),
+      features: formatFeaturesForInput(product.features)
     });
     setIsEditOpen(true);
   };
@@ -145,7 +158,7 @@ const Products = () => {
       payload.append('price', String(Number(formData.price)));
       payload.append('hidePrice', formData.hidePrice ? 'true' : 'false');
       payload.append('forms', (editingProduct.forms || ['Whole']).join(','));
-      payload.append('features', (editingProduct.features || ['Premium Quality', 'Export Grade']).join(','));
+      payload.append('features', joinFeaturesForPayload(formData.features));
       formData.images.forEach((file) => payload.append('images', file));
 
       await adminApi.updateProduct(editingProduct._id, payload);
@@ -159,7 +172,8 @@ const Products = () => {
         stock: '',
         origin: '',
         images: [],
-        hidePrice: false
+        hidePrice: false,
+        features: ''
       });
       await loadProducts();
     } catch (error) {
@@ -446,6 +460,15 @@ const Products = () => {
             onChange={handleInputChange}
             rows={8}
           />
+
+          <Textarea
+            label="Key features"
+            name="features"
+            placeholder="One point per line (e.g. Export grade, Natural aroma, ISO-focused processes)"
+            value={formData.features}
+            onChange={handleInputChange}
+            rows={5}
+          />
           
           <ImageUpload
             maxImages={4}
@@ -540,6 +563,15 @@ const Products = () => {
             value={formData.description}
             onChange={handleInputChange}
             rows={8}
+          />
+
+          <Textarea
+            label="Key features"
+            name="features"
+            placeholder="One point per line"
+            value={formData.features}
+            onChange={handleInputChange}
+            rows={5}
           />
 
           {editingProduct?.images?.length ? (
