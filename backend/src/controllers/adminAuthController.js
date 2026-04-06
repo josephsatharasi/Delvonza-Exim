@@ -167,8 +167,7 @@ const forgotPassword = async (req, res) => {
       // eslint-disable-next-line no-console
       console.error('[adminAuth forgotPassword] mail send failed', e.code, e.message);
       return res.status(502).json({
-        message:
-          'Could not send email. Check EMAIL_USER, EMAIL_PASS (App Password), and that MAIL_FROM matches EMAIL_USER if set.'
+        message: 'Could not send email. Check EMAIL_USER and EMAIL_PASS (Gmail App Password).'
       });
     }
 
