@@ -10,6 +10,7 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const inquiryRoutes = require('./routes/inquiryRoutes');
 const siteSettingsRoutes = require('./routes/siteSettingsRoutes');
 const adminAuthRoutes = require('./routes/adminAuthRoutes');
+const { checkEmailHealth } = require('./controllers/healthController');
 
 const app = express();
 
@@ -39,6 +40,8 @@ app.use(cookieParser());
 app.get('/api/health', (_req, res) => {
   res.json({ message: 'Backend is running.' });
 });
+
+app.get('/api/health/email', checkEmailHealth);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/admin/auth', adminAuthRoutes);

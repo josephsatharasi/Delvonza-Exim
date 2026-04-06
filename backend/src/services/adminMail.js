@@ -56,6 +56,15 @@ const sendAdminPasswordResetEmail = async (toEmail, otp) => {
   `;
 
   try {
+    await transporter.verify();
+    console.log('[adminMail] SMTP connection verified');
+  } catch (verifyError) {
+    console.error('[adminMail] SMTP verification failed:', verifyError.message);
+    console.error('[adminMail] Check EMAIL_USER and EMAIL_PASS in production environment');
+    throw verifyError;
+  }
+
+  try {
     const info = await transporter.sendMail({
       from: `"Delvonza Exim" <${c.from}>`,
       to: toEmail,
@@ -63,10 +72,13 @@ const sendAdminPasswordResetEmail = async (toEmail, otp) => {
       text,
       html
     });
-    console.log('[adminMail] Email sent successfully:', info.messageId);
+    console.log('[adminMail] Email sent successfully to:', toEmail);
+    console.log('[adminMail] Message ID:', info.messageId);
     return info;
   } catch (error) {
     console.error('[adminMail] Failed to send email:', error.message);
+    console.error('[adminMail] Error code:', error.code);
+    console.error('[adminMail] Error response:', error.response);
     throw error;
   }
 };

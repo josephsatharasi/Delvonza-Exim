@@ -157,17 +157,34 @@ const forgotPassword = async (req, res) => {
 
     try {
       await sendAdminPasswordResetEmail(admin.email, otp);
+      console.log(`[adminAuth] Password reset email sent to: ${emailLower}`);
     } catch (e) {
       await AdminPasswordReset.deleteOne({ email: emailLower });
+      console.error('[adminAuth] Email send error:', e.message);
+      console.error('[adminAuth] Error code:', e.code);
+      
       if (e.code === 'MAIL_NOT_CONFIGURED') {
         return res.status(503).json({
-          message: 'Email is not configured. Set EMAIL_USER and EMAIL_PASS (Gmail App Password).'
+          message: 'Email service is not configured. Please contact support.'
         });
       }
-      // eslint-disable-next-line no-console
-      console.error('[adminAuth forgotPassword] mail send failed', e.code, e.message);
+      
+      if (e.code === 'EAUTH' || e.responseCode === 535) {
+        console.error('[adminAuth] Authentication failed - check EMAIL_USER and EMAIL_PASS');
+        return res.status(502).json({
+          message: 'Email service authentication failed. Please contact support.'
+        });
+      }
+      
+      if (e.code === 'ECONNECTION' || e.code === 'ETIMEDOUT') {
+        console.error('[adminAuth] Connection failed - check network/firewall');
+        return res.status(502).json({
+          message: 'Unable to connect to email service. Please try again later.'
+        });
+      }
+      
       return res.status(502).json({
-        message: 'Could not send email. Check EMAIL_USER and EMAIL_PASS (Gmail App Password).'
+        message: 'Failed to send password reset email. Please try again or contact support.'
       });
     }
 
