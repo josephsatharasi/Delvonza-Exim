@@ -9,8 +9,8 @@ const checkEmailHealth = async (req, res) => {
         status: 'error',
         message: 'Email service not configured',
         details: {
-          EMAIL_USER: process.env.EMAIL_USER ? 'Set' : 'Not set',
-          EMAIL_PASS: process.env.EMAIL_PASS ? 'Set' : 'Not set'
+          SENDGRID_API_KEY: process.env.SENDGRID_API_KEY ? 'Set' : 'Not set',
+          EMAIL_FROM: process.env.EMAIL_FROM || 'Not set'
         }
       });
     }
@@ -19,8 +19,8 @@ const checkEmailHealth = async (req, res) => {
       status: 'ok',
       message: 'Email service is configured',
       details: {
-        EMAIL_USER: process.env.EMAIL_USER || 'Not set',
-        EMAIL_PASS: process.env.EMAIL_PASS ? '****' + String(process.env.EMAIL_PASS).slice(-4) : 'Not set'
+        SENDGRID_API_KEY: process.env.SENDGRID_API_KEY ? '****' + String(process.env.SENDGRID_API_KEY).slice(-4) : 'Not set',
+        EMAIL_FROM: process.env.EMAIL_FROM || 'Not set'
       }
     });
   } catch (error) {
