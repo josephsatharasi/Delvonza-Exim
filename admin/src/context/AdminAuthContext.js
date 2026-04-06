@@ -66,13 +66,12 @@ export const AdminAuthProvider = ({ children }) => {
 
   const register = useCallback(async (payload) => {
     try {
-      const { accessToken, admin } = await adminAuthApi.register(payload);
-      applySession(accessToken, admin);
+      await adminAuthApi.register(payload);
       return { success: true };
     } catch (e) {
       return { success: false, message: e.message || 'Registration failed.' };
     }
-  }, [applySession]);
+  }, []);
 
   const logout = useCallback(() => {
     applySession(null, null);

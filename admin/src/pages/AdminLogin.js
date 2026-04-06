@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
-import { Link, useNavigate, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAdminAuth } from '../context/AdminAuthContext';
 import RequiredMark from '../components/RequiredMark';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login, isAuthenticated } = useAdminAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (location.state?.message) {
+      setMessage(location.state.message);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
@@ -40,6 +49,7 @@ const AdminLogin = () => {
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
         <h1 className="text-2xl font-bold text-gray-800 mb-1">Admin sign in</h1>
         <p className="text-sm text-gray-600 mb-6">Delvonza Exim — Admin Panel</p>
+        {message && <p className="mb-4 text-green-800 bg-green-50 p-3 rounded-lg text-sm">{message}</p>}
         {error && <p className="mb-4 text-red-600 bg-red-50 p-3 rounded-lg text-sm">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

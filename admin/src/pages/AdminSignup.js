@@ -53,7 +53,7 @@ const AdminSignup = () => {
         setError(result.message || 'Registration failed.');
         return;
       }
-      navigate('/dashboard', { replace: true });
+      navigate('/login', { replace: true, state: { message: 'Account created successfully. Please sign in.' } });
     } catch (err) {
       setError(err.message || 'Registration failed.');
     } finally {

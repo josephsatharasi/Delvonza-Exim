@@ -52,8 +52,16 @@ const sendAdminPasswordResetEmail = async (toEmail, otp) => {
     `
   };
 
-  await sgMail.send(msg);
-  console.log('[adminMail] Email sent successfully to:', toEmail);
+  try {
+    await sgMail.send(msg);
+    console.log('[adminMail] Email sent successfully to:', toEmail);
+  } catch (error) {
+    console.error('[adminMail] SendGrid error:', error.message);
+    if (error.response) {
+      console.error('[adminMail] SendGrid response:', JSON.stringify(error.response.body));
+    }
+    throw error;
+  }
 };
 
 module.exports = { sendAdminPasswordResetEmail, isMailConfigured };
