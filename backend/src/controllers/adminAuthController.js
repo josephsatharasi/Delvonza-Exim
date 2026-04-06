@@ -157,35 +157,16 @@ const forgotPassword = async (req, res) => {
 
     try {
       await sendAdminPasswordResetEmail(admin.email, otp);
-      console.log(`[adminAuth] Password reset email sent to: ${emailLower}`);
     } catch (e) {
       await AdminPasswordReset.deleteOne({ email: emailLower });
-      console.error('[adminAuth] Email send error:', e.message);
-      console.error('[adminAuth] Error code:', e.code);
-      
+      console.error('[adminAuth] Email error:', e.message, e.code);
       if (e.code === 'MAIL_NOT_CONFIGURED') {
-        return res.status(503).json({
-          message: 'Email service is not configured. Please contact support.'
-        });
+        return res.status(503).json({ message: 'Email service not configured.' });
       }
-      
-      if (e.code === 'EAUTH' || e.responseCode === 535) {
-        console.error('[adminAuth] Authentication failed - check EMAIL_USER and EMAIL_PASS');
-        return res.status(502).json({
-          message: 'Email service authentication failed. Please contact support.'
-        });
+      if (e.code === 'ETIMEDOUT' || e.code === 'ECONNECTION') {
+        return res.status(503).json({ message: 'Email service temporarily unavailable. Please try again in a few minutes.' });
       }
-      
-      if (e.code === 'ECONNECTION' || e.code === 'ETIMEDOUT') {
-        console.error('[adminAuth] Connection failed - check network/firewall');
-        return res.status(502).json({
-          message: 'Unable to connect to email service. Please try again later.'
-        });
-      }
-      
-      return res.status(502).json({
-        message: 'Failed to send password reset email. Please try again or contact support.'
-      });
+      return res.status(502).json({ message: 'Failed to send email. Please try again.' });
     }
 
     if (process.env.NODE_ENV !== 'production' && process.env.ADMIN_OTP_LOG === 'true') {

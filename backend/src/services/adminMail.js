@@ -20,10 +20,14 @@ const sendAdminPasswordResetEmail = async (toEmail, otp) => {
   }
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
     auth: { user: c.user, pass: c.pass },
-    debug: process.env.NODE_ENV === 'development',
-    logger: process.env.NODE_ENV === 'development'
+    tls: { rejectUnauthorized: false },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000
   });
 
   const subject = 'Delvonza Exim Admin — Password Reset Code';
@@ -55,32 +59,16 @@ const sendAdminPasswordResetEmail = async (toEmail, otp) => {
     </html>
   `;
 
-  try {
-    await transporter.verify();
-    console.log('[adminMail] SMTP connection verified');
-  } catch (verifyError) {
-    console.error('[adminMail] SMTP verification failed:', verifyError.message);
-    console.error('[adminMail] Check EMAIL_USER and EMAIL_PASS in production environment');
-    throw verifyError;
-  }
-
-  try {
-    const info = await transporter.sendMail({
-      from: `"Delvonza Exim" <${c.from}>`,
-      to: toEmail,
-      subject,
-      text,
-      html
-    });
-    console.log('[adminMail] Email sent successfully to:', toEmail);
-    console.log('[adminMail] Message ID:', info.messageId);
-    return info;
-  } catch (error) {
-    console.error('[adminMail] Failed to send email:', error.message);
-    console.error('[adminMail] Error code:', error.code);
-    console.error('[adminMail] Error response:', error.response);
-    throw error;
-  }
+  const info = await transporter.sendMail({
+    from: `"Delvonza Exim" <${c.from}>`,
+    to: toEmail,
+    subject,
+    text,
+    html
+  });
+  
+  console.log('[adminMail] Email sent successfully to:', toEmail);
+  return info;
 };
 
 module.exports = { sendAdminPasswordResetEmail, isMailConfigured };
