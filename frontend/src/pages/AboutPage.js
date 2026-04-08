@@ -61,11 +61,11 @@ const AboutPage = () => {
                 </ul>
               </div>
             </div>
-            <div className="rounded-lg overflow-hidden shadow-xl min-h-[280px] md:min-h-0 h-full flex">
+            <div className="rounded-lg overflow-hidden shadow-xl h-[360px] md:h-full flex">
               <img
                 src={aboutImage}
                 alt="Premium Indian spices — whole and ground varieties"
-                className="w-full h-full min-h-[280px] md:min-h-full object-cover object-center"
+                className="w-full h-full object-contain object-center"
               />
             </div>
           </div>
